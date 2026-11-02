@@ -363,7 +363,7 @@ The core exposes public read-only `GET /api/v1/products` (cursor-paginated canon
 variants) and `GET /api/v1/history?product=global&start=YYYY-MM-DD&end=YYYY-MM-DD`
 (use a canonical product ID for individual history). See the [versioned web API
 contract](../docs/contracts/web/v1/README.md) for response fields, units, date
-boundaries, errors and `available-period-v4` methodology. The browser never needs a
+boundaries, errors and `observed-pairs-overview-v6` methodology. The browser never needs a
 scraper token; ingestion and monitoring routes retain their authentication.
 
 `GET /api/v1/groups` lists the curated Cesta básica, Hortifruti, Doces and Carnes
@@ -381,14 +381,24 @@ preserve gaps. Known package sizes must be equivalent; explicit per-kg/L/unit
 prices are supported when the canonical package is unknown and the observed basis
 is unambiguous. Known restricted offers are excluded. Advertised base prices with
 unreported conditions are explicitly flagged and never substituted for known
-unrestricted prices in a context that has them. The overview equally weights
-product price relatives on complete days, without changing the panel when data is
-missing. It is an exploratory sample index, not a national inflation measure.
+unrestricted prices in a context that has them. The overview compares each context's first eligible positive price inside the
+request with its latest eligible price already observed by each chart date,
+on two distinct dates that need not be consecutive. It averages context relatives
+within shops, shops within products and products equally, using exact rational
+arithmetic through final rounding. Each context counts once, regardless of
+collection frequency. There is no daily compounding. A R$30 observation on day 1
+and R$50 on day 30 contributes +66.67% from day 30; it never fills earlier days.
 
-Money averages and relative changes use exact rational arithmetic; HTTP responses
-round only at the centavo/basis-point boundary. Coverage, actual comparison dates,
-source observation freshness and methodology accompany every response. A strict
-fixed panel can have no complete days; individual histories remain available.
+Known historical comparisons remain included through later gaps until a new
+eligible price updates their endpoint. This does not confirm an unchanged price
+in days without observations. `dailyComparisons` reports each snapshot's observed
+change, product/shop/context counts, actual pair-date bounds and `updatedStreams`
+(new eligible ending observations on that date). The initial point is a reference
+zero. Before a second eligible date, contexts remain excluded; a later pair can
+start the series without backfilling. Samples and pair periods can differ, so the
+mean can change when participants join. This is an exploratory sample measure,
+not national inflation. Individual product histories keep their endpoint method.
+
 The effective chart interval runs from the first to the last eligible price date
 inside the requested selection. Actual comparison dates are explicit; missing
 outer days do not hide the available history. Without a matched panel, a product
@@ -530,14 +540,16 @@ reads execute no raw-observation scan. Product histories keep the existing raw
 path. Before bootstrap completes, the existing raw overview path remains available.
 The first backfill is asynchronous; schema migration does not aggregate history.
 
-The overview selects the requested interval's common available bounds and fixed
-comparison contexts, then applies context, shop and product weights using the
-daily rows. Window calculations avoid repeated scans of the daily panel. SQL
-combines numerators only for identical exact denominators; Go retains rational
-arithmetic through the final rounding. Thus the overview can build its graph
-without transporting or constructing all individual product/context graphs. Missing
-intermediate prices remain gaps. Current equivalence membership and group filters
-are applied when reading summaries, without rewriting every historical day.
+The overview selects common available chart bounds and each context's first
+positive eligible daily price. A later eligible observation creates or updates
+that context's first/latest pair. SQL exposes its validity from that observation's
+date until the next eligible price, limited to the request. This creates snapshots
+only after a valid pair exists, never before its second observation. SQL applies
+context and shop weights by snapshot date, reports pair dates and update counts,
+and combines equal exact denominators. Go applies equal product weights and final
+rounding without compounding. The raw fallback incrementally tracks each context's
+first and latest eligible price and produces identical snapshots. Current
+equivalence membership and group filters are applied without rewriting history.
 
 Migration 15 creates the daily tables and an observation-time index for bounded
 day rebuilds. `daily history summarized` logs show rebuilt dates, generations and

@@ -1,9 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Dashboard } from './Dashboard';
 import { monthsBefore, today } from '../shared/dates';
 import { geometry, lineSegments } from './chartGeometry';
-import { catalog, groups, jsonResponse, mockCore, productHistory } from '../testing/apiFixture';
+import { catalog, groups, jsonResponse, mockCore, productHistory, globalHistory } from '../testing/apiFixture';
 
 beforeEach(() => {
   window.history.replaceState(null, '', '/');
@@ -15,10 +15,10 @@ it('loads the overview from core and provides an accessible table', async () => 
   render(<Dashboard />);
   expect(screen.getByRole('button', { name: 'Último mês' })).toHaveAttribute('aria-pressed', 'true');
   expect(await screen.findByRole('heading', { name: 'Variação dos produtos monitorados' })).toBeVisible();
-  expect(screen.getByText('+8,03%')).toBeVisible();
+  expect(screen.getByText('+8,03%', { selector: 'strong' })).toBeVisible();
   fireEvent.click(screen.getByText('Ver dados em tabela'));
   expect(screen.getByRole('table')).toBeVisible();
-  expect(screen.getByText('Sem preço comparável')).toBeVisible();
+  expect(screen.getByRole('columnheader', { name: 'Produtos comparados' })).toBeVisible();
   expect(fetch).toHaveBeenCalledWith(expect.stringContaining('history?product=global&start='), expect.objectContaining({ signal: expect.any(AbortSignal) }));
 });
 
@@ -27,7 +27,7 @@ it('displays methodology and freshness supplied by core', async () => {
   await screen.findByRole('img');
   expect(screen.getByText(/Última coleta no período/)).toBeVisible();
   fireEvent.click(screen.getByText('Metodologia deste histórico'));
-  expect(screen.getByText(productHistory.methodology)).toBeVisible();
+  expect(screen.getByText(globalHistory.methodology)).toBeVisible();
   expect(screen.queryByText(/Dados fictícios/)).not.toBeInTheDocument();
 });
 
@@ -221,7 +221,7 @@ it('shows available dates below the graph when selecting past and future endpoin
   expect(chart).toBeVisible();
   expect(explanation).toBeVisible();
   expect(chart.compareDocumentPosition(explanation) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-  expect(screen.getByText('Comparação: 27/10/2026 a 29/10/2026')).toBeVisible();
+  expect(screen.getByText('Datas dos preços comparados: 27/10/2026 a 29/10/2026')).toBeVisible();
   expect(screen.getByLabelText('De')).toHaveValue('2026-10-01');
   expect(screen.getByLabelText('Até')).toHaveValue('2027-01-01');
   expect(fetch).toHaveBeenLastCalledWith('/api/v1/history?product=global&start=2026-10-01&end=2027-01-01', expect.any(Object));
@@ -235,7 +235,7 @@ it('shows a single overview day without claiming a calculated percentage', async
   render(<Dashboard />);
   const chart = await screen.findByRole('img');
   expect(chart).toBeVisible();
-  expect(screen.getByText(/Base de referência/)).toHaveTextContent('Variação não calculável');
+  expect(screen.getByText(/Base de referência/, { selector: 'figcaption' })).toHaveTextContent('Variação não calculável');
   expect(screen.getByText(/preços disponíveis apenas em 27\/10\/2026/)).toBeVisible();
   expect(screen.queryByText(/Comparação:/)).not.toBeInTheDocument();
   expect(chart.querySelectorAll('circle')).toHaveLength(1);
@@ -259,4 +259,43 @@ it('shows Pão de Açúcar delivery coverage and public product link from core',
   render(<Dashboard />);
   expect(await screen.findByRole('link', { name: /Ver oferta de Pão de Açúcar/ })).toHaveAttribute('href', productUrl);
   expect(screen.getByText(context)).toBeVisible();
+});
+
+it('shows observed changes, sample sizes and the actual comparison dates', async () => {
+  render(<Dashboard />);
+  await screen.findByRole('img');
+  fireEvent.click(screen.getByText('Ver dados em tabela'));
+  const table = screen.getByRole('table');
+  const first = within(table).getByRole('row', { name: /28\/10\/2026/ });
+  const later = within(table).getByRole('row', { name: /29\/10\/2026/ });
+  expect(within(first).getAllByRole('cell').map((cell) => cell.textContent)).toEqual(['28/10/2026', '+4,00%', '1', '1', '1', '1', '27/10/2026', '28/10/2026']);
+  expect(within(later).getAllByRole('cell').map((cell) => cell.textContent)).toEqual(['29/10/2026', '+8,03%', '2', '1', '2', '2', '27/10/2026', '29/10/2026']);
+  expect(screen.getByText(/A amostra pode mudar a cada dia/)).toBeVisible();
+});
+
+it('shows a retained historical comparison without claiming a new price in the gap', async () => {
+  const retained = { ...globalHistory, points: globalHistory.points.map((point) => ({ ...point, value: point.value === 803 ? 400 : point.value })),
+    changeBasisPoints: 400, comparisonEnd: '2026-10-28',
+    dailyComparisons: [globalHistory.dailyComparisons[0], { ...globalHistory.dailyComparisons[0], date: '2026-10-29', updatedStreams: 0 }] };
+  vi.stubGlobal('fetch', mockCore(retained));
+  render(<Dashboard />);
+  await screen.findByRole('img');
+  fireEvent.click(screen.getByText('Ver dados em tabela'));
+  const later = within(screen.getByRole('table')).getByRole('row', { name: /^29\/10\/2026/ });
+  expect(within(later).getAllByRole('cell').map((cell) => cell.textContent)).toEqual(['29/10/2026', '+4,00%', '1', '1', '1', '0', '27/10/2026', '28/10/2026']);
+  expect(screen.getByText(/Isso não confirma o preço nesses dias/)).toBeVisible();
+  expect(screen.getByText('Datas dos preços comparados: 27/10/2026 a 28/10/2026')).toBeVisible();
+});
+
+it('does not include a context before its second price or fill the gap with its future price', async () => {
+  const sparse = { ...globalHistory, points: [globalHistory.points[0], { date: '2026-10-28', value: null }, globalHistory.points[2]],
+    counts: { ...globalHistory.counts, pricedDays: 2 },
+    dailyComparisons: [{ date: '2026-10-28', changeBasisPoints: null, products: 0, shops: 0, streams: 0, updatedStreams: 0, comparisonStart: null, comparisonEnd: null }, globalHistory.dailyComparisons[1]] };
+  vi.stubGlobal('fetch', mockCore(sparse));
+  render(<Dashboard />);
+  await screen.findByRole('img');
+  fireEvent.click(screen.getByText('Ver dados em tabela'));
+  const before = within(screen.getByRole('table')).getByRole('row', { name: /^28\/10\/2026/ });
+  expect(within(before).getByText('Sem comparação disponível')).toBeVisible();
+  expect(screen.getByText('+8,03%', { selector: 'strong' })).toBeVisible();
 });

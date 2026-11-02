@@ -5,14 +5,16 @@ import (
 	"time"
 )
 
-const MethodologyVersion = "available-period-v4"
+const MethodologyVersion = "observed-pairs-overview-v6"
+
+const eligibilityMethodology = "Cada contexto usa a última observação diária e o menor preço elegível em BRL, sem restrições explícitas de pagamento, clube, cupom ou compra múltipla. " +
+	"Prioriza condições comprovadamente livres no intervalo; na ausência delas, aceita condições não informadas, sinalizadas na interface. " +
+	"Exige embalagens equivalentes ou uma única base explícita (kg, L ou unidade). "
 
 const methodology = "O intervalo efetivo vai da primeira à última data com preço elegível dentro do período solicitado. " +
 	"Painel de contextos com preços comparáveis nas duas pontas desse intervalo, com base inicial positiva. " +
-	"Cada contexto usa a última observação diária e o menor preço elegível em BRL, sem restrições explícitas de pagamento, clube, cupom ou compra múltipla. " +
-	"Prioriza condições comprovadamente livres no intervalo; na ausência delas, aceita condições não informadas, sinalizadas na interface. " +
-	"Exige embalagens equivalentes ou uma única base explícita (kg, L ou unidade). " +
-	"A variação é a média das variações dos contextos por loja e depois das lojas por produto; a visão geral dá peso igual aos produtos elegíveis. " +
+	eligibilityMethodology +
+	"A variação é a média das variações dos contextos por loja e depois das lojas por produto. " +
 	"O gráfico de preços do produto usa médias dos mesmos contextos por loja, com pesos iguais por loja. " +
 	"Sem painel comparável, mostra o menor preço disponível por dia, sem calcular variação. " +
 	"Preços disponíveis por loja são exibidos separadamente, inclusive contextos excluídos da comparação. " +
@@ -23,6 +25,13 @@ const methodology = "O intervalo efetivo vai da primeira à última data com pre
 	"A cobertura por cidade e loja pode mudar; diferenças de preço entre cidades não são variação de preços no tempo."
 
 func Build(series []ProductSeries, global bool, shopCount int, now time.Time) History {
+	if global {
+		return rawOverview(series, shopCount, now)
+	}
+	return productHistory(series, shopCount, now)
+}
+
+func productHistory(series []ProductSeries, shopCount int, now time.Time) History {
 	history := emptyHistory()
 	if len(series) == 0 {
 		return history
@@ -31,11 +40,9 @@ func Build(series []ProductSeries, global bool, shopCount int, now time.Time) Hi
 	series = prepareSeries(trimSeries(series, history.AvailablePeriod))
 	history.Counts = Coverage{Products: len(series), Shops: shopCount, Days: len(series[0].Points)}
 	collectMetadata(&history, series)
-	history.Points = makePoints(series, global)
-	if !global {
-		setProduct(&history, series[0])
-	}
-	summarize(&history, series, global)
+	history.Points = makePoints(series)
+	setProduct(&history, series[0])
+	summarize(&history, series)
 	finishContext(&history, now)
 	history.Coverage += observedLocations(series)
 	return history
@@ -82,15 +89,15 @@ func collectProductMetadata(history *History, product ProductSeries) {
 	}
 }
 
-func makePoints(series []ProductSeries, global bool) []Point {
+func makePoints(series []ProductSeries) []Point {
 	points := make([]Point, 0, len(series[0].Points))
 	for position, point := range series[0].Points {
-		points = append(points, makePoint(series, point, position, global))
+		points = append(points, makePoint(series, point, position))
 	}
 	return points
 }
 
-func summarize(history *History, series []ProductSeries, global bool) {
+func summarize(history *History, series []ProductSeries) {
 	for _, point := range history.Points {
 		countPricedDay(history, point)
 	}
@@ -99,14 +106,11 @@ func summarize(history *History, series []ProductSeries, global bool) {
 	}
 	last := len(history.Points) - 1
 	history.ComparisonStart, history.ComparisonEnd = &history.Points[0].Date, &history.Points[last].Date
-	history.ChangeBasisPoints = history.Points[last].Value
-	if !global {
-		history.ChangeBasisPoints = rounded(amount(series[0].Changes[last].Amount))
-	}
+	history.ChangeBasisPoints = rounded(amount(series[0].Changes[last].Amount))
 }
 
 func emptyHistory() History {
-	return History{Title: "Variação dos produtos monitorados", Unit: "percent", Points: []Point{}, ShopPrices: []ShopHistory{},
+	return History{Title: "Variação dos produtos monitorados", Unit: "percent", Points: []Point{}, ShopPrices: []ShopHistory{}, DailyComparisons: []DailyComparison{},
 		Methodology: methodology, MethodologyVersion: MethodologyVersion, TimeZone: "America/Sao_Paulo", Coverage: "Nenhuma observação no período."}
 }
 
@@ -116,10 +120,7 @@ func includeShop(shops map[string]bool, context ContextSeries) {
 	}
 }
 
-func makePoint(series []ProductSeries, point PricePoint, position int, global bool) Point {
-	if global {
-		return Point{point.Date, rounded(overviewValue(series, position))}
-	}
+func makePoint(series []ProductSeries, point PricePoint, position int) Point {
 	if series[0].IncludedStreams == 0 {
 		return Point{point.Date, lowestAvailable(series[0].Contexts, position)}
 	}

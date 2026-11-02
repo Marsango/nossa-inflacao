@@ -1,6 +1,7 @@
 import { vi } from 'vitest';
 import type { History } from '../data/model';
 import example from '../../../docs/contracts/web/v1/history.example.json';
+import overviewExample from '../../../docs/contracts/web/v1/overview.example.json';
 
 export const productHistory = example as History;
 export const catalog = { items: [{ id: '1', label: 'Arroz branco · 5 kg' }, { id: '2', label: 'Café · 500 g' }], nextCursor: null };
@@ -10,8 +11,7 @@ export const groups = [
   { id: 'doces', label: 'Doces', description: 'Chocolates, balas e outros doces monitorados.' },
   { id: 'carnes', label: 'Carnes', description: 'Cortes de carne monitorados.' },
 ];
-export const globalHistory: History = { ...productHistory, title: 'Variação dos produtos monitorados', unit: 'percent', priceBasis: null, shopPrices: [],
-  points: [{ date: '2026-10-27', value: 0 }, { date: '2026-10-28', value: null }, { date: '2026-10-29', value: 803 }], latestPriceMinor: null };
+export const globalHistory = overviewExample as History;
 
 export function jsonResponse(value: unknown, status = 200) {
   return new Response(JSON.stringify(value), { status, headers: { 'Content-Type': 'application/json' } });

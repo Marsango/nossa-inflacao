@@ -9,8 +9,8 @@ it('explains why a single comparable day cannot show a change', () => {
 });
 
 it('distinguishes incomplete overview coverage from an empty dataset', () => {
-  const history = { ...globalHistory, counts: { ...globalHistory.counts, pricedDays: 0 } };
+  const history = { ...globalHistory, counts: { ...globalHistory.counts, pricedDays: 0, includedStreams: 0 } };
   expect(variationStatus(history)).toBe('Sem dias comparáveis');
-  expect(variationExplanation(history)).toContain('Não há painel comparável neste período');
+  expect(variationExplanation(history)).toContain('Ainda não há dois preços elegíveis em datas distintas');
   expect(variationExplanation({ ...history, counts: { ...history.counts, products: 0 } })).toContain('Nenhum preço disponível');
 });

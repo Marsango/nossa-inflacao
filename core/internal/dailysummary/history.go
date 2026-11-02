@@ -64,5 +64,5 @@ func readTerm(rows *sql.Rows, calculator *insights.OverviewCalculator) error {
 	if streams == 0 {
 		return nil
 	}
-	return calculator.Add(day.String, numerator.String, denominator.String, streams)
+	return calculator.Add(day.String, numerator.String, denominator.String)
 }

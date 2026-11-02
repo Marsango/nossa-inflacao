@@ -1,0 +1,71 @@
+{
+  "title": "Variação dos produtos monitorados",
+  "unit": "percent",
+  "points": [
+    {
+      "date": "2026-10-27",
+      "value": 0
+    },
+    {
+      "date": "2026-10-28",
+      "value": 400
+    },
+    {
+      "date": "2026-10-29",
+      "value": 803
+    }
+  ],
+  "latestPriceMinor": null,
+  "changeBasisPoints": 803,
+  "comparisonStart": "2026-10-27",
+  "comparisonEnd": "2026-10-29",
+  "collectedAt": "2026-10-29T12:00:00Z",
+  "stale": false,
+  "coverage": "2 de 2 produto(s), 1 de 1 loja(s), 2 de 2 contexto(s) incluídos em ao menos uma comparação observada; 3 de 3 dias com valores no gráfico.",
+  "counts": {
+    "products": 2,
+    "shops": 1,
+    "streams": 2,
+    "days": 3,
+    "pricedDays": 3,
+    "includedProducts": 2,
+    "includedShops": 1,
+    "includedStreams": 2
+  },
+  "methodology": "A visão geral compara, em cada contexto, o primeiro preço elegível positivo no intervalo com o último preço elegível observado até cada data, em dois dias distintos, consecutivos ou não. Cada contexto conta uma vez. A média usa pesos iguais por contexto dentro de uma loja, por loja dentro de um produto e por produto. Não há encadeamento diário. Antes do segundo preço, o contexto não participa. Depois dele, a comparação histórica permanece incluída com suas datas reais até uma nova observação elegível atualizar o resultado; isso não prova que o preço ficou constante em dias sem coleta. A amostra e os períodos comparados podem variar. O recorte monitorado não representa a inflação nacional.",
+  "methodologyVersion": "observed-pairs-overview-v6",
+  "period": {
+    "start": "2026-10-27",
+    "end": "2026-10-29"
+  },
+  "availablePeriod": {
+    "start": "2026-10-27",
+    "end": "2026-10-29"
+  },
+  "timeZone": "America/Sao_Paulo",
+  "priceBasis": null,
+  "unknownConditions": false,
+  "shopPrices": [],
+  "dailyComparisons": [
+    {
+      "date": "2026-10-28",
+      "changeBasisPoints": 400,
+      "products": 1,
+      "shops": 1,
+      "streams": 1,
+      "comparisonStart": "2026-10-27",
+      "comparisonEnd": "2026-10-28",
+      "updatedStreams": 1
+    },
+    {
+      "date": "2026-10-29",
+      "changeBasisPoints": 803,
+      "products": 2,
+      "shops": 1,
+      "streams": 2,
+      "comparisonStart": "2026-10-27",
+      "comparisonEnd": "2026-10-29",
+      "updatedStreams": 2
+    }
+  ]
+}

@@ -63,9 +63,21 @@ type Period struct {
 	End   string `json:"end"`
 }
 
+type DailyComparison struct {
+	ComparisonStart   *string `json:"comparisonStart"`
+	ComparisonEnd     *string `json:"comparisonEnd"`
+	UpdatedStreams    int     `json:"updatedStreams"`
+	Date              string  `json:"date"`
+	ChangeBasisPoints *int64  `json:"changeBasisPoints"`
+	Products          int     `json:"products"`
+	Shops             int     `json:"shops"`
+	Streams           int     `json:"streams"`
+}
+
 type History struct {
-	ShopPrices      []ShopHistory `json:"shopPrices"`
-	AvailablePeriod *Period       `json:"availablePeriod"`
+	DailyComparisons []DailyComparison `json:"dailyComparisons"`
+	ShopPrices       []ShopHistory     `json:"shopPrices"`
+	AvailablePeriod  *Period           `json:"availablePeriod"`
 
 	UnknownConditions  bool       `json:"unknownConditions"`
 	Period             Period     `json:"period"`

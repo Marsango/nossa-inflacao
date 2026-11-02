@@ -3,12 +3,17 @@ import type { Period } from '../shared/dates';
 export type Product = { id: string; label: string };
 export type ProductGroup = { id: string; label: string; description: string };
 export type Observation = { date: string; value: number | null };
+export type DailyComparison = {
+  date: string; changeBasisPoints: number | null; products: number; shops: number; streams: number;
+  comparisonStart: string | null; comparisonEnd: string | null; updatedStreams: number;
+};
 export type PriceBasis = 'package' | 'kg' | 'l' | 'unit';
 export type ShopHistory = {
   shopId: string; shopName: string; context: string; productUrl: string;
   points: Observation[]; included: boolean;
 };
 export type History = {
+  dailyComparisons: DailyComparison[];
   shopPrices: ShopHistory[];
   unknownConditions: boolean;
   period: Period;

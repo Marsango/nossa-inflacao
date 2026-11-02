@@ -358,8 +358,8 @@ func assertWiderSelection(test *testing.T, history insights.History) {
 	if history.AvailablePeriod == nil || history.AvailablePeriod.Start != "2026-10-27" || history.AvailablePeriod.End != "2026-10-29" {
 		test.Fatal("available interval must reflect prices inside the request")
 	}
-	if len(history.Points) != 3 || history.Points[1].Value != nil || history.Counts.PricedDays != 2 {
-		test.Fatal("chart must show available days and keep internal gaps")
+	if len(history.Points) != 3 || history.Points[1].Value != nil {
+		test.Fatal("chart must preserve the effective calendar and missing day")
 	}
 	assertPrice(test, history.ChangeBasisPoints, 803)
 }
@@ -981,16 +981,16 @@ func TestDailyOverviewPreservesProductShopAndContextWeights(test *testing.T) {
 		submitWeightedStream(fixture, position*2+1, stream)
 	}
 	fixture.submit(11, func(observation map[string]any) {
-		setWeightedObservation(observation, streams[0], "2026-10-28T12:00:00Z", "30.00")
+		setWeightedObservation(observation, streams[0], "2026-10-27T22:00:00Z", "24.90")
 	})
 	fixture.execute(`INSERT INTO shops VALUES ('other-shop','Other shop','https://other.example')`)
 	fixture.execute(`INSERT INTO shop_products(shop_id,product_id,source_product_id,name,product_url)
  VALUES ('other-shop',1,'other','Other listing','https://other.example/item')`)
 	fixture.execute(`UPDATE price_observations SET shop_product_id=(SELECT id FROM shop_products WHERE shop_id='other-shop') WHERE store_id='second-shop'`)
-	expected := rawOverview(fixture, HistoryRequest{Product: "global", Start: "2026-10-27", End: "2026-10-29"})
+	expected := rawOverview(fixture, HistoryRequest{Product: "global", Start: "2026-10-27", End: "2026-10-28"})
 	assertPrice(test, expected.ChangeBasisPoints, 3750)
 	requireSuccess(test, dailysummary.Refresh(fixture.ctx, fixture.pool))
-	assertDailyOverview(fixture, "2026-10-27", "2026-10-29", "")
+	assertDailyOverview(fixture, "2026-10-27", "2026-10-28", "")
 }
 
 func submitWeightedStream(fixture fixture, number int, stream weightedStream) {
@@ -998,7 +998,7 @@ func submitWeightedStream(fixture fixture, number int, stream weightedStream) {
 		setWeightedObservation(observation, stream, "2026-10-27T12:00:00Z", stream.first)
 	})
 	fixture.submit(number+1, func(observation map[string]any) {
-		setWeightedObservation(observation, stream, "2026-10-29T12:00:00Z", stream.last)
+		setWeightedObservation(observation, stream, "2026-10-28T12:00:00Z", stream.last)
 	})
 }
 
@@ -1067,4 +1067,111 @@ func TestUnknownShopLocationIsExplicit(test *testing.T) {
 	if len(history.ShopPrices) != 1 || history.ShopPrices[0].Context != "Localidade não informada · Modalidade não informada" {
 		test.Fatalf("unknown context not explained: %+v", history.ShopPrices)
 	}
+}
+
+func TestOverviewObservedPairsIncludeLaterProductsAndSparseContexts(test *testing.T) {
+	fixture := newFixture(test)
+	submitOverviewObservations(fixture)
+	assertOverviewObservedPairs(fixture, 1775)
+	requireSuccess(test, dailysummary.Refresh(fixture.ctx, fixture.pool))
+	assertOverviewObservedPairs(fixture, 1775)
+	fixture.submit(8, func(observation map[string]any) {
+		setWeightedObservation(observation, weightedStream{store: "late", otherProduct: true}, "2026-11-02T22:00:00Z", "14.00")
+	})
+	assertOverviewObservedPairs(fixture, 2775)
+	requireSuccess(test, dailysummary.Refresh(fixture.ctx, fixture.pool))
+	assertOverviewObservedPairs(fixture, 2775)
+}
+
+func submitOverviewObservations(fixture fixture) {
+	entries := []struct {
+		date, price, store string
+		other              bool
+	}{
+		{"2026-10-31", "10.00", "continuous", false}, {"2026-11-01", "11.00", "continuous", false},
+		{"2026-11-02", "12.10", "continuous", false}, {"2026-11-01", "10.00", "late", true},
+		{"2026-11-02", "12.00", "late", true}, {"2026-10-31", "10.00", "missing", false},
+		{"2026-11-02", "11.00", "missing", false},
+	}
+	for position, entry := range entries {
+		fixture.submit(position+1, func(observation map[string]any) {
+			setWeightedObservation(observation, weightedStream{store: entry.store, otherProduct: entry.other}, entry.date+"T12:00:00Z", entry.price)
+		})
+	}
+}
+
+func assertOverviewObservedPairs(fixture fixture, expected int64) {
+	fixture.test.Helper()
+	history := fixture.history("global", "2026-10-31", "2026-11-02")
+	assertPrice(fixture.test, history.ChangeBasisPoints, expected)
+	if history.Counts.IncludedProducts != 2 || history.Counts.IncludedStreams != 3 || history.Counts.PricedDays != 3 {
+		fixture.test.Fatalf("wrong observed-pair coverage: %+v", history.Counts)
+	}
+	if history.DailyComparisons[0].Products != 1 || history.DailyComparisons[1].Products != 2 {
+		fixture.test.Fatalf("later product was lost or backdated: %+v", history.DailyComparisons)
+	}
+	assertDailyOverview(fixture, "2026-10-31", "2026-11-02", "")
+}
+
+func TestDailyOverviewRetainsObservedPairsThroughGaps(test *testing.T) {
+	fixture := newFixture(test)
+	for position, date := range []string{"2026-10-27", "2026-10-28", "2026-10-30", "2026-10-31"} {
+		fixture.submit(position+1, func(observation map[string]any) {
+			setPrice(observation, date+"T12:00:00Z", []string{"10.00", "11.00", "10.00", "12.00"}[position])
+		})
+	}
+	drainDailySummaries(fixture)
+	history := fixture.history("global", "2026-10-27", "2026-10-31")
+	assertPrice(test, history.DailyComparisons[3].ChangeBasisPoints, 2000)
+	assertPrice(test, history.ChangeBasisPoints, 2000)
+	if history.DailyComparisons[1].UpdatedStreams != 0 || history.Counts.PricedDays != 5 {
+		test.Fatal("a missing observation must retain only the known historical comparison")
+	}
+	assertDailyOverview(fixture, "2026-10-27", "2026-10-31", "")
+	history = fixture.history("global", "2026-10-30", "2026-10-31")
+	assertPrice(test, history.ChangeBasisPoints, 2000)
+}
+
+func TestDailyOverviewMatchesConsecutiveSaoPauloDates(test *testing.T) {
+	fixture := newFixture(test)
+	fixture.submit(1, func(observation map[string]any) { setPrice(observation, "2026-10-28T02:59:59Z", "10.00") })
+	fixture.submit(2, func(observation map[string]any) { setPrice(observation, "2026-10-28T03:00:00Z", "12.00") })
+	drainDailySummaries(fixture)
+	history := fixture.history("global", "2026-10-27", "2026-10-28")
+	assertPrice(test, history.ChangeBasisPoints, 2000)
+	if len(history.DailyComparisons) != 1 || history.DailyComparisons[0].Date != "2026-10-28" {
+		test.Fatal("daily matching must use São Paulo dates rather than UTC dates")
+	}
+	assertDailyOverview(fixture, "2026-10-27", "2026-10-28", "")
+}
+
+func TestOverviewMonthIncludesSparsePairOnlyAfterSecondObservation(test *testing.T) {
+	fixture := newFixture(test)
+	fixture.submit(1, func(observation map[string]any) { setPrice(observation, "2026-10-01T12:00:00Z", "30.00") })
+	fixture.submit(2, func(observation map[string]any) { setPrice(observation, "2026-10-30T12:00:00Z", "50.00") })
+	fixture.submit(3, func(observation map[string]any) {
+		setWeightedObservation(observation, weightedStream{store: "late", otherProduct: true}, "2026-10-31T12:00:00Z", "90.00")
+	})
+	assertSparseMonth(fixture)
+	drainDailySummaries(fixture)
+	assertSparseMonth(fixture)
+	fixture.submit(4, func(observation map[string]any) { setPrice(observation, "2026-10-31T22:00:00Z", "60.00") })
+	history := fixture.history("global", "2026-10-01", "2026-10-31")
+	assertPrice(test, history.ChangeBasisPoints, 10000)
+	assertDailyOverview(fixture, "2026-10-01", "2026-10-31", "")
+}
+
+func assertSparseMonth(fixture fixture) {
+	fixture.test.Helper()
+	history := fixture.history("global", "2026-10-01", "2026-10-31")
+	if history.Points[28].Value != nil || history.DailyComparisons[27].Products != 0 {
+		fixture.test.Fatal("day 29 used the future price from day 30")
+	}
+	assertPrice(fixture.test, history.Points[29].Value, 6667)
+	assertPrice(fixture.test, history.Points[30].Value, 6667)
+	comparison := history.DailyComparisons[29]
+	if comparison.Products != 1 || comparison.UpdatedStreams != 0 || *comparison.ComparisonEnd != "2026-10-30" {
+		fixture.test.Fatalf("day 31 invented a fresh price: %+v", comparison)
+	}
+	assertDailyOverview(fixture, "2026-10-01", "2026-10-31", "")
 }

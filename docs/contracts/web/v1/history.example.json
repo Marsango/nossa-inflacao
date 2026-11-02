@@ -33,7 +33,7 @@
     "includedStreams": 1
   },
   "methodology": "O intervalo efetivo vai da primeira à última data com preço elegível no período solicitado. O painel usa contextos comparáveis nas duas pontas, com pesos iguais por loja e depois por produto. Sem painel, o gráfico de produto mostra o menor preço disponível por dia, sem calcular variação. Lacunas ficam vazias. O recorte monitorado não representa a inflação nacional.",
-  "methodologyVersion": "available-period-v4",
+  "methodologyVersion": "observed-pairs-overview-v6",
   "period": {
     "start": "2026-10-27",
     "end": "2026-10-29"
@@ -67,5 +67,6 @@
       ],
       "included": true
     }
-  ]
+  ],
+  "dailyComparisons": []
 }
