@@ -61,8 +61,9 @@ def product_url(product):
         or parts.fragment
     ):
         raise ValueError("Untrusted Nagumo public product URL")
-    if not parts.path.startswith("/categoria/") or not parts.path.endswith(
-        f"-{product_identity(product)}.html"
-    ):
+    suffix = f"-{product_identity(product)}.html"
+    catalog_path = parts.path.startswith("/categoria/")
+    root_path = re.fullmatch(r"/[\w%.~,-]+", parts.path) is not None
+    if not (catalog_path or root_path) or not parts.path.endswith(suffix):
         raise ValueError("Nagumo product URL does not match the source identity")
     return value

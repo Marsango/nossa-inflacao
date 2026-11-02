@@ -115,7 +115,7 @@ def test_unverified_promotions_are_visible_issues():
     document["products"] = [document["products"][0]]
     document["products"][0]["productPromotions"][0]["promotionQuantityBuy"] = 3
     page = parse(document, "café")
-    assert not page.observations and "Unsupported" in page.issues[0]
+    assert not page.observations and "selected promotion" in page.issues[0]
 
 
 def test_weight_uses_advertised_kg_instead_of_estimated_portion_total():
@@ -128,7 +128,9 @@ def test_weight_uses_advertised_kg_instead_of_estimated_portion_total():
     assert observation.product.source_product_id == "0339087"
 
 
-def test_weight_without_advertised_kg_is_rejected():
+def test_weight_without_advertised_kg_preserves_identity_with_unknown_price():
     page = parse(source("products"), "castanha")
-    assert not page.observations
-    assert "variable-weight" in page.issues[0]
+    assert not page.issues and len(page.observations) == 1
+    assert page.observations[0].product.source_product_id == "0304863"
+    assert not page.observations[0].offers
+    assert "portion price omitted" in page.warnings[0]

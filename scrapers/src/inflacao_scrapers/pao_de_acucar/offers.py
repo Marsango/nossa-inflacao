@@ -1,92 +1,82 @@
-"""Keep source restrictions; never divide an estimated portion price."""
+"""Keep regular, quantity and kilogram offers in their advertised bases."""
 
 import json
 from decimal import Decimal
 
 from ..models import Conditions, Offer
+from .prices import price_details as price_details
+from .prices import reference_amount
+from .prices import source_money as source_money
+from .promotions import price_promotions, promotional_price
 
 
-def source_money(value):
-    if value is None:
-        return None
-    if isinstance(value, bool) or not isinstance(value, (int, Decimal)):
-        raise ValueError("Invalid exact GPA price")
-    amount = Decimal(value)
-    if not amount.is_finite() or amount < 0 or amount != amount.quantize(Decimal("0.01")):
-        raise ValueError("Invalid GPA money precision/range")
-    return format(amount, ".2f")
-
-
-def price_details(product):
-    if product.get("variableWeight") is False:
-        return product, "package"
-    details = product.get("variableWeightPrice")
-    if product.get("variableWeight") is True and isinstance(details, dict):
-        return details, "kg"
-    raise ValueError("Unsupported GPA variable-weight portion or missing sale basis")
-
-
-def product_offers(product):
+def product_offers(product, warnings):
     details, basis = price_details(product)
+    if details is None:
+        warnings.append("price-basis: advertised kg price missing; portion price omitted")
+        return []
     amount = source_money(details.get("price"))
     if amount is None:
         return []
-    validate_promotions(details)
-    return [
-        Offer(
-            amount=amount,
-            currency="BRL",
-            basis=basis,
-            reference_amount=source_money(details.get("priceFrom")),
-            conditions=source_conditions(product, details, basis),
-        )
-    ]
+    reference = reference_amount(details.get("priceFrom"), amount, warnings)
+    promotions = price_promotions(product, details)
+    offers = [make_offer(product, details, amount, reference, basis)]
+    promoted = list(promotional_offers(product, details, promotions, amount, basis))
+    return selected_offers(offers, promoted)
 
 
-def validate_promotions(details):
-    promotions = details.get("productPromotions", [])
-    if not isinstance(promotions, list):
-        raise ValueError("Malformed GPA promotion list")
-    if len(promotions) > 1:
-        raise ValueError("Multiple GPA promotions require separate verified offer mapping")
+def selected_offers(regular, promoted):
+    if any(offer.conditions.minimum_quantity is None for offer in promoted):
+        return promoted
+    offers = regular + promoted
+    return list({offer.model_dump_json(): offer for offer in offers}.values())
+
+
+def promotional_offers(product, details, promotions, regular, basis):
     for promotion in promotions:
-        validate_promotion(promotion, details)
-    if details.get("productPromotion") not in (None, *promotions):
-        raise ValueError("GPA selected promotion missing from promotion list")
+        yield from promotional_offer(product, details, promotion, regular, basis)
 
 
-def validate_promotion(promotion, details):
-    if not isinstance(promotion, dict):
-        raise ValueError("Malformed GPA promotion")
-    if any(
-        promotion.get(key)
-        for key in (
-            "promotionQuantityBuy",
-            "promotionQuantityPayFor",
-            "paymentFormName",
-            "subscriptionPrice",
-            "appExclusive",
-            "isHeterogeneousPromotion",
-        )
-    ):
-        raise ValueError("Unsupported GPA quantity/payment/application promotion")
-    if source_money(promotion.get("unitPrice")) != source_money(details.get("price")):
-        raise ValueError("GPA promotion price differs from displayed price")
+def promotional_offer(product, details, promotion, regular, basis):
+    amount, quantity = promotional_price(promotion)
+    if basis == "kg" and quantity is not None:
+        raise ValueError("GPA item-count promotion does not establish a kg quantity threshold")
+    if Decimal(amount) > Decimal(regular):
+        raise ValueError("GPA promotional price exceeds regular price")
+    if amount != regular or quantity is not None:
+        yield make_offer(product, details, amount, regular, basis, quantity)
 
 
-def source_conditions(product, details, basis):
-    description = "Catálogo storeId=461, customerPlus=true; pagamento/clube/cupom não verificados."
-    if basis == "kg":
-        description += " Preço por kg; total depende da pesagem final."
-    restrictions = {key: details.get(key) for key in ("productPromotions", "productPromotion")}
-    restrictions["priceType"] = product.get("priceType")
-    description += " Fonte: " + json.dumps(restrictions, ensure_ascii=False, default=str)
+def make_offer(product, details, amount, reference, basis, quantity=None):
+    return Offer(
+        amount=amount,
+        currency="BRL",
+        basis=basis,
+        reference_amount=reference,
+        conditions=source_conditions(product, details, basis, quantity),
+    )
+
+
+def source_conditions(product, details, basis, quantity):
     return Conditions(
         payment_method="unknown",
         installments=None,
         membership_required=None,
         membership_program=None,
         coupon_required=None,
-        minimum_quantity=None,
-        description=description,
+        minimum_quantity=quantity,
+        description=condition_description(product, details, basis, quantity),
     )
+
+
+def condition_description(product, details, basis, quantity):
+    description = "Catálogo storeId=461, customerPlus=true; pagamento/clube/cupom não verificados."
+    if basis == "kg":
+        description += " Preço por kg; total depende da pesagem final."
+    if quantity is not None:
+        description += f" Preço médio anunciado para grupos de {quantity} unidades."
+    restrictions = {
+        "priceType": product.get("priceType"),
+        "promotions": price_promotions(product, details),
+    }
+    return description + " Fonte: " + json.dumps(restrictions, ensure_ascii=False, default=str)

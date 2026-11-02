@@ -228,8 +228,9 @@ Regular discounts retain their full source conditions and listing quantity limit
 Unknown payment/club/coupon terms are not unconditional offers. Kg offers use
 explicit advertised kg prices, not rounded portion division; approximate portions
 are not packages. The captured “1 Litro” spelling is recognized as fixed contents.
-Internal short barcodes stay null. Quantity bands/family promotions remain
-unsupported and produce issues. No unavailable listing was found in this sample;
+Internal short barcodes stay null. Verified package quantity bands are covered by
+the production regressions below; family promotions remain unsupported and produce issues.
+No unavailable listing was found in this sample;
 unavailable, missing-price, quantity-condition and malformed cases in the Hirota
 tests are explicitly synthetic mutations. Category fixtures retain source
 pagination metadata; bounded pipeline tests deliberately substitute small totals.
@@ -269,3 +270,49 @@ Sonda HTML excerpts and `sonda-verification.json` capture public source cards
 and pagination. `sonda-submission.json` is ingestion v1 replay evidence for a
 packaged Camil rice listing, using unknown fulfillment fields and online channel.
 See [source provenance and limits](../../../../docs/plans/sonda-retailer.md).
+
+## Production-format regressions — 2026-11-02
+
+The `*-regressions.json` files contain selected complete product records captured
+through the production scraper runtime. Their `evidence` entries retain request
+URLs, non-secret request bodies and capture times. These are parser excerpts;
+pagination metadata was deliberately excluded. JSON numbers were decoded as exact
+decimals and written without binary floating-point conversion.
+
+- Nagumo retains store-13 pickup context and includes trusted root product routes
+  ending in the source ID, alongside the already supported category routes.
+  The chocolate search reported 2,803 products, requiring more than 100 pages of 24;
+  the default search bound is now 200 pages. Explicit custom bounds still apply.
+- Hirota retains the independently verified Nazaré context. Source links contain
+  nonbreaking spaces and colons; these characters are URL-encoded within the slug.
+  UN portion prices stay whole-portion amounts with unknown fixed contents. The
+  public frontend's `produtoPreco` rule displays `oferta.preco_antigo` for type-5
+  quantity offers; that price survives, while the three-decimal `menor_preco`
+  average is not converted into an invented two-decimal offer. Type-7 package
+  quantity tiers preserve each explicit `faixas_precos` price and threshold;
+  mixed-family and kg item-count tiers remain unsupported.
+- GPA retains independently resolved store 461 and the API's `customerPlus=true`
+  request. Records include first-unit discounts, buy-3/pay-2 and second-unit
+  averages, kg-specific promotion prices linked by rule ID, missing kg prices,
+  and a corrupt `40.980000000000004` reference price. Unknown kg prices stay
+  unknown; the corrupt reference is omitted while its exact R$40.08 selling price
+  survives. App/payment/heterogeneous restrictions still require verified mapping.
+
+`sonda-regressions.html` contains the complete main-menu root links and three
+selected cards from `/delivery/categoria/Limpeza/0/11/15`,
+`/delivery/categoria/Limpeza/0/24/15` and
+`/delivery/categoria/Frios_e_Laticinios/0/9/15`, captured at approximately 20:52 UTC.
+Scripts, cookies, sessions and global forms are excluded. The visible second-unit
+price is not an average; the buy-3/pay-2 badge explicitly supplies an average.
+The older fresh-product excerpt and a fresh product-detail request both display
+the full portion amount (Acém 1.5 kg: R$80.84), with quantity one and no kg-price
+declaration. These become whole-item/portion offers with unknown fixed contents,
+not derived kilogram prices. Fulfillment remains unknown.
+
+`muffato-large-portions.json` preserves public channel-8 SKU responses captured on
+the same date: SKU 1009 (`Melancia Kg`, multiplier 14, R$3.60/kg) and SKU 62385
+(`Acém Bovino s/ Osso a Vácuo Kg`, multiplier 1.5, R$39.60/kg). Requests use
+`/api/catalog_system/pub/products/search?fq=skuId:<id>&sc=8`. The established
+kilogram mapping keeps these source prices unchanged; approximate portion weights
+never multiply the offers or become fixed packages. Implausible Angeloni
+multipliers and Muffato's conflicting `un`/fractional-unit formats remain errors.

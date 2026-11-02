@@ -14,7 +14,9 @@ nonnegative; errors plus warnings must equal the number of diagnostic entries
 plus omitted entries. Each severity count must cover its retained entries.
 Reports are limited to 256 KiB, 100 entries, 2,000 characters per message and
 100 characters per name/category. The Python client truncates messages and
-omits excess entries while retaining complete severity counts. Target/product
+groups identical messages and omits excess entries while retaining complete severity
+counts. Errors displace warnings when capacity is reached; payload-size trimming
+also removes warnings first. Target/product
 context belongs in the message. Do not include secrets, headers, or raw pages.
 
 Return empty `201` after durable commit, or empty `200` for an existing
@@ -51,4 +53,6 @@ Existing admin session/origin/CSRF rules apply. Responses use no-store.
 
 Health describes reported collection only: no missed-schedule inference,
 heartbeat, core processing status, or alerting. The UI exposes run timestamps
-and older retained issues independently of latest-run health.
+and older retained issues independently of latest-run health. An error-status run
+with observations is displayed as `Coleta parcial`; without observations it is
+displayed as `Falha na coleta`. Counts and the API status remain unchanged.

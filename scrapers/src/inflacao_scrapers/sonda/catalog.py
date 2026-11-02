@@ -4,6 +4,7 @@ from datetime import UTC, datetime
 from functools import partial
 from urllib.parse import urlsplit
 
+from ..adapters import ParsedPage
 from ..adapters.catalog import (
     SOURCE_ERRORS,
     check_page_identities,
@@ -11,7 +12,7 @@ from ..adapters.catalog import (
     describe_page,
 )
 from .offers import CONTEXT_NOTE
-from .pages import category_path, category_paths, parse_listing, product_identity
+from .pages import CatalogChanged, category_path, category_paths, parse_listing, product_identity
 from .parsing import parse_cards
 
 
@@ -33,10 +34,34 @@ def catalog_pages(requester, settings, scope):
     paths = settings.category_paths or category_paths(fetch(requester, settings, "/delivery/")[0])
     budget = [settings.max_catalog_pages]
     pages = partial(listing_pages, requester, settings, scope, budget=budget)
-    yield from collect_categories(paths, pages, settings.shop_id)
+    yield from public_catalog(collect_categories(paths, pages, settings.shop_id))
+
+
+def public_catalog(pages):
+    first = True
+    for page in pages:
+        add_provenance(page, first)
+        first = False
+        yield page
+
+
+def add_provenance(page, first):
+    if first:
+        page.warnings.insert(0, CONTEXT_NOTE)
 
 
 def listing_pages(requester, settings, scope, path, budget):
+    try:
+        yield from stable_listing_pages(requester, settings, scope, path, budget)
+        return
+    except CatalogChanged:
+        yield ParsedPage(
+            warnings=[f"category={path}: page count changed; restarting department once"]
+        )
+    yield from stable_listing_pages(requester, settings, scope, path, budget)
+
+
+def stable_listing_pages(requester, settings, scope, path, budget):
     seen, expected_pages = set(), []
     while path is not None:
         consume_budget(budget)
@@ -52,6 +77,8 @@ def listing_page(requester, settings, scope, path, expected_pages, seen):
         source_url = settings.shop_url + resolved_path
         page = parse_cards(cards, settings, source_url, datetime.now(UTC), scope)
         return describe_page(page, f"page={resolved_path}", overlap), following
+    except CatalogChanged:
+        raise
     except SOURCE_ERRORS as error:
         raise ValueError(f"page={path}: {error}") from error
 

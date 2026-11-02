@@ -14,7 +14,7 @@ class SondaSettings(Settings):
     store_id: None = None
     city: None = None
     state: None = None
-    max_catalog_pages: int = Field(default=600, ge=1, le=2000)
+    max_catalog_pages: int = Field(default=1200, ge=1, le=2000)
     category_paths: list[str] = Field(default_factory=list, max_length=100)
 
     @field_validator("category_paths")

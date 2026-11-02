@@ -5,14 +5,14 @@ from uuid import uuid4
 
 from ..adapters import ParsedPage
 from ..models import Context, Observation, Product
-from ..packaging import package_from_name
+from ..packaging import package_metadata
 from .html import class_nodes, select, suffix_nodes, text, unique_text
-from .offers import CONTEXT_NOTE, offers, price_basis
+from .offers import offers, portion_priced, price_basis
 from .pages import product_identity
 
 
 def parse_cards(cards, settings, source_url, observed_at, target=None):
-    result = ParsedPage(warnings=[CONTEXT_NOTE])
+    result = ParsedPage()
     for card in cards:
         parse_candidate(card, settings, source_url, observed_at, target, result)
     return result
@@ -26,23 +26,32 @@ def parse_candidate(card, settings, source_url, observed_at, target, result):
         result.issues.append(f"shop=sonda sku={identity}: {error}")
 
 
-def observation(card, name, settings, source_url, observed_at):
-    basis = price_basis(card, name)
+def observation(card, name, settings, source_url, observed_at, warnings):
     available = availability(card)
-    prices = offers(card, basis) if available != "out_of_stock" else []
+    prices = card_offers(card, name, available, warnings)
     return Observation(
         observation_id=uuid4(),
         observed_at=observed_at,
         collection_method="html",
         source_url=source_url,
         product_url=settings.shop_url + product_path(card),
-        product=product_details(card, name),
+        product=product_details(card, name, warnings),
         context=Context(
             seller_id=None, store_id=None, postal_code=None, city=None, state=None, channel="online"
         ),
         availability=available,
         offers=prices,
     )
+
+
+def card_offers(card, name, available, warnings):
+    if available == "out_of_stock":
+        return []
+    basis = price_basis(card, name)
+    if basis is None:
+        warnings.append("price-basis: portion quantity unverified; price omitted")
+        return []
+    return offers(card, basis)
 
 
 def product_path(card):
@@ -67,17 +76,19 @@ def append_candidate(card, settings, source_url, observed_at, target, result):
     name = unique_text(select(card, itemprop="name"), "product name")
     if target is not None and not target.matches(name):
         return
-    item = observation(card, name, settings, source_url, observed_at)
+    warnings = []
+    item = observation(card, name, settings, source_url, observed_at, warnings)
     result.observations.append(item)
-    if item.availability == "in_stock" and not item.offers:
+    result.warnings.extend(f"shop=sonda sku={product_identity(card)}: {item}" for item in warnings)
+    if item.availability == "in_stock" and not item.offers and not warnings:
         result.warnings.append(f"shop=sonda sku={item.product.source_product_id}: price unknown")
 
 
-def product_details(card, name):
+def product_details(card, name, warnings):
     return Product(
         source_product_id=product_identity(card),
         name=name,
         brand=None,
         gtin=None,
-        package=package_from_name(name),
+        package=None if portion_priced(card, name) else package_metadata(name, warnings),
     )

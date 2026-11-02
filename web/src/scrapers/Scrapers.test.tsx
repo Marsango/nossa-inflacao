@@ -28,3 +28,13 @@ test('offers recovery after a failed request', async () => {
   expect(await screen.findByRole('alert')).toHaveTextContent('Confira sua sessão');
   expect(screen.getByRole('button', { name: 'Atualizar coletores' })).toBeInTheDocument();
 });
+test('distinguishes partial collections from failures without observations', async () => {
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue(Response.json([
+    { ...scraper, status: 'error', errors: 3 },
+    { ...scraper, shop_id: 'sonda', scraper_name: 'Sonda', status: 'error', errors: 1, observations: 0 },
+  ])));
+  render(<Scrapers csrf="token" />);
+  expect(await screen.findByText(/Coleta parcial/)).toBeInTheDocument();
+  expect(screen.getByText(/Falha na coleta/)).toBeInTheDocument();
+  expect(screen.getByText(/Observações: 20; erros: 3/)).toBeInTheDocument();
+});

@@ -6,6 +6,10 @@ from urllib.parse import unquote
 from .html import Document, class_nodes, select, suffix_nodes, text, unique_text
 
 
+class CatalogChanged(ValueError):
+    """Restart a department once when the advertised page count changes."""
+
+
 def category_path(path):
     if not re.fullmatch(
         r"/delivery/(?:categoria|categoriafilha)/[\w%.-]+(?:/0/[1-9]\d*/(?:15|16|21|30))?", path
@@ -89,7 +93,8 @@ def suffix_menu(root):
         node
         for node in select_tags(root)
         if re.fullmatch(
-            r"ctl00_rptMenuDestaque(?:Mobile)?_ctl\d+_linkMenu", node.attributes.get("id", "")
+            r"ctl00_(?:menuPrincipal|rptMenuDestaque(?:Mobile)?)_ctl\d+_linkMenu",
+            node.attributes.get("id", ""),
         )
     ]
 
@@ -111,6 +116,6 @@ def verify_page_count(total, expected_pages):
     if expected_pages is None:
         return
     if expected_pages and expected_pages[0] != total:
-        raise ValueError("Sonda page count changed during collection; collection incomplete")
+        raise CatalogChanged("Sonda page count changed during collection; collection incomplete")
     if not expected_pages:
         expected_pages.append(total)

@@ -401,7 +401,7 @@ Unknown sizes stay null on each fresh observation and appear in the run's
 `unknown_packages` count. Parent/sibling metadata and prior sizes never fill gaps.
 
 Muffato's verified sales channel `8`, seller `1`, without a delivery CEP also
-supports advertised kilogram prices with positive multipliers up to one. Captured
+supports advertised kilogram prices with positive multipliers up to twenty. Captured
 produce, beef and bakery listings were checked against the rendered Champagnat
 storefront. `Price` and `ListPrice` are kilogram amounts; the multiplier is never
 applied to them. Package is null even when a name contains `1kg` or an approximate
@@ -410,6 +410,8 @@ retailer codes on these loose products become null GTINs; malformed full-length
 GTINs are reported and omitted while otherwise valid observations survive.
 Kits, other units, invalid multipliers and unverified
 shop/context mappings remain explicit issues.
+The larger bound includes the source's 14 kg whole-watermelon portion and 1.5 kg
+beef portion; it does not multiply or divide their advertised kilogram amounts.
 
 Angeloni enables this mapping on channel `1` with regional seller
 `superangeloni24`; Festval on channel `2` with `meufestvaldark` and the
@@ -658,8 +660,13 @@ The [standalone configuration](pao-de-acucar.example.toml) uses ordinary HTTP,
 with no browser extra. Resolve Ricardo Jafet store 461 / ENTREGA EXPRESS 842 for
 public-address CEP 04115090 every run. This differs from Mambo's MASP context.
 Category browsing is bounded to 2,000 pages of 12 products, filtered by the core
-scope. Unknown club/payment/coupon restrictions stay unknown; unsupported
-promotions and unadvertised weight bases produce issues. See the
+scope. Unknown club/payment/coupon restrictions stay unknown. Advertised quantity
+and nth-unit averages retain their package thresholds; kg promotions inherit their
+parent rule's restrictions. Item-count thresholds never become kg thresholds.
+Without an advertised kg price, identity and availability survive with no offer and
+an explicit warning. Invalid reference metadata is omitted without rounding it or
+discarding an independently valid selling price. Unsupported restrictions still
+produce issues. See the
 [source evidence and supported formats](../docs/evidence/pao-de-acucar-onboarding.md).
 
 From `scrapers/`:
@@ -678,8 +685,18 @@ scope coverage and two dates of live history have not been measured.
 The public HTML adapter needs the normal HTTP dependencies, with no browser or
 login. Use [sonda.example.toml](sonda.example.toml) for discovery and collection.
 The source is the public online catalog: branch, city, CEP and pickup prices
-are unverified and stay unknown in ingestion. Fresh variable-weight listings
-and unverified conditional badges report explicit issues. See
+are unverified and stay unknown in ingestion. All 14 main-menu departments are
+discovered, including departments absent from the featured menu. Public-catalog
+provenance is reported once per run. A changing page count restarts that department
+once, sharing the original page budget; repeated instability remains an error.
+The default budget is 1,200 pages across all departments.
+
+Fresh and deli listings with a declared portion preserve their advertised
+whole-item/portion amount with package basis and unknown fixed contents. Ambiguous
+weight bases retain identity with no offer and a warning. They never become inferred kg prices.
+Quantity badges with an advertised average preserve their group threshold;
+second-unit-only prices stay in the description instead of becoming a uniform
+unit price. Unknown badge formats remain errors. See
 [source evidence, commands and rollout limits](../docs/plans/sonda-retailer.md).
 
 

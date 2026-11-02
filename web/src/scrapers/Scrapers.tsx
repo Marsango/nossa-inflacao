@@ -2,7 +2,7 @@ import { useScrapers } from './useScrapers';
 import type { Scraper } from './api';
 import { Diagnostics } from './Diagnostics';
 
-const labels = { healthy: 'Saudável', warning: 'Atenção', error: 'Erro', unknown: 'Sem relatório' };
+const labels = { healthy: 'Saudável', warning: 'Atenção', error: 'Falha na coleta', unknown: 'Sem relatório' };
 export function Scrapers({ csrf }: { csrf: string }) {
   const { rows, selected, select, error, refresh } = useScrapers();
   return <section><h2>Coletores</h2><p>Saúde da coleta informada na última execução. O processamento dos preços no servidor é separado.</p>
@@ -14,7 +14,8 @@ export function Scrapers({ csrf }: { csrf: string }) {
   </section>;
 }
 function ScraperSummary({ row }: { row: Scraper }) {
-  return <><strong>{row.scraper_name}</strong> — {labels[row.status]}<p>{row.scraper_id} / {row.shop_id}</p>
+  const label = row.status === 'error' && (row.observations ?? 0) > 0 ? 'Coleta parcial' : labels[row.status];
+  return <><strong>{row.scraper_name}</strong> — {label}<p>{row.scraper_id} / {row.shop_id}</p>
     <p>Última execução: {row.started_at ? new Date(row.started_at).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }) : 'Não informada'} (horário de Brasília).</p>
     {row.started_at && <p>Observações: {row.observations}; erros: {row.errors}; avisos: {row.warnings}; detalhes omitidos: {row.omitted}.</p>}</>;
 }

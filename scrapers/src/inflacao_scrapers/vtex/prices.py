@@ -57,6 +57,8 @@ def sale_basis(sku: dict, settings) -> str:
 
 
 def maximum_multiplier(settings) -> Decimal:
+    if settings.shop_id == "super-muffato" and settings.supports_kilogram_prices():
+        return Decimal(20)
     if settings.shop_id == "festval" and settings.supports_kilogram_prices():
         return Decimal(10)
     if settings.shop_id == "angeloni" and settings.supports_kilogram_prices():

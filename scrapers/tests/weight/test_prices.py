@@ -42,7 +42,20 @@ def test_approximate_weight_and_reference_name_never_become_package(weighted_pro
     assert "Peso aprox. 150g/un" in observation.offers[0].conditions.description
 
 
-@pytest.mark.parametrize("multiplier", [None, "NaN", "Infinity", True, 0, -1, 2])
+def test_captured_large_muffato_portions_keep_advertised_kg_amounts(settings):
+    from inflacao_scrapers.vtex.json import decode_response
+
+    from .conftest import FIXTURES
+
+    products = decode_response((FIXTURES / "stores/muffato-large-portions.json").read_bytes())
+    page = parse(products, settings)
+    assert not page.issues and len(page.observations) == 2
+    assert [item.offers[0].amount for item in page.observations] == ["3.60", "39.60"]
+    assert all(item.offers[0].basis == "kg" for item in page.observations)
+    assert all(item.product.package is None for item in page.observations)
+
+
+@pytest.mark.parametrize("multiplier", [None, "NaN", "Infinity", True, 0, -1, 21])
 def test_invalid_multipliers_are_explicit_issues(weighted_products, settings, multiplier):
     weighted_products[0]["items"][0]["unitMultiplier"] = multiplier
     page = parse(weighted_products[:1], settings)

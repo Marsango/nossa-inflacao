@@ -19,7 +19,7 @@ class NagumoSettings(Settings):
     city: Literal["São Paulo"] = "São Paulo"
     state: Literal["SP"] = "SP"
     timeout_seconds: float = Field(default=30.0, gt=0, le=120)
-    max_search_pages: int = Field(default=100, ge=1, le=1000)
+    max_search_pages: int = Field(default=200, ge=1, le=1000)
     _context_verified: bool = PrivateAttr(default=False)
 
     def confirm_context(self) -> None:

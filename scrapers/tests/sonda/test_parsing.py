@@ -72,8 +72,20 @@ def test_captured_food_and_cleaning_prices(name):
 
 def test_variable_weight_totals_are_never_relabelled_per_kg():
     result = parse("weight")
-    assert result.issues and not result.observations
-    assert all("variable-weight" in issue for issue in result.issues)
+    assert not result.issues and result.observations
+    assert result.observations[0].offers[0].amount == "73.14"
+    assert all(item.product.package is None for item in result.observations)
+    assert all(offer.basis == "package" for item in result.observations for offer in item.offers)
+    assert "peso fixo não verificado" in result.observations[0].offers[0].conditions.description
+
+
+def test_a_weight_label_without_a_verified_portion_preserves_identity_but_not_a_price():
+    cards, _ = parse_listing(source("weight"), "/delivery/categoria/Acougue")
+    class_nodes(cards[0], "product--title")[0].children = ["Filé Mignon por kg"]
+    result = parse_cards(cards[:1], settings(), settings().shop_url + PATH, NOW)
+    assert not result.issues and len(result.observations) == 1
+    assert not result.observations[0].offers
+    assert any("price-basis" in warning for warning in result.warnings)
 
 
 @pytest.mark.parametrize("value", [None, "0,00"])

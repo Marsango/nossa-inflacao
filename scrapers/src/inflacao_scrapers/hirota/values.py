@@ -1,6 +1,5 @@
 """Exact source values; unknown values and internal barcodes stay unknown."""
 
-import re
 from decimal import Decimal
 from urllib.parse import quote
 
@@ -41,6 +40,10 @@ def product_identity(product) -> str:
 
 def product_path(product) -> str:
     slug = product["link"]
-    if not isinstance(slug, str) or not re.fullmatch(r"[\w°&]+(?:-[\w°&]+)*", slug):
+    if not isinstance(slug, str) or not slug.strip() or slug in {".", ".."}:
+        raise ValueError("Invalid public product link")
+    if any(character in slug for character in "/\\?#%") or any(
+        ord(c) < 32 or ord(c) == 127 for c in slug
+    ):
         raise ValueError("Invalid public product link")
     return "/produto/" + product_identity(product) + "/" + quote(slug, safe="-")

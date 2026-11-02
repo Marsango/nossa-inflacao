@@ -74,6 +74,14 @@ def package_from_name(name: str) -> Package | None:
     return reconcile(name_declarations(name))
 
 
+def package_metadata(name: str, warnings: list[str]) -> Package | None:
+    try:
+        return package_from_name(name)
+    except (ValueError, ArithmeticError) as error:
+        warnings.append(f"package-size: omitted unverifiable package ({error})")
+        return None
+
+
 def sku_names(sku: dict) -> list[str]:
     return list(dict.fromkeys(name for name in (sku.get("name"), sku.get("nameComplete")) if name))
 
