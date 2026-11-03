@@ -1,7 +1,9 @@
 """Preserve secrets/settings; append newly supported collectors during deployment."""
+import json
 import re
 import secrets
 import tomllib
+
 from runtime import CONFIG, ROOT, command
 
 
@@ -48,17 +50,21 @@ def synchronize_scrapers():
     path.write_text(updated)
 
 
-def configured_adapters(document):
+def configured_schedules(document):
     entries = document.get("scrapers")
     if not isinstance(entries, list):
         raise ValueError("Expected [[scrapers]] entries in the deployment configuration")
-    return {entry.get("adapter", "super-muffato") for entry in entries}
+    return {scraper_identity(entry): entry for entry in entries}
+
+
+def scraper_identity(entry):
+    return entry.get("adapter", "super-muffato"), entry.get("schedule_id")
 
 
 def missing_scraper_blocks(original, template):
-    existing = configured_adapters(tomllib.loads(original))
+    existing = configured_schedules(tomllib.loads(original))
     blocks = re.split(r"(?m)^(?=\[\[scrapers\]\])", template)
-    return [block.strip() for block in blocks
+    return [authorized_scraper_block(block.strip(), existing) for block in blocks
             if block.startswith("[[scrapers]]") and
             missing_scraper_block(block, existing)]
 
@@ -66,5 +72,25 @@ def missing_scraper_blocks(original, template):
 
 def missing_scraper_block(block, existing):
     document = tomllib.loads(block)
-    adapters = configured_adapters(document)
-    return not adapters.issubset(existing)
+    schedules = configured_schedules(document)
+    return not schedules.keys() <= existing.keys()
+
+
+def authorized_scraper_block(block, existing):
+    entry = tomllib.loads(block)["scrapers"][0]
+    adapter = entry.get("adapter", "super-muffato")
+    fallback = next(iter(existing.values()), {})
+    source = next((value for key, value in existing.items() if key[0] == adapter), fallback)
+    for name in ("scraper_id", "core_url", "ingestion_token_env"):
+        block = inherit_setting(block, name, source)
+    return block
+
+
+def inherit_setting(block, name, source):
+    if name not in source:
+        return block
+    replacement = name + " = " + json.dumps(source[name], ensure_ascii=False)
+    pattern = rf"(?m)^{name}\s*=.*$"
+    if re.search(pattern, block):
+        return re.sub(pattern, lambda match: replacement, block)
+    return block.replace("[[scrapers]]", "[[scrapers]]\n" + replacement, 1)

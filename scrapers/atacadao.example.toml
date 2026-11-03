@@ -1,0 +1,12 @@
+adapter = "atacadao"
+schedule_id = "atacadao-sp"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "60"
+seller_id = "atacadaobr60"
+branch_slug = "vila-maria"
+branch_name = "Vila Maria"
+branch_postal_code = "02170901"
+city = "São Paulo"
+state = "SP"
+spool_path = "data/atacadao-sp/spool.sqlite3"

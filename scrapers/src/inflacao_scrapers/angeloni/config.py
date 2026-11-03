@@ -1,4 +1,4 @@
-"""Angeloni Bigorrilho delivery context and full-catalog browsing limits."""
+"""Explicit regional delivery context and full-catalog browsing limits."""
 
 from pydantic import Field
 
@@ -23,11 +23,13 @@ class AngeloniSettings(VtexSettings):
     )
 
     def supports_kilogram_prices(self) -> bool:
+        verified = {
+            ("superangeloni24", "Curitiba", "PR"),
+            ("superangeloni14", "Florianópolis", "SC"),
+        }
         return (
             self.sales_channel == "1"
             and self.seller_id == "1"
-            and self.regional_seller_id == "superangeloni24"
             and self.region_id is not None
-            and self.city == "Curitiba"
-            and self.state == "PR"
+            and (self.regional_seller_id, self.city, self.state) in verified
         )

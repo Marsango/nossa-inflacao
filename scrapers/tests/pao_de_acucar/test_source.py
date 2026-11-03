@@ -69,14 +69,14 @@ def test_missing_price_remains_unknown_and_stock_is_independent():
 
 
 def test_context_mapping_is_independent_of_default_store():
-    validate_delivery(source("delivery"))
-    validate_branch(source("branch")["content"])
+    validate_delivery(source("delivery"), settings())
+    validate_branch(source("branch")["content"], settings())
     document = source("delivery")
     document["deliveryTypes"] = [
         entry for entry in document["deliveryTypes"] if entry["storeid"] != 461
     ]
     with pytest.raises(ValueError, match="missing or ambiguous"):
-        validate_delivery(document)
+        validate_delivery(document, settings())
 
 
 def test_ambiguous_mapping_and_changed_branch_stop_collection():
@@ -84,11 +84,11 @@ def test_ambiguous_mapping_and_changed_branch_stop_collection():
     selected = next(entry for entry in document["deliveryTypes"] if entry["storeid"] == 461)
     document["deliveryTypes"].append(deepcopy(selected))
     with pytest.raises(ValueError, match="ambiguous"):
-        validate_delivery(document)
+        validate_delivery(document, settings())
     branch = source("branch")["content"]
     branch["city"] = "Guarulhos"
     with pytest.raises(ValueError, match="address changed"):
-        validate_branch(branch)
+        validate_branch(branch, settings())
 
 
 def test_pagination_repeats_and_changed_totals_are_errors():

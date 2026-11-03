@@ -1,6 +1,6 @@
 # VPS deployment
 
-The production stack runs PostgreSQL, the Go core, and all three current scrapers.
+The production stack runs PostgreSQL, the Go core, and the configured retailer collectors.
 Collection runs daily at **09:00 America/Sao_Paulo**. The frontend is optional and enabled by configuring a public domain.
 The scheduler does not catch up on missed runs; after 09:00 its first run is tomorrow.
 The existing local-development Compose configuration remains separate.
@@ -74,6 +74,19 @@ are serialized by a host lock; status and logs remain available independently.
 The daily scheduler continues after collection failures; a running scheduler does not
 prove fresh observations. Inspect collection summaries, retry queues, and core processing
 logs. API acceptance means queued, not successfully processed. No alert service is installed.
+
+`up` appends missing scheduled contexts from `scrapers/scrapers.example.toml` before
+recreating the scheduler. Existing entries, including explicit disables, custom settings
+and spool paths, are preserved. New entries inherit the existing retailer's collector
+identity, core URL and token environment-variable name, falling back to the first
+configured collector for a new retailer. Existing shop registration and ingestion
+authorization cover all configured contexts of the same retailer.
+
+Additional contexts use a stable `schedule_id`; keep it unchanged when customizing
+their address or branch. Entries without this field retain the legacy default context
+identity for their adapter. Each enabled context requires its own spool path.
+The default template includes ten additional Pão de Açúcar capitals and Angeloni
+Florianópolis, alongside the existing Curitiba and São Paulo collectors.
 
 Manual `collect` and `deliver` containers are retained after exit so their
 console logs survive, including failures. The manual-command Compose override
@@ -323,3 +336,23 @@ Watch `daily history summarized` logs for progress and `dirty_days` in history
 precomputation metrics for backlog. Initial backfill is asynchronous, so performance
 measurements should distinguish backfill, dirty-day fallback and clean reads.
 Product history and the public request deadline remain unchanged.
+
+### Atacadão capital collection
+
+The Atacadão adapter adds 22 verified capital contexts to the existing schedule,
+with one `atacadao-<uf>` schedule ID and separate spool per branch. The public
+catalog is selected by seller and branch; it does not certify delivery to every
+address in the city. See [coverage and source blockers](../scrapers/README.md#atacadão-capital-branches).
+
+On an existing VPS, `git pull` followed by `./deploy up` appends missing ready
+contexts to `${NOSSA_CONFIG_DIR:-/etc/nossa-inflacao}/scrapers.toml` before
+recreating the scheduler. The deployment also registers the shop and authorizes
+it for ingestion. Existing collector identity, private core URL, token variable,
+custom branches, spool paths and explicit per-context disables are retained.
+Fresh installation and repeated upgrades use the same template without duplicates.
+This adapter needs no new environment variables, migration or browser installation.
+
+After deployment, check per-city collection and ingestion reports. A failed
+Atacadão city remains visible and does not prevent the other configured cities
+from running. Template entries establish configured scheduling; successful reports
+and persisted observations establish actual production collection.

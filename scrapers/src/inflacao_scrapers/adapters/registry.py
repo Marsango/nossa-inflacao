@@ -1,6 +1,7 @@
 """Explicit adapter registration, independent of CLI and runner implementation."""
 
 from ..angeloni.adapter import ADAPTER as ANGELONI_ADAPTER
+from ..atacadao.adapter import ADAPTER as ATACADAO_ADAPTER
 from ..festval.adapter import ADAPTER as FESTVAL_ADAPTER
 from ..hirota.adapter import ADAPTER as HIROTA_ADAPTER
 from ..mambo.adapter import ADAPTER as MAMBO_ADAPTER
@@ -21,6 +22,7 @@ ADAPTERS: dict[str, Adapter] = {
         NAGUMO_ADAPTER,
         SONDA_ADAPTER,
         PAO_DE_ACUCAR_ADAPTER,
+        ATACADAO_ADAPTER,
     )
 }
 

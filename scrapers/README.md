@@ -3,6 +3,10 @@
 The registered adapters collect public VTEX catalogs for **Super Muffato,
 Angeloni, and Festval** around Curitiba, plus **Mambo** delivery and **Hirota**
 Nazaré pickup and **Pão de Açúcar** Ricardo Jafet delivery in São Paulo/SP.
+The default schedule also includes Pão de Açúcar in ten additional capitals and
+Angeloni Beira Mar delivery in Florianópolis/SC; see [capital contexts](#additional-capital-contexts).
+Atacadão has independently scheduled online branch catalogs in 22 capitals;
+see [Atacadão capital branches](#atacadão-capital-branches) for coverage and blockers.
 Hirota and Pão de Açúcar use their own public APIs. Sonda reads its public HTML catalog with fulfillment context explicitly unknown;
 see [São Paulo setup, evidence and limitations](../docs/plans/sao-paulo-retailers.md).
 The core supplies brand-independent
@@ -26,6 +30,7 @@ These groups are not a statistically representative inflation basket.
 | `hirota` | Pickup at Avenida Nazaré 1299, CEP `04263100`, organization 171, filial 1, distribution center 1 | Department browsing filtered by core scope; diagnostic discovery samples the public best sellers |
 | `mambo` | Delivery catalog for São Paulo CEP `01310200`, mapped to regional seller `mambodelivery215`; packaged products and advertised kg prices with portions up to 3 kg | Paginated target searches on sales channel `1` |
 | `nagumo` | Vila Curuçá pickup, São Paulo/SP, store `13`, branch CEP `08030040` | Public HTTP searches filtered by core targets; ordinary/member offers and advertised kg prices |
+| `atacadao` | Explicit branch and seller, independently verified every run; online catalogs in 22 capitals | Public FastStore target searches; regular, wholesale and advertised kg offers |
 
 The three delivery adapters resolve their configured CEP through the public regions
 endpoint at the start of every run. The response must contain the configured
@@ -680,6 +685,57 @@ Use `collect` with an authorized core token and monitoring API to ingest. The
 combined SP example leaves this entry disabled until deployment is ready. Full
 scope coverage and two dates of live history have not been measured.
 
+### Additional capital contexts
+
+The active local configuration and `scrapers.example.toml` enable these additional
+contexts with the existing collector identity and a separate spool per entry:
+
+| Retailer | Capital | UF | Branch |
+| --- | --- | --- | --- |
+| Pão de Açúcar | Rio de Janeiro | RJ | 1850 / Paróquia |
+| Pão de Açúcar | Brasília | DF | 1870 / W3 |
+| Pão de Açúcar | Goiânia | GO | 1569 / Flamboyant |
+| Pão de Açúcar | Fortaleza | CE | 521 / São João |
+| Pão de Açúcar | Recife | PE | 1649 / Parnamirim |
+| Pão de Açúcar | João Pessoa | PB | 1807 / Bessa |
+| Pão de Açúcar | Natal | RN | 2232 / Natal Midway |
+| Pão de Açúcar | Aracaju | SE | 1204 / Jardins |
+| Pão de Açúcar | Teresina | PI | 1101 / São Cristovão |
+| Pão de Açúcar | Campo Grande | MS | 1203 / Caranda Bosque |
+| Angeloni | Florianópolis | SC | superangeloni14 / Beira Mar |
+
+Pão de Açúcar resolves the configured delivery CEP every run, requires the expected
+store and delivery modality, and independently verifies branch name, city, postal
+code and address number. Branch and delivery postal codes may differ. The settings
+retain Ricardo Jafet defaults for existing configurations. Offer conditions preserve
+`customerPlus=true` with membership, payment and coupon eligibility unknown; the
+observation context carries the actual branch, city and UF.
+
+Angeloni resolves CEP `88015200` to Beira Mar every run. Packaged and advertised
+kilogram prices are supported in this verified Florianópolis context. Rendered
+Beira Mar fruit, meat and bread prices established the kilogram basis; portion
+multipliers never become fixed package contents. Other unverified locations retain
+their existing restrictions.
+
+New entries use stable `schedule_id` values to distinguish scheduled contexts of
+the same retailer during deployment upgrades. Preserve these identifiers when
+customizing local addresses. `git pull` followed by `./deploy up` appends missing
+contexts before recreating the scheduler, preserving original entries and explicit
+disables. Collector identity, core URL and token environment-variable name are
+inherited from the existing configuration. Shop registration and authorization
+already include both retailer IDs. Configuration does not prove a running scheduler.
+
+Read-only live diagnostics from `scrapers/`:
+
+```sh
+.venv/bin/pytest tests/pao_de_acucar/test_live.py --live -k capital -q
+.venv/bin/pytest tests/stores/test_florianopolis.py --live -q
+```
+
+Live samples and storefront comparisons cover these branches, not every monitored
+product or complete catalog runs. No collection is configured for the researched
+noncapital cities. See [captured fixture evidence](tests/fixtures/stores/README.md).
+
 ### Sonda
 
 The public HTML adapter needs the normal HTTP dependencies, with no browser or
@@ -717,3 +773,55 @@ not assert that every shop completed successfully. Notification errors are repor
 as warnings; collection status and durable batches are preserved. The core's
 periodic revision check recovers a missed signal. Deploy the updated core before
 updating independently hosted collectors to avoid refresh-endpoint warnings.
+
+## Atacadão capital branches
+
+The `atacadao` adapter uses ordinary HTTP and the public storefront's FastStore
+`ProductsQuery`. Each run independently verifies the configured seller in the
+public store directory, checks its branch page's ID, slug, name, city, UF and
+current postal code, and probes the catalog for the same seller. Every price
+request specifies that seller and sales channel `1`. Block pages, empty branch
+catalogs, seller mismatches, aged responses and pagination drift fail visibly.
+An individual failed city does not stop other configured entries.
+
+The default schedule and active local configuration add 22 enabled contexts:
+Rio Branco, Maceió, Manaus, Salvador, Fortaleza, Brasília, Goiânia, São Luís,
+Belo Horizonte, Campo Grande, Cuiabá, Belém, Recife, Teresina, Curitiba,
+Rio de Janeiro, Natal, Porto Alegre, Florianópolis, Aracaju, São Paulo and Palmas.
+They retain the existing collector identity and use distinct `atacadao-<uf>`
+schedule IDs and spool paths. No browser dependency is required.
+
+All 27 capitals were checked on 3 November 2026. Five are not scheduled because
+of concrete source blockers: Macapá's two listed catalogs and Boa Vista's listed
+catalog were empty; Vitória had no online seller mapping; João Pessoa's branch
+page disagreed with the directory about its seller; Porto Velho's seller mapping
+was absent from the online directory and its sampled seller returned no products.
+These restrictions are collection findings, not claims that the physical shops
+are closed or that every delivery address is unsupported. Add a context when its
+branch identity and priced catalog can be independently verified.
+
+Observations use `channel=online` and null delivery CEP. `branch_postal_code`
+validates the store address; it does not represent a selected delivery address.
+Retail and quantity-discount prices remain separate offers, with the minimum
+purchase expressed in the offer's basis. `unitPerBox` does not change the package
+size. Advertised kg prices stay per kg; `unitMultiplier` describes an approximate
+purchase portion, never fixed package contents or a multiplier for the price.
+Payment, membership, coupon and missing availability remain explicitly unknown.
+Search omits stock, so a separate anonymous, read-only storefront simulation
+checks the requested SKUs and seller in one batch per matching page. Its stock
+statuses are retained without replacing catalog prices with simulated cart totals;
+this provides confirmed stock for the core's price views. No cart or order is created.
+The GraphQL `gtin` field contains internal article references in verified samples;
+it is not emitted as a barcode. The core derives comparable units as usual.
+
+From `scrapers/`, read-only discovery and opt-in live checks are:
+
+```sh
+.venv/bin/inflacao-scraper --config atacadao.example.toml discover --query arroz --limit 3
+.venv/bin/pytest tests/atacadao/test_live.py --live -q
+```
+
+The standalone example selects Vila Maria, São Paulo. The combined schedule has
+all ready contexts. Source fixtures cover every enabled capital, quantity bands
+and approximate-weight products. Full scope coverage, accumulated daily history
+and production execution must be measured separately from these source checks.

@@ -247,6 +247,26 @@ See [the onboarding note](../../../../docs/plans/sonda-retailer.md).
 
 ### Pão de Açúcar / GPA
 
+`pao-de-acucar-capitals.json` contains projected public delivery mappings,
+independent branch humanization responses, and representative packaged/advertised
+kg catalog products for RJ, DF, GO, CE, PE, PB, RN, SE, PI and MS, captured on
+2026-11-02. Catalog pagination is reduced to a single representative fixture page;
+the recorded prices and identities are preserved exactly. Tests mutate branch
+identity, address and delivery modality to verify that context changes fail closed.
+`pao-de-acucar-capitals-verification.json` records fresh rendered product excerpts
+for all ten selected store IDs, including kg melão in Fortaleza and Campo Grande.
+Browser store selection is explicit; CEP serviceability is verified independently
+by the delivery API. These are advertised catalog prices, not checkout guarantees.
+
+`angeloni-florianopolis-weight.json` projects the Beira Mar regional API's banana,
+ground-beef and French-bread listings from 2026-11-02. Their multipliers are 0.5,
+0.1 and 0.1, while the selling prices are R$6.59/kg, R$53.90/kg and R$17.99/kg.
+`angeloni-florianopolis-verification.json` preserves independently rendered `/ KG`
+prices, the final-weighing notice and the page's Beira Mar branch label. The
+regional API resolves CEP 88015200 to seller superangeloni14; matching storefront
+labels and prices establish the unit mapping without inferring fixed contents.
+No customer data, cookies or credentials are captured in these fixtures.
+
 `pao-de-acucar-{delivery,branch}.json` are public HTTP responses resolving
 CEP 04115090 to São Paulo Ricardo Jafet store 461 / modality 842. The adapter
 requires both every run; an anonymous default store alone is insufficient.
@@ -316,3 +336,31 @@ the same date: SKU 1009 (`Melancia Kg`, multiplier 14, R$3.60/kg) and SKU 62385
 kilogram mapping keeps these source prices unchanged; approximate portion weights
 never multiply the offers or become fixed packages. Implausible Angeloni
 multipliers and Muffato's conflicting `un`/fractional-unit formats remain errors.
+
+## Atacadão — 3 November 2026
+
+`atacadao-capitals.json` contains 22 independently sampled capital contexts and
+five explicit blocked-capital records. Each ready context preserves its selected
+public directory entry, essential `__NEXT_DATA__` branch metadata and the first
+three products of a seller-specific FastStore catalog query. The raw GraphQL
+catalog objects retain JSON number lexemes for exact-decimal decoding. Scripts,
+customer accounts, cookies and sessions are excluded. Canonical directory and
+branch postal codes agree; Rio Branco and Goiânia also expose older postal codes
+in their legacy `cep` field, which is not used in place of current `postalCode`.
+
+`atacadao-rice.json` and `atacadao-weight.json` are unmodified public
+`ProductsQuery` responses for seller `atacadaobr60`, channel `1`. Rice SKU 13743
+has regular R$23.49 and R$22.99 from six packages. Banana Prata SKU 41986 advertises
+R$10.90/kg with an approximate 0.15kg purchase portion. Package sizes do not come
+from the wholesale `unitPerBox` field. GraphQL's article-reference `gtin` values
+are not asserted to be GTINs; availability and unexpressed conditions stay unknown.
+Fixture replay does not establish a current delivery slot or multiple dates of
+collected price history.
+
+`atacadao-stock.json` captures the storefront's anonymous, read-only stock
+simulation for Vila Maria rice SKU 13743 and banana SKU 41986. Both explicitly
+return `availability=available` for seller `atacadaobr60`. Only stock is used;
+the simulation's weighed portion totals never replace the catalog's kg prices.
+`atacadao-storefront-verification.json` preserves sanitized rendered price
+checks for Vila Maria rice and Florianópolis JK banana, selected through the
+normal storefront picker. No user session or cookies are retained.

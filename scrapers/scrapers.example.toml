@@ -120,3 +120,520 @@ postal_code = "08030040"
 city = "São Paulo"
 state = "SP"
 spool_path = "data/nagumo/spool.sqlite3"
+
+# Additional state capitals; schedule_id stays stable when local settings change.
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-rj"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "22071001"
+store_id = "1850"
+city = "Rio de Janeiro"
+state = "RJ"
+delivery_type_id = 3372
+branch_name = "1287 - Paróquia"
+branch_postal_code = "22031000"
+branch_address_number = 493
+spool_path = "data/pao-de-acucar-rj/spool.sqlite3"
+
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-df"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "70390025"
+store_id = "1870"
+city = "Brasília"
+state = "DF"
+delivery_type_id = 3396
+branch_name = "0310 - W3"
+branch_postal_code = "70381515"
+branch_address_number = 45
+spool_path = "data/pao-de-acucar-df/spool.sqlite3"
+
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-go"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "74230020"
+store_id = "1569"
+city = "Goiânia"
+state = "GO"
+delivery_type_id = 3141
+branch_name = "1018 - Flamboyant"
+branch_postal_code = "74810030"
+branch_address_number = 0
+spool_path = "data/pao-de-acucar-go/spool.sqlite3"
+
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-ce"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "60150160"
+store_id = "521"
+city = "Fortaleza"
+state = "CE"
+delivery_type_id = 901
+branch_name = "1220 - São João"
+branch_postal_code = "60150160"
+branch_address_number = 1169
+spool_path = "data/pao-de-acucar-ce/spool.sqlite3"
+
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-pe"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "51021000"
+store_id = "1649"
+city = "Recife"
+state = "PE"
+delivery_type_id = 3164
+branch_name = "2377 - Parnamirim"
+branch_postal_code = "52060140"
+branch_address_number = 261
+spool_path = "data/pao-de-acucar-pe/spool.sqlite3"
+
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-pb"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "58039000"
+store_id = "1807"
+city = "João Pessoa"
+state = "PB"
+delivery_type_id = 3369
+branch_name = "1284 - Bessa"
+branch_postal_code = "58037000"
+branch_address_number = 600
+spool_path = "data/pao-de-acucar-pb/spool.sqlite3"
+
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-rn"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "59020100"
+store_id = "2232"
+city = "Natal"
+state = "RN"
+delivery_type_id = 4436
+branch_name = "1365 - Natal Midway"
+branch_postal_code = "59015900"
+branch_address_number = 3775
+spool_path = "data/pao-de-acucar-rn/spool.sqlite3"
+
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-se"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "49026010"
+store_id = "1204"
+city = "Aracaju"
+state = "SE"
+delivery_type_id = 2167
+branch_name = "1164 - Jardins"
+branch_postal_code = "49025750"
+branch_address_number = 0
+spool_path = "data/pao-de-acucar-se/spool.sqlite3"
+
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-pi"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "64049130"
+store_id = "1101"
+city = "Teresina"
+state = "PI"
+delivery_type_id = 2041
+branch_name = "0225 - São Cristovão"
+branch_postal_code = "64049010"
+branch_address_number = 1919
+spool_path = "data/pao-de-acucar-pi/spool.sqlite3"
+
+[[scrapers]]
+adapter = "pao-de-acucar"
+schedule_id = "pao-de-acucar-ms"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "79032040"
+store_id = "1203"
+city = "Campo Grande"
+state = "MS"
+delivery_type_id = 2145
+branch_name = "0358 - Caranda Bosque"
+branch_postal_code = "79032210"
+branch_address_number = 195
+spool_path = "data/pao-de-acucar-ms/spool.sqlite3"
+
+[[scrapers]]
+adapter = "angeloni"
+schedule_id = "angeloni-sc"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+postal_code = "88015200"
+regional_seller_id = "superangeloni14"
+store_id = "seller:superangeloni14"
+city = "Florianópolis"
+state = "SC"
+spool_path = "data/angeloni-sc/spool.sqlite3"
+
+# Atacadão verified capital branches; independent schedules and spools.
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-ac"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "141"
+seller_id = "atacadaobr141"
+branch_slug = "rio-branco"
+branch_name = "Rio Branco"
+branch_postal_code = "69914220"
+city = "Rio Branco"
+state = "AC"
+spool_path = "data/atacadao-ac/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-al"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "98"
+seller_id = "atacadaobr98"
+branch_slug = "maceio-aeroporto"
+branch_name = "Maceió Aeroporto"
+branch_postal_code = "57081285"
+city = "Maceió"
+state = "AL"
+spool_path = "data/atacadao-al/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-am"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "149"
+seller_id = "atacadaobr149"
+branch_slug = "manaus-cidade-nova"
+branch_name = "Manaus Cidade Nova 24hrs"
+branch_postal_code = "69090002"
+city = "Manaus"
+state = "AM"
+spool_path = "data/atacadao-am/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-ba"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "618"
+seller_id = "atacadaobr618"
+branch_slug = "salvador-garibaldi"
+branch_name = "Salvador Garibaldi"
+branch_postal_code = "40110100"
+city = "Salvador"
+state = "BA"
+spool_path = "data/atacadao-ba/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-ce"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "80"
+seller_id = "atacadaobr80"
+branch_slug = "fortaleza-aeroporto"
+branch_name = "Fortaleza Aeroporto 24hrs"
+branch_postal_code = "60741215"
+city = "Fortaleza"
+state = "CE"
+spool_path = "data/atacadao-ce/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-df"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "61"
+seller_id = "atacadaobr61"
+branch_slug = "brasilia-asa-norte"
+branch_name = "Brasília Asa Norte"
+branch_postal_code = "70770100"
+city = "Brasília"
+state = "DF"
+spool_path = "data/atacadao-df/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-go"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "817"
+seller_id = "atacadaobr817"
+branch_slug = "goiania-avenida-independencia"
+branch_name = "Goiânia Av. Independência"
+branch_postal_code = "74045010"
+city = "Goiânia"
+state = "GO"
+spool_path = "data/atacadao-go/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-ma"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "747"
+seller_id = "atacadaobr747"
+branch_slug = "sao-luis"
+branch_name = "São Luís 24hrs"
+branch_postal_code = "65060645"
+city = "São Luís"
+state = "MA"
+spool_path = "data/atacadao-ma/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-mg"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "684"
+seller_id = "atacadaobr684"
+branch_slug = "pampulha"
+branch_name = "Pampulha 24hrs"
+branch_postal_code = "31710400"
+city = "Belo Horizonte"
+state = "MG"
+spool_path = "data/atacadao-mg/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-ms"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "3"
+seller_id = "atacadaobr3"
+branch_slug = "campo-grande-coronel-antonino"
+branch_name = "Campo Grande Coronel Antonino"
+branch_postal_code = "79016000"
+city = "Campo Grande"
+state = "MS"
+spool_path = "data/atacadao-ms/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-mt"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "927"
+seller_id = "atacadaobr927"
+branch_slug = "cuiaba-tijucal"
+branch_name = "Cuiabá Tijucal"
+branch_postal_code = "78080300"
+city = "Cuiabá"
+state = "MT"
+spool_path = "data/atacadao-mt/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-pa"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "153"
+seller_id = "atacadaobr153"
+branch_slug = "belem-icoaraci"
+branch_name = "Belém Icoaraci"
+branch_postal_code = "66811000"
+city = "Belém"
+state = "PA"
+spool_path = "data/atacadao-pa/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-pe"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "47"
+seller_id = "atacadaobr47"
+branch_slug = "recife-iputinga"
+branch_name = "Recife Iputinga"
+branch_postal_code = "50800010"
+city = "Recife"
+state = "PE"
+spool_path = "data/atacadao-pe/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-pi"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "126"
+seller_id = "atacadaobr126"
+branch_slug = "teresina-primavera"
+branch_name = "Teresina Primavera "
+branch_postal_code = "64006220"
+city = "Teresina"
+state = "PI"
+spool_path = "data/atacadao-pi/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-pr"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "246"
+seller_id = "atacadaobr246"
+branch_slug = "curitiba-bairro-alto"
+branch_name = "Curitiba Bairro Alto"
+branch_postal_code = "82590100"
+city = "Curitiba"
+state = "PR"
+spool_path = "data/atacadao-pr/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-rj"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "63"
+seller_id = "atacadaobr63"
+branch_slug = "automovel-clube"
+branch_name = "Automóvel Clube"
+branch_postal_code = "21210000"
+city = "Rio de Janeiro"
+state = "RJ"
+spool_path = "data/atacadao-rj/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-rn"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "51"
+seller_id = "atacadaobr51"
+branch_slug = "natal-sul"
+branch_name = "Natal Sul"
+branch_postal_code = "59066180"
+city = "Natal"
+state = "RN"
+spool_path = "data/atacadao-rn/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-rs"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "88"
+seller_id = "atacadaobr88"
+branch_slug = "porto-alegre-sertorio"
+branch_name = "Sertório"
+branch_postal_code = "91110581"
+city = "Porto Alegre"
+state = "RS"
+spool_path = "data/atacadao-rs/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-sc"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "290"
+seller_id = "atacadaobr290"
+branch_slug = "florianopolis-jk"
+branch_name = "Florianópolis JK"
+branch_postal_code = "88070120"
+city = "Florianópolis"
+state = "SC"
+spool_path = "data/atacadao-sc/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-se"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "68"
+seller_id = "atacadaobr68"
+branch_slug = "aracaju-br"
+branch_name = "Aracaju BR"
+branch_postal_code = "49082110"
+city = "Aracaju"
+state = "SE"
+spool_path = "data/atacadao-se/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-sp"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "60"
+seller_id = "atacadaobr60"
+branch_slug = "vila-maria"
+branch_name = "Vila Maria"
+branch_postal_code = "02170901"
+city = "São Paulo"
+state = "SP"
+spool_path = "data/atacadao-sp/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+
+[[scrapers]]
+adapter = "atacadao"
+schedule_id = "atacadao-to"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+store_id = "671"
+seller_id = "atacadaobr671"
+branch_slug = "palmas-rodoviaria"
+branch_name = "Palmas Rodoviária"
+branch_postal_code = "77024146"
+city = "Palmas"
+state = "TO"
+spool_path = "data/atacadao-to/spool.sqlite3"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"

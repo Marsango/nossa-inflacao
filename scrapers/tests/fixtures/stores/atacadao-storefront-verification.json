@@ -1,0 +1,31 @@
+{
+  "captured_on": "2026-11-03",
+  "records": [
+    {
+      "city": "São Paulo",
+      "state": "SP",
+      "seller_id": "atacadaobr60",
+      "store_id": "60",
+      "selection": "Default Vila Maria storefront, CEP 02170-901; no checkout",
+      "product_url": "https://www.atacadao.com.br/arroz-branco-camil-tipo-1-12658-13743/p",
+      "sku": "13743",
+      "regular_amount": "23.49",
+      "bulk_amount": "22.99",
+      "bulk_minimum_quantity": "6",
+      "rendered_excerpt": " 13743\nArroz Branco Camil Tipo 1 5kg\nA partir de 6 unid.\nR$ 23,49\n\nR$ 22,99\n\n-2%\nQuantidade:\nunidade\nAdicione mais:\n+5\nunidades\n+60\nunidades\n\nAdicione +5 unidades e aproveite o desconto\n\n= 0 caixa\n= 1 unidade\n\nResumo da compra:\n1 unidade · R$ 23,49\nAdicionar ao carrinho\nDescrição do produto\nArroz Branco Camil Tipo 1 5kg\n\nO Arroz Branco Camil Tipo 1, em embalagem de 5kg, é uma opção para quem busca um arroz de qualidade para o "
+    },
+    {
+      "city": "Florianópolis",
+      "state": "SC",
+      "seller_id": "atacadaobr290",
+      "store_id": "290",
+      "selection": "Normal pickup selector: Florianópolis JK, CEP 88070-120, Continue shopping; no cart items",
+      "product_url": "https://www.atacadao.com.br/banana-da-terra-quilo-4808-42062/p",
+      "sku": "42062",
+      "kilogram_amount": "10.99",
+      "approximate_portion": "0.2",
+      "portion_total": "2.20",
+      "rendered_excerpt": " 42062\nBanana-da-terra Quilo\n\nR$ 2,20\n\nR$ 10,99/kg\nQuantidade:\nAdicione mais:\n+800g\n+10kg\n\n= 0 caixa\n= 1 unidade\n\nResumo da compra:\nR$ 2,20\nAdicionar ao carrinho\nProduto de peso variável\nO peso aproximado de cada unidade é 200g. Por ser um produto que precisa ser pesado, o valor final da compra poderá sofrer pequenas variações de acordo com o peso real do item selecionado.\nDescrição do produto\nBanana-da-terra Quilo\n\nA Banana-da-terra vendida a quilo é uma opção versátil e econômica para diversos estabelecimentos e "
+    }
+  ]
+}

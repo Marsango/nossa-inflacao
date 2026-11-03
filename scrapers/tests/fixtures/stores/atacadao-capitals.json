@@ -1,0 +1,1249 @@
+{
+  "captured_on": "2026-11-03",
+  "contexts": [
+    {
+      "settings": {
+        "store_id": "141",
+        "seller_id": "atacadaobr141",
+        "branch_slug": "rio-branco",
+        "branch_name": "Rio Branco",
+        "branch_postal_code": "69914220",
+        "city": "Rio Branco",
+        "state": "AC"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr141",
+          "storeName": "Rio Branco",
+          "type": "loja",
+          "slug": "rio-branco",
+          "street": "Rodovia BR 364 - KM 5",
+          "neighborhood": "Distrito Industrial",
+          "city": "Rio Branco",
+          "uf": "AC",
+          "postalCode": "69914-220",
+          "latitude": -9.97431,
+          "longitude": -67.84905
+        }
+      ],
+      "branch": {
+        "storeId": 141,
+        "slug": "rio-branco",
+        "accountName": "atacadaobr141",
+        "loja": "Rio Branco",
+        "cidade": "Rio Branco",
+        "estado": "AC",
+        "cep": "69919-670",
+        "extras": {
+          "extra01": "atacadaobr141",
+          "extra02": "MT",
+          "extra03": null,
+          "extra04": "5568992604058",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": null,
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Rio Branco",
+        "uf": "AC",
+        "postalCode": "69914-220"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":6555},"edges":[{"node":{"id":"18","slug":"abacaxi-em-calda-tozzi-47293-18","sku":"18","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Tozzi","name":"Tozzi"},"name":"Abacaxi em Calda Tozzi 400g","gtin":"47293984","isVariantOf":{"productGroupID":"18","name":"Abacaxi em Calda Tozzi 400g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2247035/g.jpg.jpg?v=639287978943570000","alternateName":""}],"offers":{"highPrice":19.9,"lowPrice":19.9,"precoExclusivoEcom":false,"offers":[{"price":19.9,"listPrice":19.9,"quantity":1,"minQuantity":1,"unitPerBox":12,"seller":{"identifier":"atacadaobr141"}}]},"breadcrumbList":{"itemListElement":[{"item":"/mercearia/","name":"Mercearia","position":1},{"item":"/mercearia/doces/","name":"Doces","position":2},{"item":"/mercearia/doces/fruta-em-calda/","name":"Fruta em calda","position":3},{"item":"/abacaxi-em-calda-tozzi-47293-18/p","name":"Abacaxi em Calda Tozzi 400g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"149","name":"Fim de Ano"},{"id":"226","name":"Doces"},{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":8.99,"lowPrice":8.99,"precoExclusivoEcom":false,"offers":[{"price":8.99,"listPrice":8.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr141"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"49344","slug":"abobora-italiana-69145-49344","sku":"49344","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana 500g","gtin":"69145914","isVariantOf":{"productGroupID":"49344","name":"Abóbora Italiana 500g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2261160/g.jpg.jpg?v=639288102302100000","alternateName":""}],"offers":{"highPrice":8.9,"lowPrice":8.9,"precoExclusivoEcom":false,"offers":[{"price":8.9,"listPrice":8.9,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr141"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-69145-49344/p","name":"Abóbora Italiana 500g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:05.254184+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "98",
+        "seller_id": "atacadaobr98",
+        "branch_slug": "maceio-aeroporto",
+        "branch_name": "Maceió Aeroporto",
+        "branch_postal_code": "57081285",
+        "city": "Maceió",
+        "state": "AL"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr98",
+          "storeName": "Maceió Aeroporto",
+          "type": "loja",
+          "slug": "maceio-aeroporto",
+          "street": "Avenida Dr. Durval de Góes Monteiro, 12650",
+          "neighborhood": "Tabuleiro do Martins",
+          "city": "Maceió",
+          "uf": "AL",
+          "postalCode": "57081-285",
+          "latitude": -9.6608,
+          "longitude": -35.77569
+        }
+      ],
+      "branch": {
+        "storeId": 98,
+        "slug": "maceio-aeroporto",
+        "accountName": "atacadaobr98",
+        "loja": "Maceió Aeroporto",
+        "cidade": "Maceió",
+        "estado": "AL",
+        "cep": "57081-285",
+        "extras": {
+          "extra01": "atacadaobr98",
+          "extra02": "PE",
+          "extra03": null,
+          "extra04": "5582993304468",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Maceió",
+        "uf": "AL",
+        "postalCode": "57081-285"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":7277},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":3.99,"lowPrice":3.99,"precoExclusivoEcom":false,"offers":[{"price":3.99,"listPrice":3.99,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr98"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":2.59,"lowPrice":2.59,"precoExclusivoEcom":false,"offers":[{"price":2.59,"listPrice":2.59,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr98"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42025","slug":"abobora-italiana-1888-42025","sku":"42025","measurementUnit":"kg","unitMultiplier":0.4,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana Quilo","gtin":"1888965","isVariantOf":{"productGroupID":"42025","name":"Abóbora Italiana Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144779/g.jpg.jpg?v=639283549618470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144783/g-1.jpg.jpg?v=639283549621430000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144785/g-2.jpg.jpg?v=639283549624900000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144786/g-3.jpg.jpg?v=639283549628470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144787/g-4.jpg.jpg?v=639283549630970000","alternateName":""}],"offers":{"highPrice":4.99,"lowPrice":4.99,"precoExclusivoEcom":false,"offers":[{"price":4.99,"listPrice":4.99,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr98"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-1888-42025/p","name":"Abóbora Italiana Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:08.013851+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "149",
+        "seller_id": "atacadaobr149",
+        "branch_slug": "manaus-cidade-nova",
+        "branch_name": "Manaus Cidade Nova 24hrs",
+        "branch_postal_code": "69090002",
+        "city": "Manaus",
+        "state": "AM"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr149",
+          "storeName": "Manaus Cidade Nova",
+          "type": "loja",
+          "slug": "manaus-cidade-nova",
+          "street": "Avenida Max Teixeira, 3856",
+          "neighborhood": "Cidade Nova",
+          "city": "Manaus",
+          "uf": "AM",
+          "postalCode": "69090-002",
+          "latitude": -3.03554,
+          "longitude": -59.99287
+        }
+      ],
+      "branch": {
+        "storeId": 149,
+        "slug": "manaus-cidade-nova",
+        "accountName": "atacadaobr149",
+        "loja": "Manaus Cidade Nova 24hrs",
+        "cidade": "Manaus",
+        "estado": "AM",
+        "cep": "69090-002",
+        "extras": {
+          "extra01": "atacadaobr149",
+          "extra02": "NO",
+          "extra03": null,
+          "extra04": "5592985870895",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Manaus",
+        "uf": "AM",
+        "postalCode": "69090-002"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":5229},"edges":[{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":10.89,"lowPrice":10.89,"precoExclusivoEcom":false,"offers":[{"price":10.89,"listPrice":10.89,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr149"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"119","slug":"absorvente-cottonbaby-lady-com-abas-54143-119","sku":"119","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Cottonbaby","name":"Cottonbaby"},"name":"Absorvente Cottonbaby Com abas 8 un","gtin":"54143906","isVariantOf":{"productGroupID":"119","name":"Absorvente Cottonbaby Com abas 8 un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2250185/g.jpg.jpg?v=639288009133870000","alternateName":""}],"offers":{"highPrice":3.99,"lowPrice":3.49,"precoExclusivoEcom":false,"offers":[{"price":3.99,"listPrice":3.99,"quantity":1,"minQuantity":1,"unitPerBox":48,"seller":{"identifier":"atacadaobr149"}},{"price":3.49,"listPrice":3.49,"quantity":1,"minQuantity":3,"unitPerBox":48,"seller":{"identifier":"atacadaobr149"}}]},"breadcrumbList":{"itemListElement":[{"item":"/higiene-e-perfumaria/","name":"Higiene e perfumaria","position":1},{"item":"/higiene-e-perfumaria/higiene-intima/","name":"Higiene íntima","position":2},{"item":"/higiene-e-perfumaria/higiene-intima/absorvente/","name":"Absorvente","position":3},{"item":"/absorvente-cottonbaby-lady-com-abas-54143-119/p","name":"Absorvente Cottonbaby Com abas 8 un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"201","name":"Perfumaria"},{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"57195","slug":"absorvente-em-gel-intimus-suave-com-abas-4992-57195","sku":"57195","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Intimus","name":"Intimus"},"name":"Absorvente em Gel Intimus Leve Mais Pague Menos Suave com abas 42 un","gtin":"4992972","isVariantOf":{"productGroupID":"57355","name":"Absorvente em Gel Intimus Leve Mais Pague Menos Suave com abas 42 un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2230340/g.jpg.jpg?v=639287864855470000","alternateName":""}],"offers":{"highPrice":19.99,"lowPrice":18.99,"precoExclusivoEcom":false,"offers":[{"price":19.99,"listPrice":19.99,"quantity":1,"minQuantity":1,"unitPerBox":8,"seller":{"identifier":"atacadaobr149"}},{"price":18.99,"listPrice":18.99,"quantity":1,"minQuantity":2,"unitPerBox":8,"seller":{"identifier":"atacadaobr149"}}]},"breadcrumbList":{"itemListElement":[{"item":"/higiene-e-perfumaria/","name":"Higiene e perfumaria","position":1},{"item":"/higiene-e-perfumaria/higiene-intima/","name":"Higiene íntima","position":2},{"item":"/higiene-e-perfumaria/higiene-intima/absorvente/","name":"Absorvente","position":3},{"item":"/absorvente-em-gel-intimus-suave-com-abas-4992-57195/p","name":"Absorvente em Gel Intimus Leve Mais Pague Menos Suave com abas 42 un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:12.642939+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "618",
+        "seller_id": "atacadaobr618",
+        "branch_slug": "salvador-garibaldi",
+        "branch_name": "Salvador Garibaldi",
+        "branch_postal_code": "40110100",
+        "city": "Salvador",
+        "state": "BA"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr618",
+          "storeName": "Salvador Garibaldi",
+          "type": "loja",
+          "slug": "salvador-garibaldi",
+          "street": "Av. Reitor Miguel Calmon, 557",
+          "neighborhood": "Canela",
+          "city": "Salvador",
+          "uf": "BA",
+          "postalCode": "40110-100",
+          "latitude": -12.9954845,
+          "longitude": -38.5132341
+        }
+      ],
+      "branch": {
+        "storeId": 618,
+        "slug": "salvador-garibaldi",
+        "accountName": "atacadaobr618",
+        "loja": "Salvador Garibaldi",
+        "cidade": "Salvador",
+        "estado": "BA",
+        "cep": "40110-100",
+        "extras": {
+          "extra01": "atacadaobr618",
+          "extra02": "BA",
+          "extra03": null,
+          "extra04": "5571984675672",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Salvador",
+        "uf": "BA",
+        "postalCode": "40110-100"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":5378},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":6.99,"lowPrice":6.99,"precoExclusivoEcom":false,"offers":[{"price":6.99,"listPrice":6.99,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr618"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":5.99,"lowPrice":5.99,"precoExclusivoEcom":false,"offers":[{"price":5.99,"listPrice":5.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr618"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42026","slug":"abobora-brasileira-quilo-1892-42026","sku":"42026","measurementUnit":"kg","unitMultiplier":0.5,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Brasileira Quilo","gtin":"1892987","isVariantOf":{"productGroupID":"42026","name":"Abóbora Brasileira Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144780/g.jpg.jpg?v=639283549618800000","alternateName":""}],"offers":{"highPrice":1.2,"lowPrice":1.2,"precoExclusivoEcom":false,"offers":[{"price":1.2,"listPrice":1.2,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr618"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-brasileira-quilo-1892-42026/p","name":"Abóbora Brasileira Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:16.866237+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "80",
+        "seller_id": "atacadaobr80",
+        "branch_slug": "fortaleza-aeroporto",
+        "branch_name": "Fortaleza Aeroporto 24hrs",
+        "branch_postal_code": "60741215",
+        "city": "Fortaleza",
+        "state": "CE"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr80",
+          "storeName": "Fortaleza Aeroporto",
+          "type": "loja",
+          "slug": "fortaleza-aeroporto",
+          "street": "Avenida Senador Carlos Jereissati, 3001",
+          "neighborhood": "Serrinha",
+          "city": "Fortaleza",
+          "uf": "CE",
+          "postalCode": "60741-215",
+          "latitude": -3.781890275831543,
+          "longitude": -38.53982256117471
+        }
+      ],
+      "branch": {
+        "storeId": 80,
+        "slug": "fortaleza-aeroporto",
+        "accountName": "atacadaobr80",
+        "loja": "Fortaleza Aeroporto 24hrs",
+        "cidade": "Fortaleza",
+        "estado": "CE",
+        "cep": "60741-215",
+        "extras": {
+          "extra01": "atacadaobr80",
+          "extra02": "CE",
+          "extra03": null,
+          "extra04": "5585991813832",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Fortaleza",
+        "uf": "CE",
+        "postalCode": "60741-215"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":7195},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":4.79,"lowPrice":4.79,"precoExclusivoEcom":false,"offers":[{"price":4.79,"listPrice":4.79,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr80"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":4.35,"lowPrice":4.35,"precoExclusivoEcom":false,"offers":[{"price":4.35,"listPrice":4.35,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr80"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42177","slug":"abobora-bata-quilo-64782-42177","sku":"42177","measurementUnit":"kg","unitMultiplier":0.5,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Batã Quilo","gtin":"64782905","isVariantOf":{"productGroupID":"42177","name":"Abóbora Batã Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2257131/g.jpg.jpg?v=639288069195000000","alternateName":""}],"offers":{"highPrice":6.85,"lowPrice":6.85,"precoExclusivoEcom":false,"offers":[{"price":6.85,"listPrice":6.85,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr80"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-bata-quilo-64782-42177/p","name":"Abóbora Batã Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:19.443549+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "61",
+        "seller_id": "atacadaobr61",
+        "branch_slug": "brasilia-asa-norte",
+        "branch_name": "Brasília Asa Norte",
+        "branch_postal_code": "70770100",
+        "city": "Brasília",
+        "state": "DF"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr61",
+          "storeName": "Loja - Brasília Asa Norte",
+          "type": "loja",
+          "slug": "brasilia-asa-norte",
+          "street": "Setor Terminal Norte - Conjunto H, SHCN",
+          "neighborhood": "Asa Norte",
+          "city": "Brasília",
+          "uf": "DF",
+          "postalCode": "70770-100",
+          "latitude": -15.73485765711316,
+          "longitude": -47.90515219322221
+        }
+      ],
+      "branch": {
+        "storeId": 61,
+        "slug": "brasilia-asa-norte",
+        "accountName": "atacadaobr61",
+        "loja": "Brasília Asa Norte",
+        "cidade": "Brasília",
+        "estado": "DF",
+        "cep": "70770-100",
+        "extras": {
+          "extra01": "atacadaobr61",
+          "extra02": "DF",
+          "extra03": null,
+          "extra04": "5561991410136",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Brasília",
+        "uf": "DF",
+        "postalCode": "70770-100"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":7989},"edges":[{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":6.99,"lowPrice":6.99,"precoExclusivoEcom":false,"offers":[{"price":6.99,"listPrice":6.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr61"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"53501","slug":"abobora-italiana-1882-53501","sku":"53501","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana 19kg","gtin":"1882908","isVariantOf":{"productGroupID":"53599","name":"Abóbora Italiana 19kg"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144775/g.jpg.png?v=639283549586800000","alternateName":""}],"offers":{"highPrice":156.9,"lowPrice":156.9,"precoExclusivoEcom":false,"offers":[{"price":156.9,"listPrice":156.9,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr61"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-1882-53501/p","name":"Abóbora Italiana 19kg","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[],"additionalProperty":[]}},{"node":{"id":"42044","slug":"abobora-japonesa-cabotia-2149-42044","sku":"42044","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Japonesa/Cabotiá 19kg","gtin":"2149972","isVariantOf":{"productGroupID":"42044","name":"Abóbora Japonesa/Cabotiá 19kg"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144990/g.jpg.png?v=639283550665300000","alternateName":""}],"offers":{"highPrice":68,"lowPrice":68,"precoExclusivoEcom":false,"offers":[{"price":68,"listPrice":68,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr61"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-japonesa-cabotia-2149-42044/p","name":"Abóbora Japonesa/Cabotiá 19kg","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:22.345943+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "817",
+        "seller_id": "atacadaobr817",
+        "branch_slug": "goiania-avenida-independencia",
+        "branch_name": "Goiânia Av. Independência",
+        "branch_postal_code": "74045010",
+        "city": "Goiânia",
+        "state": "GO"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr817",
+          "storeName": "Loja - Goiânia Av Independência",
+          "type": "loja",
+          "slug": "goiania-avenida-independencia",
+          "street": "Av. Independência, 4950",
+          "neighborhood": "Setor Central",
+          "city": "Goiânia",
+          "uf": "GO",
+          "postalCode": "74045-010",
+          "latitude": -16.66461177875325,
+          "longitude": -49.26460607878909
+        }
+      ],
+      "branch": {
+        "storeId": 817,
+        "slug": "goiania-avenida-independencia",
+        "accountName": "atacadaobr817",
+        "loja": "Goiânia Av. Independência",
+        "cidade": "Goiânia",
+        "estado": "GO",
+        "cep": "74055-045",
+        "extras": {
+          "extra01": "atacadaobr817",
+          "extra02": "DF",
+          "extra03": null,
+          "extra04": "5562991221124",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Goiânia",
+        "uf": "GO",
+        "postalCode": "74045-010"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":8048},"edges":[{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":7.99,"lowPrice":7.99,"precoExclusivoEcom":false,"offers":[{"price":7.99,"listPrice":7.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr817"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"49344","slug":"abobora-italiana-69145-49344","sku":"49344","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana 500g","gtin":"69145914","isVariantOf":{"productGroupID":"49344","name":"Abóbora Italiana 500g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2261160/g.jpg.jpg?v=639288102302100000","alternateName":""}],"offers":{"highPrice":4.99,"lowPrice":4.99,"precoExclusivoEcom":false,"offers":[{"price":4.99,"listPrice":4.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr817"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-69145-49344/p","name":"Abóbora Italiana 500g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42044","slug":"abobora-japonesa-cabotia-2149-42044","sku":"42044","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Japonesa/Cabotiá 19kg","gtin":"2149972","isVariantOf":{"productGroupID":"42044","name":"Abóbora Japonesa/Cabotiá 19kg"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144990/g.jpg.png?v=639283550665300000","alternateName":""}],"offers":{"highPrice":59,"lowPrice":59,"precoExclusivoEcom":false,"offers":[{"price":59,"listPrice":59,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr817"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-japonesa-cabotia-2149-42044/p","name":"Abóbora Japonesa/Cabotiá 19kg","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:25.824539+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "747",
+        "seller_id": "atacadaobr747",
+        "branch_slug": "sao-luis",
+        "branch_name": "São Luís 24hrs",
+        "branch_postal_code": "65060645",
+        "city": "São Luís",
+        "state": "MA"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr747",
+          "storeName": "Loja - São Luís",
+          "type": "loja",
+          "slug": "sao-luis",
+          "street": "Avenida Jerônimo de Albuquerque, 160",
+          "neighborhood": "Angelim",
+          "city": "São Luís",
+          "uf": "MA",
+          "postalCode": "65060-645",
+          "latitude": -2.5237,
+          "longitude": -44.24239
+        }
+      ],
+      "branch": {
+        "storeId": 747,
+        "slug": "sao-luis",
+        "accountName": "atacadaobr747",
+        "loja": "São Luís 24hrs",
+        "cidade": "São Luís",
+        "estado": "MA",
+        "cep": "65060-645",
+        "extras": {
+          "extra01": "atacadaobr747",
+          "extra02": "CE",
+          "extra03": null,
+          "extra04": "5598970198274",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "São Luís",
+        "uf": "MA",
+        "postalCode": "65060-645"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":6114},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":4.99,"lowPrice":4.99,"precoExclusivoEcom":false,"offers":[{"price":4.99,"listPrice":4.99,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr747"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":4.85,"lowPrice":4.85,"precoExclusivoEcom":false,"offers":[{"price":4.85,"listPrice":4.85,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr747"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42177","slug":"abobora-bata-quilo-64782-42177","sku":"42177","measurementUnit":"kg","unitMultiplier":0.5,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Batã Quilo","gtin":"64782905","isVariantOf":{"productGroupID":"42177","name":"Abóbora Batã Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2257131/g.jpg.jpg?v=639288069195000000","alternateName":""}],"offers":{"highPrice":7.95,"lowPrice":7.95,"precoExclusivoEcom":false,"offers":[{"price":7.95,"listPrice":7.95,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr747"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-bata-quilo-64782-42177/p","name":"Abóbora Batã Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:29.225392+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "684",
+        "seller_id": "atacadaobr684",
+        "branch_slug": "pampulha",
+        "branch_name": "Pampulha 24hrs",
+        "branch_postal_code": "31710400",
+        "city": "Belo Horizonte",
+        "state": "MG"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr684",
+          "storeName": "Loja - Pampulha",
+          "type": "loja",
+          "slug": "pampulha",
+          "street": "Avenida Portugal, 5500",
+          "neighborhood": "Itapoã",
+          "city": "Belo Horizonte",
+          "uf": "MG",
+          "postalCode": "31710-400",
+          "latitude": -19.8409085183288,
+          "longitude": -43.95146157452593
+        }
+      ],
+      "branch": {
+        "storeId": 684,
+        "slug": "pampulha",
+        "accountName": "atacadaobr684",
+        "loja": "Pampulha 24hrs",
+        "cidade": "Belo Horizonte",
+        "estado": "MG",
+        "cep": "31710-400",
+        "extras": {
+          "extra01": "atacadaobr684",
+          "extra02": "MG",
+          "extra03": null,
+          "extra04": "5531983275391",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Belo Horizonte",
+        "uf": "MG",
+        "postalCode": "31710-400"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":7267},"edges":[{"node":{"id":"53505","slug":"abacate-1966-53505","sku":"53505","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Caixa 19kg","gtin":"1966981","isVariantOf":{"productGroupID":"53603","name":"Abacate Caixa 19kg"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144861/g.jpg.jpg?v=639283549997870000","alternateName":""}],"offers":{"highPrice":66.3,"lowPrice":66.3,"precoExclusivoEcom":false,"offers":[{"price":66.3,"listPrice":66.3,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr684"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1966-53505/p","name":"Abacate Caixa 19kg","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":4.99,"lowPrice":4.99,"precoExclusivoEcom":false,"offers":[{"price":4.99,"listPrice":4.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr684"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"53501","slug":"abobora-italiana-1882-53501","sku":"53501","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana 19kg","gtin":"1882908","isVariantOf":{"productGroupID":"53599","name":"Abóbora Italiana 19kg"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144775/g.jpg.png?v=639283549586800000","alternateName":""}],"offers":{"highPrice":135,"lowPrice":135,"precoExclusivoEcom":false,"offers":[{"price":135,"listPrice":135,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr684"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-1882-53501/p","name":"Abóbora Italiana 19kg","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:38.140956+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "3",
+        "seller_id": "atacadaobr3",
+        "branch_slug": "campo-grande-coronel-antonino",
+        "branch_name": "Campo Grande Coronel Antonino",
+        "branch_postal_code": "79016000",
+        "city": "Campo Grande",
+        "state": "MS"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr3",
+          "storeName": "Campo Grande - Coronel Antonino",
+          "type": "loja",
+          "slug": "campo-grande-coronel-antonino",
+          "street": "Avenida Consul Assaf Trad, 3671",
+          "neighborhood": "Morada Verde",
+          "city": "Campo Grande",
+          "uf": "MS",
+          "postalCode": "79016-000",
+          "latitude": -20.42086449,
+          "longitude": -54.58312853
+        }
+      ],
+      "branch": {
+        "storeId": 3,
+        "slug": "campo-grande-coronel-antonino",
+        "accountName": "atacadaobr3",
+        "loja": "Campo Grande Coronel Antonino",
+        "cidade": "Campo Grande",
+        "estado": "MS",
+        "cep": "79016-000",
+        "extras": {
+          "extra01": "atacadaobr3",
+          "extra02": "MS",
+          "extra03": null,
+          "extra04": "5567992453615",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Campo Grande",
+        "uf": "MS",
+        "postalCode": "79016-000"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":8567},"edges":[{"node":{"id":"18","slug":"abacaxi-em-calda-tozzi-47293-18","sku":"18","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Tozzi","name":"Tozzi"},"name":"Abacaxi em Calda Tozzi 400g","gtin":"47293984","isVariantOf":{"productGroupID":"18","name":"Abacaxi em Calda Tozzi 400g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2247035/g.jpg.jpg?v=639287978943570000","alternateName":""}],"offers":{"highPrice":23.9,"lowPrice":20.9,"precoExclusivoEcom":false,"offers":[{"price":23.9,"listPrice":23.9,"quantity":1,"minQuantity":1,"unitPerBox":12,"seller":{"identifier":"atacadaobr3"}},{"price":20.9,"listPrice":20.9,"quantity":1,"minQuantity":3,"unitPerBox":12,"seller":{"identifier":"atacadaobr3"}}]},"breadcrumbList":{"itemListElement":[{"item":"/mercearia/","name":"Mercearia","position":1},{"item":"/mercearia/doces/","name":"Doces","position":2},{"item":"/mercearia/doces/fruta-em-calda/","name":"Fruta em calda","position":3},{"item":"/abacaxi-em-calda-tozzi-47293-18/p","name":"Abacaxi em Calda Tozzi 400g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"149","name":"Fim de Ano"},{"id":"226","name":"Doces"},{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"53501","slug":"abobora-italiana-1882-53501","sku":"53501","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana 19kg","gtin":"1882908","isVariantOf":{"productGroupID":"53599","name":"Abóbora Italiana 19kg"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144775/g.jpg.png?v=639283549586800000","alternateName":""}],"offers":{"highPrice":123.5,"lowPrice":123.5,"precoExclusivoEcom":false,"offers":[{"price":123.5,"listPrice":123.5,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr3"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-1882-53501/p","name":"Abóbora Italiana 19kg","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[],"additionalProperty":[]}},{"node":{"id":"42044","slug":"abobora-japonesa-cabotia-2149-42044","sku":"42044","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Japonesa/Cabotiá 19kg","gtin":"2149972","isVariantOf":{"productGroupID":"42044","name":"Abóbora Japonesa/Cabotiá 19kg"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144990/g.jpg.png?v=639283550665300000","alternateName":""}],"offers":{"highPrice":68,"lowPrice":68,"precoExclusivoEcom":false,"offers":[{"price":68,"listPrice":68,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr3"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-japonesa-cabotia-2149-42044/p","name":"Abóbora Japonesa/Cabotiá 19kg","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:35.492617+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "927",
+        "seller_id": "atacadaobr927",
+        "branch_slug": "cuiaba-tijucal",
+        "branch_name": "Cuiabá Tijucal",
+        "branch_postal_code": "78080300",
+        "city": "Cuiabá",
+        "state": "MT"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr927",
+          "storeName": "Cuiabá - Tijucal",
+          "type": "loja",
+          "slug": "cuiaba-tijucal",
+          "street": "Avenida Fernando Corrêa da Costa, 7975",
+          "neighborhood": "Tijucal",
+          "city": "Cuiabá",
+          "uf": "MT",
+          "postalCode": "78080-300",
+          "latitude": -15.6383,
+          "longitude": -56.02823
+        }
+      ],
+      "branch": {
+        "storeId": 927,
+        "slug": "cuiaba-tijucal",
+        "accountName": "atacadaobr927",
+        "loja": "Cuiabá Tijucal",
+        "cidade": "Cuiabá",
+        "estado": "MT",
+        "cep": "78080-300",
+        "extras": {
+          "extra01": "atacadaobr927",
+          "extra02": "MT",
+          "extra03": null,
+          "extra04": "5565992330418",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Cuiabá",
+        "uf": "MT",
+        "postalCode": "78080-300"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":7996},"edges":[{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":3.99,"lowPrice":3.99,"precoExclusivoEcom":false,"offers":[{"price":3.99,"listPrice":3.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr927"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"49344","slug":"abobora-italiana-69145-49344","sku":"49344","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana 500g","gtin":"69145914","isVariantOf":{"productGroupID":"49344","name":"Abóbora Italiana 500g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2261160/g.jpg.jpg?v=639288102302100000","alternateName":""}],"offers":{"highPrice":6.9,"lowPrice":6.9,"precoExclusivoEcom":false,"offers":[{"price":6.9,"listPrice":6.9,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr927"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-69145-49344/p","name":"Abóbora Italiana 500g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42044","slug":"abobora-japonesa-cabotia-2149-42044","sku":"42044","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Japonesa/Cabotiá 19kg","gtin":"2149972","isVariantOf":{"productGroupID":"42044","name":"Abóbora Japonesa/Cabotiá 19kg"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144990/g.jpg.png?v=639283550665300000","alternateName":""}],"offers":{"highPrice":65,"lowPrice":65,"precoExclusivoEcom":false,"offers":[{"price":65,"listPrice":65,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr927"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-japonesa-cabotia-2149-42044/p","name":"Abóbora Japonesa/Cabotiá 19kg","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:32.568723+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "153",
+        "seller_id": "atacadaobr153",
+        "branch_slug": "belem-icoaraci",
+        "branch_name": "Belém Icoaraci",
+        "branch_postal_code": "66811000",
+        "city": "Belém",
+        "state": "PA"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr153",
+          "storeName": "Belém Icoaraci",
+          "type": "loja",
+          "slug": "belem-icoaraci",
+          "street": "Avenida Augusto Montenegro, S/N",
+          "neighborhood": "Icoaraci",
+          "city": "Belém",
+          "uf": "PA",
+          "postalCode": "66811-000",
+          "latitude": -1.31468,
+          "longitude": -48.45687
+        }
+      ],
+      "branch": {
+        "storeId": 153,
+        "slug": "belem-icoaraci",
+        "accountName": "atacadaobr153",
+        "loja": "Belém Icoaraci",
+        "cidade": "Belém",
+        "estado": "PA",
+        "cep": "66811-000",
+        "extras": {
+          "extra01": "atacadaobr153",
+          "extra02": "NO",
+          "extra03": null,
+          "extra04": "5591985155991",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Belém",
+        "uf": "PA",
+        "postalCode": "66811-000"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":6367},"edges":[{"node":{"id":"107","slug":"absorvente-basico-delicacy-suave-com-abas-42343-107","sku":"107","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Delicacy","name":"Delicacy"},"name":"Absorvente Básico Delicacy Suave com Abas 8 un","gtin":"42343994","isVariantOf":{"productGroupID":"107","name":"Absorvente Básico Delicacy Suave com Abas 8 un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2245207/g.jpg.jpg?v=639287967556930000","alternateName":""}],"offers":{"highPrice":3.39,"lowPrice":2.99,"precoExclusivoEcom":false,"offers":[{"price":3.39,"listPrice":3.39,"quantity":1,"minQuantity":1,"unitPerBox":48,"seller":{"identifier":"atacadaobr153"}},{"price":2.99,"listPrice":2.99,"quantity":1,"minQuantity":3,"unitPerBox":48,"seller":{"identifier":"atacadaobr153"}}]},"breadcrumbList":{"itemListElement":[{"item":"/higiene-e-perfumaria/","name":"Higiene e perfumaria","position":1},{"item":"/higiene-e-perfumaria/higiene-intima/","name":"Higiene íntima","position":2},{"item":"/higiene-e-perfumaria/higiene-intima/absorvente/","name":"Absorvente","position":3},{"item":"/absorvente-basico-delicacy-suave-com-abas-42343-107/p","name":"Absorvente Básico Delicacy Suave com Abas 8 un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"201","name":"Perfumaria"},{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"119","slug":"absorvente-cottonbaby-lady-com-abas-54143-119","sku":"119","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Cottonbaby","name":"Cottonbaby"},"name":"Absorvente Cottonbaby Com abas 8 un","gtin":"54143906","isVariantOf":{"productGroupID":"119","name":"Absorvente Cottonbaby Com abas 8 un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2250185/g.jpg.jpg?v=639288009133870000","alternateName":""}],"offers":{"highPrice":3.99,"lowPrice":3.69,"precoExclusivoEcom":false,"offers":[{"price":3.99,"listPrice":3.99,"quantity":1,"minQuantity":1,"unitPerBox":48,"seller":{"identifier":"atacadaobr153"}},{"price":3.69,"listPrice":3.69,"quantity":1,"minQuantity":3,"unitPerBox":48,"seller":{"identifier":"atacadaobr153"}}]},"breadcrumbList":{"itemListElement":[{"item":"/higiene-e-perfumaria/","name":"Higiene e perfumaria","position":1},{"item":"/higiene-e-perfumaria/higiene-intima/","name":"Higiene íntima","position":2},{"item":"/higiene-e-perfumaria/higiene-intima/absorvente/","name":"Absorvente","position":3},{"item":"/absorvente-cottonbaby-lady-com-abas-54143-119/p","name":"Absorvente Cottonbaby Com abas 8 un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"201","name":"Perfumaria"},{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"319","slug":"absorvente-cottonbaby-lady-suave-sem-abas-82479-319","sku":"319","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Cottonbaby","name":"Cottonbaby"},"name":"Absorvente Cottonbaby Lady Suave sem Abas 8 un","gtin":"82479972","isVariantOf":{"productGroupID":"319","name":"Absorvente Cottonbaby Lady Suave sem Abas 8 un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2283833/g.jpg.jpg?v=639289514083330000","alternateName":""}],"offers":{"highPrice":3.69,"lowPrice":3.29,"precoExclusivoEcom":false,"offers":[{"price":3.69,"listPrice":3.69,"quantity":1,"minQuantity":1,"unitPerBox":48,"seller":{"identifier":"atacadaobr153"}},{"price":3.29,"listPrice":3.29,"quantity":1,"minQuantity":3,"unitPerBox":48,"seller":{"identifier":"atacadaobr153"}}]},"breadcrumbList":{"itemListElement":[{"item":"/higiene-e-perfumaria/","name":"Higiene e perfumaria","position":1},{"item":"/higiene-e-perfumaria/higiene-intima/","name":"Higiene íntima","position":2},{"item":"/higiene-e-perfumaria/higiene-intima/absorvente/","name":"Absorvente","position":3},{"item":"/absorvente-cottonbaby-lady-suave-sem-abas-82479-319/p","name":"Absorvente Cottonbaby Lady Suave sem Abas 8 un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"201","name":"Perfumaria"},{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:40.931480+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "47",
+        "seller_id": "atacadaobr47",
+        "branch_slug": "recife-iputinga",
+        "branch_name": "Recife Iputinga",
+        "branch_postal_code": "50800010",
+        "city": "Recife",
+        "state": "PE"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr47",
+          "storeName": "Loja - Recife Iputinga",
+          "type": "loja",
+          "slug": "recife-iputinga",
+          "street": "Rua Prof. Joaquim Cavalcanti, 721",
+          "neighborhood": "Iputinga",
+          "city": "Recife",
+          "uf": "PE",
+          "postalCode": "50800-010",
+          "latitude": -8.029445303100363,
+          "longitude": -34.94404055592729
+        }
+      ],
+      "branch": {
+        "storeId": 47,
+        "slug": "recife-iputinga",
+        "accountName": "atacadaobr47",
+        "loja": "Recife Iputinga",
+        "cidade": "Recife",
+        "estado": "PE",
+        "cep": "50800-010",
+        "extras": {
+          "extra01": "atacadaobr47",
+          "extra02": "PE",
+          "extra03": "1",
+          "extra04": "5581992255298",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Recife",
+        "uf": "PE",
+        "postalCode": "50800-010"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":9188},"edges":[{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":2.69,"lowPrice":2.69,"precoExclusivoEcom":false,"offers":[{"price":2.69,"listPrice":2.69,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr47"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41267","slug":"abracadeira-de-nylon-luxcar-20cm-x-3-6mm-91755-41267","sku":"41267","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Luxcar","name":"Luxcar"},"name":"Abraçadeira de Nylon Luxcar 20cm x 3,6mm un","gtin":"91755952","isVariantOf":{"productGroupID":"41267","name":"Abraçadeira de Nylon Luxcar 20cm x 3,6mm un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2294249/g.jpg.jpg?v=639290350738800000","alternateName":""}],"offers":{"highPrice":7.9,"lowPrice":7.9,"precoExclusivoEcom":false,"offers":[{"price":7.9,"listPrice":7.9,"quantity":1,"minQuantity":1,"unitPerBox":24,"seller":{"identifier":"atacadaobr47"}}]},"breadcrumbList":{"itemListElement":[{"item":"/automotivo/","name":"Automotivo","position":1},{"item":"/automotivo/acessorios-automotivos/","name":"Acessórios automotivos","position":2},{"item":"/automotivo/acessorios-automotivos/acessorio-automotivo/","name":"Acessório automotivo","position":3},{"item":"/abracadeira-de-nylon-luxcar-20cm-x-3-6mm-91755-41267/p","name":"Abraçadeira de Nylon Luxcar 20cm x 3,6mm un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"},{"id":"357","name":"Especial Automotivo"}],"additionalProperty":[]}},{"node":{"id":"32","slug":"abridor-de-lata-cicley-com-furador-ref-1533-4665-32","sku":"32","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Cicley","name":"Cicley"},"name":"Abridor de Lata Cicley Com furador Ref:1533 un","gtin":"4665942","isVariantOf":{"productGroupID":"32","name":"Abridor de Lata Cicley Com furador Ref:1533 un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2230012/g.jpg.jpg?v=639287860787700000","alternateName":""}],"offers":{"highPrice":12.9,"lowPrice":11.49,"precoExclusivoEcom":false,"offers":[{"price":12.9,"listPrice":12.9,"quantity":1,"minQuantity":1,"unitPerBox":10,"seller":{"identifier":"atacadaobr47"}},{"price":11.49,"listPrice":11.49,"quantity":1,"minQuantity":2,"unitPerBox":10,"seller":{"identifier":"atacadaobr47"}}]},"breadcrumbList":{"itemListElement":[{"item":"/utilidades-domesticas/","name":"Utilidades domésticas","position":1},{"item":"/utilidades-domesticas/cozinha/","name":"Cozinha","position":2},{"item":"/utilidades-domesticas/cozinha/demais-acessorios-para-cozinha/","name":"Demais acessórios para cozinha","position":3},{"item":"/abridor-de-lata-cicley-com-furador-ref-1533-4665-32/p","name":"Abridor de Lata Cicley Com furador Ref:1533 un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"},{"id":"321","name":"Utilidades Domésticas"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:49.920371+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "126",
+        "seller_id": "atacadaobr126",
+        "branch_slug": "teresina-primavera",
+        "branch_name": "Teresina Primavera ",
+        "branch_postal_code": "64006220",
+        "city": "Teresina",
+        "state": "PI"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr126",
+          "storeName": "Teresina Primavera",
+          "type": "loja",
+          "slug": "teresina-primavera",
+          "street": "Avenida Duque de Caxias, 2732",
+          "neighborhood": "Primavera",
+          "city": "Teresina",
+          "uf": "PI",
+          "postalCode": "64006-220",
+          "latitude": -5.061992659224388,
+          "longitude": -42.81106941698774
+        }
+      ],
+      "branch": {
+        "storeId": 126,
+        "slug": "teresina-primavera",
+        "accountName": "atacadaobr126",
+        "loja": "Teresina Primavera ",
+        "cidade": "Teresina",
+        "estado": "PI",
+        "cep": "64006-220",
+        "extras": {
+          "extra01": "atacadaobr126",
+          "extra02": "CE",
+          "extra03": null,
+          "extra04": "5586994427127",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Teresina",
+        "uf": "PI",
+        "postalCode": "64006-220"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":6422},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":5.75,"lowPrice":5.75,"precoExclusivoEcom":false,"offers":[{"price":5.75,"listPrice":5.75,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr126"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":4.89,"lowPrice":4.89,"precoExclusivoEcom":false,"offers":[{"price":4.89,"listPrice":4.89,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr126"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42025","slug":"abobora-italiana-1888-42025","sku":"42025","measurementUnit":"kg","unitMultiplier":0.4,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana Quilo","gtin":"1888965","isVariantOf":{"productGroupID":"42025","name":"Abóbora Italiana Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144779/g.jpg.jpg?v=639283549618470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144783/g-1.jpg.jpg?v=639283549621430000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144785/g-2.jpg.jpg?v=639283549624900000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144786/g-3.jpg.jpg?v=639283549628470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144787/g-4.jpg.jpg?v=639283549630970000","alternateName":""}],"offers":{"highPrice":4.49,"lowPrice":4.49,"precoExclusivoEcom":false,"offers":[{"price":4.49,"listPrice":4.49,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr126"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-1888-42025/p","name":"Abóbora Italiana Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:53.134908+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "246",
+        "seller_id": "atacadaobr246",
+        "branch_slug": "curitiba-bairro-alto",
+        "branch_name": "Curitiba Bairro Alto",
+        "branch_postal_code": "82590100",
+        "city": "Curitiba",
+        "state": "PR"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr246",
+          "storeName": "Curitiba Bairro Alto",
+          "type": "loja",
+          "slug": "curitiba-bairro-alto",
+          "street": "Rod. BR-116, 3041",
+          "neighborhood": "Bairro Alto",
+          "city": "Curitiba",
+          "uf": "PR",
+          "postalCode": "82590-100",
+          "latitude": -25.39892,
+          "longitude": -49.21392
+        }
+      ],
+      "branch": {
+        "storeId": 246,
+        "slug": "curitiba-bairro-alto",
+        "accountName": "atacadaobr246",
+        "loja": "Curitiba Bairro Alto",
+        "cidade": "Curitiba",
+        "estado": "PR",
+        "cep": "82590-100",
+        "extras": {
+          "extra01": "atacadaobr246",
+          "extra02": "PR",
+          "extra03": null,
+          "extra04": "5541987435768",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": null,
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Curitiba",
+        "uf": "PR",
+        "postalCode": "82590-100"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":5561},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":4.49,"lowPrice":4.49,"precoExclusivoEcom":false,"offers":[{"price":4.49,"listPrice":4.49,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr246"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":7.99,"lowPrice":7.99,"precoExclusivoEcom":false,"offers":[{"price":7.99,"listPrice":7.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr246"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42025","slug":"abobora-italiana-1888-42025","sku":"42025","measurementUnit":"kg","unitMultiplier":0.4,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana Quilo","gtin":"1888965","isVariantOf":{"productGroupID":"42025","name":"Abóbora Italiana Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144779/g.jpg.jpg?v=639283549618470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144783/g-1.jpg.jpg?v=639283549621430000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144785/g-2.jpg.jpg?v=639283549624900000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144786/g-3.jpg.jpg?v=639283549628470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144787/g-4.jpg.jpg?v=639283549630970000","alternateName":""}],"offers":{"highPrice":4.99,"lowPrice":4.99,"precoExclusivoEcom":false,"offers":[{"price":4.99,"listPrice":4.99,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr246"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-1888-42025/p","name":"Abóbora Italiana Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:47.261311+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "63",
+        "seller_id": "atacadaobr63",
+        "branch_slug": "automovel-clube",
+        "branch_name": "Automóvel Clube",
+        "branch_postal_code": "21210000",
+        "city": "Rio de Janeiro",
+        "state": "RJ"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr63",
+          "storeName": "Loja - Automóvel Clube",
+          "type": "loja",
+          "slug": "automovel-clube",
+          "street": "Avenida Vicente de Carvalho, 730",
+          "neighborhood": "Vicente de Carvalho",
+          "city": "Rio de Janeiro",
+          "uf": "RJ",
+          "postalCode": "21210-000",
+          "latitude": -22.85385092049279,
+          "longitude": -43.31060370323272
+        }
+      ],
+      "branch": {
+        "storeId": 63,
+        "slug": "automovel-clube",
+        "accountName": "atacadaobr63",
+        "loja": "Automóvel Clube",
+        "cidade": "Rio de Janeiro",
+        "estado": "RJ",
+        "cep": "21210-000",
+        "extras": {
+          "extra01": "atacadaobr63",
+          "extra02": "RJ",
+          "extra03": null,
+          "extra04": "5521966300939",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": "1",
+          "extra09": null,
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Rio de Janeiro",
+        "uf": "RJ",
+        "postalCode": "21210-000"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":6520},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":4.99,"lowPrice":4.99,"precoExclusivoEcom":false,"offers":[{"price":4.99,"listPrice":4.99,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr63"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":7.9,"lowPrice":7.9,"precoExclusivoEcom":false,"offers":[{"price":7.9,"listPrice":7.9,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr63"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42025","slug":"abobora-italiana-1888-42025","sku":"42025","measurementUnit":"kg","unitMultiplier":0.4,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana Quilo","gtin":"1888965","isVariantOf":{"productGroupID":"42025","name":"Abóbora Italiana Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144779/g.jpg.jpg?v=639283549618470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144783/g-1.jpg.jpg?v=639283549621430000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144785/g-2.jpg.jpg?v=639283549624900000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144786/g-3.jpg.jpg?v=639283549628470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144787/g-4.jpg.jpg?v=639283549630970000","alternateName":""}],"offers":{"highPrice":10.99,"lowPrice":10.99,"precoExclusivoEcom":false,"offers":[{"price":10.99,"listPrice":10.99,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr63"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-1888-42025/p","name":"Abóbora Italiana Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:55.672263+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "51",
+        "seller_id": "atacadaobr51",
+        "branch_slug": "natal-sul",
+        "branch_name": "Natal Sul",
+        "branch_postal_code": "59066180",
+        "city": "Natal",
+        "state": "RN"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr51",
+          "storeName": "Natal Sul",
+          "type": "loja",
+          "slug": "natal-sul",
+          "street": "Avenida Dão Silveira, 7796",
+          "neighborhood": "Pitimbu",
+          "city": "Natal",
+          "uf": "RN",
+          "postalCode": "59066-180",
+          "latitude": -5.658,
+          "longitude": -35.2179
+        }
+      ],
+      "branch": {
+        "storeId": 51,
+        "slug": "natal-sul",
+        "accountName": "atacadaobr51",
+        "loja": "Natal Sul",
+        "cidade": "Natal",
+        "estado": "RN",
+        "cep": "59066-180",
+        "extras": {
+          "extra01": "atacadaobr51",
+          "extra02": "PE",
+          "extra03": null,
+          "extra04": "5584994619028",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Natal",
+        "uf": "RN",
+        "postalCode": "59066-180"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":7539},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":3.89,"lowPrice":3.89,"precoExclusivoEcom":false,"offers":[{"price":3.89,"listPrice":3.89,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr51"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":2.59,"lowPrice":2.59,"precoExclusivoEcom":false,"offers":[{"price":2.59,"listPrice":2.59,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr51"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42177","slug":"abobora-bata-quilo-64782-42177","sku":"42177","measurementUnit":"kg","unitMultiplier":0.5,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Batã Quilo","gtin":"64782905","isVariantOf":{"productGroupID":"42177","name":"Abóbora Batã Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2257131/g.jpg.jpg?v=639288069195000000","alternateName":""}],"offers":{"highPrice":6.99,"lowPrice":6.99,"precoExclusivoEcom":false,"offers":[{"price":6.99,"listPrice":6.99,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr51"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-bata-quilo-64782-42177/p","name":"Abóbora Batã Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:41:59.188166+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "88",
+        "seller_id": "atacadaobr88",
+        "branch_slug": "porto-alegre-sertorio",
+        "branch_name": "Sertório",
+        "branch_postal_code": "91110581",
+        "city": "Porto Alegre",
+        "state": "RS"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr88",
+          "storeName": "Sertório",
+          "type": "loja",
+          "slug": "porto-alegre-sertorio",
+          "street": "Avenida Sertório - Loja 01, 6767",
+          "neighborhood": "Sarandi",
+          "city": "Porto Alegre",
+          "uf": "RS",
+          "postalCode": "91110-581",
+          "latitude": -29.99850905187467,
+          "longitude": -51.14154090303681
+        }
+      ],
+      "branch": {
+        "storeId": 88,
+        "slug": "porto-alegre-sertorio",
+        "accountName": "atacadaobr88",
+        "loja": "Sertório",
+        "cidade": "Porto Alegre",
+        "estado": "RS",
+        "cep": "91110-581",
+        "extras": {
+          "extra01": "atacadaobr88",
+          "extra02": "RS",
+          "extra03": null,
+          "extra04": "5551989017751",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Porto Alegre",
+        "uf": "RS",
+        "postalCode": "91110-581"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":7543},"edges":[{"node":{"id":"12","slug":"abacaxi-em-calda-oderich-lata-com-400g-79226-12","sku":"12","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Oderich","name":"Oderich"},"name":"Abacaxi em Calda Oderich 400g","gtin":"79226907","isVariantOf":{"productGroupID":"12","name":"Abacaxi em Calda Oderich 400g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2281713/g.jpg.jpg?v=639289503224070000","alternateName":""}],"offers":{"highPrice":23.99,"lowPrice":22.99,"precoExclusivoEcom":false,"offers":[{"price":23.99,"listPrice":23.99,"quantity":1,"minQuantity":1,"unitPerBox":12,"seller":{"identifier":"atacadaobr88"}},{"price":22.99,"listPrice":22.99,"quantity":1,"minQuantity":3,"unitPerBox":12,"seller":{"identifier":"atacadaobr88"}}]},"breadcrumbList":{"itemListElement":[{"item":"/mercearia/","name":"Mercearia","position":1},{"item":"/mercearia/doces/","name":"Doces","position":2},{"item":"/mercearia/doces/fruta-em-calda/","name":"Fruta em calda","position":3},{"item":"/abacaxi-em-calda-oderich-lata-com-400g-79226-12/p","name":"Abacaxi em Calda Oderich 400g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"149","name":"Fim de Ano"},{"id":"226","name":"Doces"},{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":6.9,"lowPrice":6.9,"precoExclusivoEcom":false,"offers":[{"price":6.9,"listPrice":6.9,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr88"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"49344","slug":"abobora-italiana-69145-49344","sku":"49344","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana 500g","gtin":"69145914","isVariantOf":{"productGroupID":"49344","name":"Abóbora Italiana 500g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2261160/g.jpg.jpg?v=639288102302100000","alternateName":""}],"offers":{"highPrice":5.99,"lowPrice":5.99,"precoExclusivoEcom":false,"offers":[{"price":5.99,"listPrice":5.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr88"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-69145-49344/p","name":"Abóbora Italiana 500g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:42:03.819036+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "290",
+        "seller_id": "atacadaobr290",
+        "branch_slug": "florianopolis-jk",
+        "branch_name": "Florianópolis JK",
+        "branch_postal_code": "88070120",
+        "city": "Florianópolis",
+        "state": "SC"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr290",
+          "storeName": "Florianópolis JK",
+          "type": "loja",
+          "slug": "florianopolis-jk",
+          "street": "Av. Juscelino K. de Oliveira, 469",
+          "neighborhood": "Estreito",
+          "city": "Florianópolis",
+          "uf": "SC",
+          "postalCode": "88070-120",
+          "latitude": -27.59598,
+          "longitude": -48.58017
+        }
+      ],
+      "branch": {
+        "storeId": 290,
+        "slug": "florianopolis-jk",
+        "accountName": "atacadaobr290",
+        "loja": "Florianópolis JK",
+        "cidade": "Florianópolis",
+        "estado": "SC",
+        "cep": "88070-120",
+        "extras": {
+          "extra01": "atacadaobr290",
+          "extra02": "SC",
+          "extra03": null,
+          "extra04": "5548974002542",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Florianópolis",
+        "uf": "SC",
+        "postalCode": "88070-120"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":6382},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":6.89,"lowPrice":6.89,"precoExclusivoEcom":false,"offers":[{"price":6.89,"listPrice":6.89,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr290"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"12","slug":"abacaxi-em-calda-oderich-lata-com-400g-79226-12","sku":"12","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Oderich","name":"Oderich"},"name":"Abacaxi em Calda Oderich 400g","gtin":"79226907","isVariantOf":{"productGroupID":"12","name":"Abacaxi em Calda Oderich 400g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2281713/g.jpg.jpg?v=639289503224070000","alternateName":""}],"offers":{"highPrice":18.9,"lowPrice":18.9,"precoExclusivoEcom":false,"offers":[{"price":18.9,"listPrice":18.9,"quantity":1,"minQuantity":1,"unitPerBox":12,"seller":{"identifier":"atacadaobr290"}}]},"breadcrumbList":{"itemListElement":[{"item":"/mercearia/","name":"Mercearia","position":1},{"item":"/mercearia/doces/","name":"Doces","position":2},{"item":"/mercearia/doces/fruta-em-calda/","name":"Fruta em calda","position":3},{"item":"/abacaxi-em-calda-oderich-lata-com-400g-79226-12/p","name":"Abacaxi em Calda Oderich 400g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"149","name":"Fim de Ano"},{"id":"226","name":"Doces"},{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":6.99,"lowPrice":6.99,"precoExclusivoEcom":false,"offers":[{"price":6.99,"listPrice":6.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr290"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:42:07.319306+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "68",
+        "seller_id": "atacadaobr68",
+        "branch_slug": "aracaju-br",
+        "branch_name": "Aracaju BR",
+        "branch_postal_code": "49082110",
+        "city": "Aracaju",
+        "state": "SE"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr68",
+          "storeName": "Aracaju BR",
+          "type": "loja",
+          "slug": "aracaju-br",
+          "street": "Avenida Chanceler Osvaldo Aranha 2445, BR 235",
+          "neighborhood": "Nova Paraíso",
+          "city": "Aracaju",
+          "uf": "SE",
+          "postalCode": "49082-110",
+          "latitude": -10.90797065450933,
+          "longitude": -37.09618334577397
+        }
+      ],
+      "branch": {
+        "storeId": 68,
+        "slug": "aracaju-br",
+        "accountName": "atacadaobr68",
+        "loja": "Aracaju BR",
+        "cidade": "Aracaju",
+        "estado": "SE",
+        "cep": "49082-110",
+        "extras": {
+          "extra01": "atacadaobr68",
+          "extra02": "BA",
+          "extra03": null,
+          "extra04": "5579988842724",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Aracaju",
+        "uf": "SE",
+        "postalCode": "49082-110"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":6442},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":6.99,"lowPrice":6.99,"precoExclusivoEcom":false,"offers":[{"price":6.99,"listPrice":6.99,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr68"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":5.99,"lowPrice":5.99,"precoExclusivoEcom":false,"offers":[{"price":5.99,"listPrice":5.99,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr68"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42025","slug":"abobora-italiana-1888-42025","sku":"42025","measurementUnit":"kg","unitMultiplier":0.4,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana Quilo","gtin":"1888965","isVariantOf":{"productGroupID":"42025","name":"Abóbora Italiana Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144779/g.jpg.jpg?v=639283549618470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144783/g-1.jpg.jpg?v=639283549621430000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144785/g-2.jpg.jpg?v=639283549624900000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144786/g-3.jpg.jpg?v=639283549628470000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144787/g-4.jpg.jpg?v=639283549630970000","alternateName":""}],"offers":{"highPrice":7.29,"lowPrice":7.29,"precoExclusivoEcom":false,"offers":[{"price":7.29,"listPrice":7.29,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr68"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-1888-42025/p","name":"Abóbora Italiana Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:42:13.492693+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "60",
+        "seller_id": "atacadaobr60",
+        "branch_slug": "vila-maria",
+        "branch_name": "Vila Maria",
+        "branch_postal_code": "02170901",
+        "city": "São Paulo",
+        "state": "SP"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr60",
+          "storeName": "Loja - Vila Maria",
+          "type": "loja",
+          "slug": "vila-maria",
+          "street": "Avenida Morvan Dias de Figueiredo, 6157",
+          "neighborhood": "Vila Maria",
+          "city": "São Paulo",
+          "uf": "SP",
+          "postalCode": "02170-901",
+          "latitude": -23.52426513547985,
+          "longitude": -46.5740416879213
+        }
+      ],
+      "branch": {
+        "storeId": 60,
+        "slug": "vila-maria",
+        "accountName": "atacadaobr60",
+        "loja": "Vila Maria",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "02170-901",
+        "extras": {
+          "extra01": "atacadaobr60",
+          "extra02": "SP-C",
+          "extra03": null,
+          "extra04": "5511947128158",
+          "extra05": "https://maps.app.goo.gl/cf4Mqpcs77hdgqcy5",
+          "extra06": null,
+          "extra07": null,
+          "extra08": "1",
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "São Paulo",
+        "uf": "SP",
+        "postalCode": "02170-901"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":9720},"edges":[{"node":{"id":"41983","slug":"abacate-1632-41983","sku":"41983","measurementUnit":"kg","unitMultiplier":0.3,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacate Quilo","gtin":"1632935","isVariantOf":{"productGroupID":"41983","name":"Abacate Quilo"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144539/g.jpg.jpg?v=639283548500370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144542/g-1.jpg.jpg?v=639283548503330000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144544/g-2.jpg.jpg?v=639283548507230000","alternateName":""}],"offers":{"highPrice":5.95,"lowPrice":5.95,"precoExclusivoEcom":false,"offers":[{"price":5.95,"listPrice":5.95,"quantity":1,"minQuantity":1,"unitPerBox":1000,"seller":{"identifier":"atacadaobr60"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacate-1632-41983/p","name":"Abacate Quilo","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":7.98,"lowPrice":7.98,"precoExclusivoEcom":false,"offers":[{"price":7.98,"listPrice":7.98,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr60"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"49344","slug":"abobora-italiana-69145-49344","sku":"49344","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Italiana 500g","gtin":"69145914","isVariantOf":{"productGroupID":"49344","name":"Abóbora Italiana 500g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2261160/g.jpg.jpg?v=639288102302100000","alternateName":""}],"offers":{"highPrice":6.49,"lowPrice":6.49,"precoExclusivoEcom":false,"offers":[{"price":6.49,"listPrice":6.49,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr60"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-italiana-69145-49344/p","name":"Abóbora Italiana 500g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:42:10.248879+00:00"
+    },
+    {
+      "settings": {
+        "store_id": "671",
+        "seller_id": "atacadaobr671",
+        "branch_slug": "palmas-rodoviaria",
+        "branch_name": "Palmas Rodoviária",
+        "branch_postal_code": "77024146",
+        "city": "Palmas",
+        "state": "TO"
+      },
+      "directory": [
+        {
+          "accountName": "atacadaobr671",
+          "storeName": "Loja - Palmas Rodoviária",
+          "type": "loja",
+          "slug": "palmas-rodoviaria",
+          "street": "1212 Sul Alameda Jandaia, S/N",
+          "neighborhood": "Plano Diretor Sul",
+          "city": "Palmas",
+          "uf": "TO",
+          "postalCode": "77024-146",
+          "latitude": -10.25799817768306,
+          "longitude": -48.31205725922592
+        }
+      ],
+      "branch": {
+        "storeId": 671,
+        "slug": "palmas-rodoviaria",
+        "accountName": "atacadaobr671",
+        "loja": "Palmas Rodoviária",
+        "cidade": "Palmas",
+        "estado": "TO",
+        "cep": "77024-146",
+        "extras": {
+          "extra01": "atacadaobr671",
+          "extra02": "DF",
+          "extra03": null,
+          "extra04": "5563992249136",
+          "extra05": null,
+          "extra06": null,
+          "extra07": null,
+          "extra08": null,
+          "extra09": "1",
+          "extra10": null,
+          "extra11": null,
+          "extra12": null
+        },
+        "city": "Palmas",
+        "uf": "TO",
+        "postalCode": "77024-146"
+      },
+      "catalog": {"data":{"search":{"products":{"pageInfo":{"totalCount":7732},"edges":[{"node":{"id":"7","slug":"abacaxi-em-calda-mariza-51498-7","sku":"7","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Mariza","name":"Mariza"},"name":"Abacaxi em Calda Mariza 400g","gtin":"51498974","isVariantOf":{"productGroupID":"7","name":"Abacaxi em Calda Mariza 400g"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2248846/g.jpg.jpg?v=639287998486570000","alternateName":""}],"offers":{"highPrice":19.9,"lowPrice":19.9,"precoExclusivoEcom":false,"offers":[{"price":19.9,"listPrice":19.9,"quantity":1,"minQuantity":1,"unitPerBox":12,"seller":{"identifier":"atacadaobr671"}}]},"breadcrumbList":{"itemListElement":[{"item":"/mercearia/","name":"Mercearia","position":1},{"item":"/mercearia/doces/","name":"Doces","position":2},{"item":"/mercearia/doces/fruta-em-calda/","name":"Fruta em calda","position":3},{"item":"/abacaxi-em-calda-mariza-51498-7/p","name":"Abacaxi em Calda Mariza 400g","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"149","name":"Fim de Ano"},{"id":"226","name":"Doces"},{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"41958","slug":"abacaxi-unidade-1078-41958","sku":"41958","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abacaxi un","gtin":"1078969","isVariantOf":{"productGroupID":"41958","name":"Abacaxi un"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144054/g.jpg.jpg?v=639283546177370000","alternateName":""},{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144056/g-1.jpg.jpg?v=639283546180970000","alternateName":""}],"offers":{"highPrice":7.59,"lowPrice":7.59,"precoExclusivoEcom":false,"offers":[{"price":7.59,"listPrice":7.59,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr671"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/frutas/","name":"Frutas","position":2},{"item":"/hortifruti/frutas/fruta-fresca/","name":"Fruta fresca","position":3},{"item":"/abacaxi-unidade-1078-41958/p","name":"Abacaxi un","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}},{"node":{"id":"42044","slug":"abobora-japonesa-cabotia-2149-42044","sku":"42044","measurementUnit":"un","unitMultiplier":1,"properties":[{"originalName":"sellerId","name":"sellerId","values":["1"]}],"brand":{"brandName":"Atacadão S/A","name":"Atacadão S/A"},"name":"Abóbora Japonesa/Cabotiá 19kg","gtin":"2149972","isVariantOf":{"productGroupID":"42044","name":"Abóbora Japonesa/Cabotiá 19kg"},"image":[{"url":"https://atacadaobr.vtexassets.com/arquivos/ids/2144990/g.jpg.png?v=639283550665300000","alternateName":""}],"offers":{"highPrice":75.5,"lowPrice":75.5,"precoExclusivoEcom":false,"offers":[{"price":75.5,"listPrice":75.5,"quantity":1,"minQuantity":1,"unitPerBox":1,"seller":{"identifier":"atacadaobr671"}}]},"breadcrumbList":{"itemListElement":[{"item":"/hortifruti/","name":"Hortifrúti","position":1},{"item":"/hortifruti/legumes-e-vegetais/","name":"Legumes e vegetais","position":2},{"item":"/hortifruti/legumes-e-vegetais/legume-e-vegetal/","name":"Legume e vegetal","position":3},{"item":"/abobora-japonesa-cabotia-2149-42044/p","name":"Abóbora Japonesa/Cabotiá 19kg","position":4}],"numberOfItems":3},"sellers":[{"commertialOffer":{"discountHighlights":[]}}],"productClusters":[{"id":"318","name":"Estoque"}],"additionalProperty":[]}}]}}}},
+      "captured_at": "2026-11-03T01:42:16.170589+00:00"
+    }
+  ],
+  "blocked": [
+    {
+      "state": "ES",
+      "city": "Vitória",
+      "status": "blocked",
+      "errors": [],
+      "reason": "No verified online branch"
+    },
+    {
+      "state": "RO",
+      "city": "Porto Velho",
+      "status": "blocked",
+      "errors": [],
+      "reason": "No verified online branch"
+    },
+    {
+      "state": "AP",
+      "city": "Macapá",
+      "status": "blocked",
+      "errors": [
+        {
+          "slug": "macapa",
+          "error": "Empty branch catalog"
+        },
+        {
+          "slug": "macapa-zona-norte",
+          "error": "Empty branch catalog"
+        }
+      ],
+      "reason": "No verified online branch"
+    },
+    {
+      "state": "PB",
+      "city": "João Pessoa",
+      "status": "blocked",
+      "errors": [
+        {
+          "slug": "joao-pessoa",
+          "error": "Branch seller mismatch"
+        }
+      ],
+      "reason": "No verified online branch"
+    },
+    {
+      "state": "RR",
+      "city": "Boa Vista",
+      "status": "blocked",
+      "errors": [
+        {
+          "slug": "boa-vista-shopping",
+          "error": "Empty branch catalog"
+        }
+      ],
+      "reason": "No verified online branch"
+    }
+  ]
+}

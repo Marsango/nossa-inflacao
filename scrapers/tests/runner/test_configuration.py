@@ -116,6 +116,21 @@ def test_duplicate_default_queue_locations_require_explicit_paths(tmp_path):
         load_configurations(path)
 
 
+def test_duplicate_schedule_ids_are_rejected_with_separate_spools(tmp_path):
+    configuration = '''[[scrapers]]
+scraper_id="same"
+schedule_id="duplicate"
+spool_path="first.sqlite3"
+[[scrapers]]
+scraper_id="same"
+schedule_id="duplicate"
+spool_path="second.sqlite3"
+'''
+    path = write_config(tmp_path, configuration)
+    with pytest.raises(ValueError, match="distinct schedule_id"):
+        load_configurations(path)
+
+
 @pytest.mark.parametrize("value", ['"../escape"', '""', '"shop/escape"'])
 def test_shop_identity_cannot_escape_default_spool_directory(tmp_path, value):
     path = write_config(tmp_path, f'[[scrapers]]\nscraper_id="test"\nshop_id={value}\n')
@@ -135,8 +150,24 @@ def test_runner_example_loads():
     path = Path(__file__).parents[2] / "scrapers.example.toml"
     settings = load_configurations(path)
     assert settings[0].sales_channel == "8"
-    assert [setting.adapter for setting in settings] == [
+    assert [setting.adapter for setting in settings[:8]] == [
         "super-muffato", "angeloni", "festval", "mambo", "hirota",
         "pao-de-acucar", "sonda", "nagumo",
     ]
     assert len({setting.spool_path for setting in settings}) == len(settings)
+
+
+def test_capital_schedules_preserve_collector_and_isolate_spools():
+    path = Path(__file__).parents[2] / "scrapers.example.toml"
+    settings = load_configurations(path)
+    additions = [setting for setting in settings[8:] if setting.adapter != "atacadao"]
+    assert len(additions) == 11
+    assert all(setting.enabled for setting in additions)
+    assert {setting.scraper_id for setting in settings} == {"muffato-curitiba-01"}
+    assert {setting.state for setting in additions} == {
+        "RJ", "DF", "GO", "CE", "PE", "PB", "RN", "SE", "PI", "MS", "SC"
+    }
+    assert len({setting.schedule_id for setting in additions}) == 11
+    assert len({setting.spool_path for setting in settings}) == len(settings)
+    assert additions[-1].city == "Florianópolis"
+    assert {setting.adapter for setting in additions[:-1]} == {"pao-de-acucar"}

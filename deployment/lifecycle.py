@@ -11,7 +11,8 @@ SHOPS = """INSERT INTO shops (id, name, website_url) VALUES
 ('hirota','Hirota','https://www.lojahirota.com.br'),
 ('pao-de-acucar','Pão de Açúcar','https://www.paodeacucar.com'),
 ('sonda','Sonda','https://www.sondadelivery.com.br'),
-('nagumo','Nagumo','https://www.nagumo.com.br') ON CONFLICT (id) DO NOTHING;"""
+('nagumo','Nagumo','https://www.nagumo.com.br'),
+('atacadao','Atacadão','https://www.atacadao.com.br') ON CONFLICT (id) DO NOTHING;"""
 
 
 def database(*arguments, **options):

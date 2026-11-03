@@ -37,14 +37,14 @@ class ConfigurationUpgradeTests(unittest.TestCase):
             updated = synchronize(directory, EXISTING)
         self.assertTrue(updated.startswith(EXISTING.rstrip()))
         entries = tomllib.loads(updated)["scrapers"]
-        self.assertEqual(len(entries), 8)
+        self.assertEqual(len(entries), 41)
         self.assertEqual(entries[0]["spool_path"], "data/original.sqlite3")
         self.assertEqual(entries[0]["request_interval_seconds"], 2.0)
         self.assertFalse(entries[1]["enabled"])
         self.assertEqual(entries[1]["spool_path"], "data/custom-pao.sqlite3")
         self.assertEqual({entry["adapter"] for entry in entries}, {
             "super-muffato", "angeloni", "festval", "pao-de-acucar",
-            "mambo", "hirota", "sonda", "nagumo"})
+            "mambo", "hirota", "sonda", "nagumo", "atacadao"})
 
     def test_repeated_upgrade_does_not_duplicate_collectors(self):
         with tempfile.TemporaryDirectory() as directory:

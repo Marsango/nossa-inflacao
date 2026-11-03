@@ -15,6 +15,7 @@ class Settings(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
     adapter: str = "super-muffato"
+    schedule_id: Identifier | None = None
     enabled: bool = True
     scraper_id: Identifier
     shop_id: Identifier
@@ -89,10 +90,17 @@ def load_configurations(path: Path) -> list[Settings]:
     values, multiple = configuration_values(path)
     resolved = [resolve_settings(value, multiple) for value in values]
     settings = [setting for setting in resolved if setting is not None]
+    validate_schedule_ids(settings)
     paths = [(path.parent / setting.spool_path).resolve() for setting in settings]
     if len(paths) != len(set(paths)):
         raise ValueError("Enabled scrapers must use distinct spool_path values")
     return settings
+
+
+def validate_schedule_ids(settings: list[Settings]) -> None:
+    identities = [setting.schedule_id for setting in settings if setting.schedule_id is not None]
+    if len(identities) != len(set(identities)):
+        raise ValueError("Enabled scrapers must use distinct schedule_id values")
 
 
 def load_settings(path: Path) -> Settings:

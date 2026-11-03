@@ -70,7 +70,7 @@ def source_conditions(product, details, basis, quantity):
 
 
 def condition_description(product, details, basis, quantity):
-    description = "Catálogo storeId=461, customerPlus=true; pagamento/clube/cupom não verificados."
+    description = "Catálogo customerPlus=true; pagamento/clube/cupom não verificados."
     if basis == "kg":
         description += " Preço por kg; total depende da pesagem final."
     if quantity is not None:
