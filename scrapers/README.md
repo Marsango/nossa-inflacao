@@ -7,6 +7,8 @@ The default schedule also includes Pão de Açúcar in ten additional capitals a
 Angeloni Beira Mar delivery in Florianópolis/SC; see [capital contexts](#additional-capital-contexts).
 Atacadão has independently scheduled online branch catalogs in 22 capitals;
 see [Atacadão capital branches](#atacadão-capital-branches) for coverage and blockers.
+Carrefour has verified delivery-region catalogs in 13 capitals; see
+[Carrefour delivery collection](#carrefour-delivery-collection).
 Hirota and Pão de Açúcar use their own public APIs. Sonda reads its public HTML catalog with fulfillment context explicitly unknown;
 see [São Paulo setup, evidence and limitations](../docs/plans/sao-paulo-retailers.md).
 The core supplies brand-independent
@@ -31,6 +33,7 @@ These groups are not a statistically representative inflation basket.
 | `mambo` | Delivery catalog for São Paulo CEP `01310200`, mapped to regional seller `mambodelivery215`; packaged products and advertised kg prices with portions up to 3 kg | Paginated target searches on sales channel `1` |
 | `nagumo` | Vila Curuçá pickup, São Paulo/SP, store `13`, branch CEP `08030040` | Public HTTP searches filtered by core targets; ordinary/member offers and advertised kg prices |
 | `atacadao` | Explicit branch and seller, independently verified every run; online catalogs in 22 capitals | Public FastStore target searches; regular, wholesale and advertised kg offers |
+| `carrefour` | Verified delivery CEP and region in 13 capitals | Isolated browser sessions; regular, bulk and advertised kg offers |
 
 The three delivery adapters resolve their configured CEP through the public regions
 endpoint at the start of every run. The response must contain the configured
@@ -58,7 +61,7 @@ the local virtual environment. Editable mode (`-e`) uses source changes directly
 `[dev]` adds pytest and Ruff. No service, scheduler, browser, or system-wide
 installation is needed. Database access is not part of scraper operation or tests.
 
-Hirota additionally requires Chrome/Chromium and the optional browser packages:
+Hirota and Carrefour additionally require Chrome/Chromium and the optional browser packages:
 
 ```sh
 .venv/bin/pip install -e '.[browser]'
@@ -104,8 +107,8 @@ Use one `[[scrapers]]` table per shop/store configuration. Each table has its ow
 adapter, scraper/shop identity, core URL, request settings, branch selection,
 and fallback spool. The adapter name selects an implementation from
 [`ADAPTERS`](src/inflacao_scrapers/adapters/registry.py). Muffato, Angeloni,
-Festval, Mambo, Hirota, Pão de Açúcar, Sonda and Nagumo are registered. All eight
-are enabled in the default schedule configuration in
+Festval, Mambo, Hirota, Pão de Açúcar, Sonda, Nagumo, Atacadão and Carrefour
+are registered and enabled in the default schedule configuration in
 [`scrapers.example.toml`](scrapers.example.toml). Individual configurations are in
 [`angeloni.example.toml`](angeloni.example.toml),
 [`festval.example.toml`](festval.example.toml), and
@@ -825,3 +828,98 @@ The standalone example selects Vila Maria, São Paulo. The combined schedule has
 all ready contexts. Source fixtures cover every enabled capital, quantity bands
 and approximate-weight products. Full scope coverage, accumulated daily history
 and production execution must be measured separately from these source checks.
+
+
+## Carrefour delivery collection
+
+`carrefour` supports 13 independently verified grocery delivery-region catalogs:
+
+| Schedule | City | CEP | VTEX region |
+| --- | --- | --- | --- |
+| `carrefour-sp` | São Paulo/SP | `01310100` | `v2.4FC957AB8941A10397B85207B23C2F55` |
+| `carrefour-rj` | Rio de Janeiro/RJ | `22041001` | `v2.7270B316E593B206E6E0275E7718FBF4` |
+| `carrefour-am` | Manaus/AM | `69005040` | `v2.BF533D0AEECE42C36BD9B8DA285BEF38` |
+| `carrefour-df` | Brasília/DF | `70390025` | `v2.3AAC323080B05FB702A3AB2ABAA90E3B` |
+| `carrefour-es` | Vitória/ES | `29010001` | `v2.7D0ED687024A66050E0FD3832B8BD6AA` |
+| `carrefour-go` | Goiânia/GO | `74810100` | `v2.F05A3DA1C76D4CCCAFB4EBFB21F46381` |
+| `carrefour-mg` | Belo Horizonte/MG | `30130010` | `v2.0E68B2A9BF71F2194EF2890250AAAAF4` |
+| `carrefour-ms` | Campo Grande/MS | `79032040` | `v2.11FA59941738A4965184405D490939EC` |
+| `carrefour-pb` | João Pessoa/PB | `58039000` | `v2.80E9F1AA89E1A658455D7B622AA088BF` |
+| `carrefour-pe` | Recife/PE | `51021000` | `v2.B8D4DEE82CCFA7FBA645F5E26E2A24C2` |
+| `carrefour-pr` | Curitiba/PR | `80730201` | `v2.DBEC9A35D9DE71C4BB85CA48A5354448` |
+| `carrefour-rn` | Natal/RN | `59020100` | `v2.D9CE56FB0EB73802601410FB432111F4` |
+| `carrefour-sc` | Florianópolis/SC | `88015200` | `v2.053EF8325AA06E6F886118F67CAFA4AB` |
+
+All are enabled in the default and active local schedules, retain the existing
+collector identity and use separate spools. `carrefour.example.toml` contains
+all scheduled entries. Other CEPs or region mappings are rejected until independently
+verified. These are delivery-region observations, not physical-branch prices
+or proof of delivery coverage throughout a city. Seller `1` / Carrefour
+is shared; `store_id` preserves `region:<id>/seller:1` rather than inventing a
+physical branch. Vitória's context is an actual delivery CEP in Vitória. The
+pickup directory's Vila Velha entry is not counted as a Vitória branch.
+
+The other 13 capitals are not scheduled: Rio Branco/AC, Maceió/AL, Macapá/AP,
+Salvador/BA, Fortaleza/CE, São Luís/MA, Cuiabá/MT, Belém/PA, Teresina/PI,
+Porto Velho/RO, Boa Vista/RR, Aracaju/SE and Palmas/TO. Their sampled CEPs returned
+Carrefour's explicit no-serving-store response, and no matching capital was
+listed in the grocery pickup selector. This records the tested online contexts;
+it does not assert that all addresses or other sales channels are unavailable.
+
+
+
+Porto Alegre/RS is also not scheduled. Its CEP and regional catalog resolve, but
+repeated live checks returned inconsistent totals for successive rice pages
+(for example, 54 then 55), including a second sampled neighborhood. The parser
+preserves its unavailable-product shape, and its verified geographic mapping is
+retained for diagnostics. Scheduling must wait for a complete consistent source
+traversal; the adapter's catalog-integrity checks are not relaxed for this city.
+
+Install the browser extra described above and run, from `scrapers/`:
+
+```sh
+.venv/bin/inflacao-scraper --config carrefour.example.toml discover --query arroz --limit 3
+.venv/bin/pytest tests/carrefour/test_live.py --live -q
+```
+
+The discovery command checks all configured cities. Live tests accept
+`CARREFOUR_CHROME_PATH` when browser autodetection is unsuitable; scheduled
+entries accept `chrome_executable_path`. Chromium and the browser dependency
+are already included in the deployment image.
+
+Each city gets a fresh anonymous Botasaurus driver for its entire run, closed
+on success, selection failure or failed delivery. It selects the CEP through
+the normal grocery storefront and verifies the server's returned CEP, region,
+city and residential-delivery status. The effective browser context is checked
+before and after every search response. No customer account, saved profile,
+proxy or CAPTCHA solver is used. Browser tasks do not cache/export results or
+retry implicitly. Requests are paced, carry fresh request IDs and bypass caches;
+aged, redirected, challenged and malformed responses fail visibly.
+
+Prices come from the grocery storefront's `/busca/<query>.data` loader, not the
+blocked general shopping host or legacy VTEX endpoints. Original response text
+is decoded in Python with exact decimals; JavaScript does not parse monetary
+JSON. Only the observed reference-table subset is accepted. Search totals,
+page indices, page sizes and product identities are checked, with per-query
+and per-run request budgets. Core name rules filter unrelated search hits, and
+the shared pipeline handles deduplication, batching and durable delivery.
+
+Regular prices, bulk thresholds and distinct supplied payment prices remain
+separate offers. Missing EAN stays null. Stock comes from explicit source
+availability quantity; a missing/zero unavailable price produces no offers.
+When `bestSeller` is explicitly null, a single Carrefour offer can only be
+retained if its stock quantity explicitly says zero. A missing seller ID remains
+null; available or ambiguous sellers never become a fallback.
+For `kg` items, the verified `Price`/`ListPrice` are per kg; calculated prices
+and payment totals can describe approximate portions and never replace them.
+No fixed package is inferred from those portions. Weighted bulk offers have no
+verified minimum/basis mapping and are rejected with an explicit collection
+issue. Fixed-package contents use conservative name extraction, including the
+observed rice grade delimiter in `Tipo 1 - 5kg`; display names remain unchanged.
+
+The adapter was smoke-tested from the existing EU VPS for every enabled capital,
+checking regional selection, two rice-query pages and banana offers. The initial
+São Paulo/Rio checks also traversed their entire rice result sets. This verifies
+bounded live extraction; it does not establish daily reliability, complete
+96-target coverage or delivery-slot availability. Actual shop registration and
+ingestion authorization follow [deployment setup](../docs/deployment.md).

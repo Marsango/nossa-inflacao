@@ -25,10 +25,10 @@ class CapitalUpgradeTests(unittest.TestCase):
         updated = upgraded(original)
         entries = tomllib.loads(updated)["scrapers"]
         self.assertTrue(updated.startswith(original.rstrip()))
-        self.assertEqual(len(entries), 41)
+        self.assertEqual(len(entries), 54)
         self.assertEqual(entries[:8], tomllib.loads(original)["scrapers"])
         self.assertTrue(all(entry["enabled"] for entry in entries[8:]))
-        self.assertEqual(len({entry["spool_path"] for entry in entries}), 41)
+        self.assertEqual(len({entry["spool_path"] for entry in entries}), 54)
         self.assertEqual(upgraded(updated), updated)
 
     def test_customized_disabled_capital_is_not_duplicated_or_reenabled(self):

@@ -87,3 +87,26 @@ supply exact contents. Parent/sibling sizes and prior observations are never use
 Ordinary missing contents remain null and are counted in `unknown_packages` run
 diagnostics. Field-level source evidence is saved here for parser verification;
 ingestion v1 does not persist those field paths or original responses.
+
+
+Carrefour fixtures `stores/carrefour-{sp,rj}.data` retain a small subset of the
+3 November 2026 grocery loader records obtained from the EU VPS for CEPs
+01310-100 and 22041-001. Three products per city preserve a regular packaged
+price and a separate quantity promotion. The JSON reference table is rebuilt
+from the selected captured records, omitting unrelated routes and session data;
+source decimal tokens remain numeric and exact. Pagination metadata retains
+its original values; pagination tests construct complete pages separately.
+`carrefour-{sp,rj}-weight.json` retains two captured banana SKUs each, including
+per-kg `Price` values, approximate `calculatedPrice` totals and payment options.
+No test accesses a live shop unless explicitly selected with `--live`.
+
+
+`stores/carrefour-capitals.json` adds captured regional selection responses and
+small product subsets for twelve additional verified regional mappings.
+Eleven are scheduled; Porto Alegre remains a source-paging blocker.
+Money remains exact source decimal strings. Porto Alegre includes a real
+`bestSeller: null` product with a single explicitly out-of-stock Carrefour offer;
+its missing seller ID must stay null while its known price is preserved.
+`carrefour-capital-blockers.json` captures the actual HTTP-200 regional responses
+whose payload reports error status 404 for thirteen unsupported sampled CEPs.
+They must fail selection before any default-region prices can be collected.

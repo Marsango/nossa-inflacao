@@ -356,3 +356,31 @@ After deployment, check per-city collection and ingestion reports. A failed
 Atacadão city remains visible and does not prevent the other configured cities
 from running. Template entries establish configured scheduling; successful reports
 and persisted observations establish actual production collection.
+
+
+### Carrefour capital collection
+
+The 13 `carrefour-<uf>` entries use the grocery storefront at
+`mercado.carrefour.com.br`, with isolated browser sessions and durable spools.
+Existing São Paulo/Rio contexts remain unchanged when the additional capitals
+are appended. Unsupported CEP contexts and Porto Alegre’s inconsistent
+pagination are not scheduled.
+See [verified CEPs, supported prices and limitations](../scrapers/README.md#carrefour-delivery-collection).
+The current deployment image already supplies Chromium and the pinned browser
+runtime; no new service, secret or migration is needed.
+
+On an existing VPS, `git pull` followed by `./deploy up` appends missing ready
+Carrefour contexts to `${NOSSA_CONFIG_DIR:-/etc/nossa-inflacao}/scrapers.toml`
+before scheduler recreation. Registration adds the `carrefour` shop and the
+core ingestion allowlist includes it. Synchronization retains the existing
+collector identity, core URL, token variable, custom settings, spool paths and
+explicit disables. Fresh installations and repeated upgrades use the same
+versioned template without duplicating contexts.
+
+The grocery storefront may challenge ordinary HTTP requests; the adapter uses
+the installed browser and verifies regional context for every source response.
+Treat access failures as incomplete collection; do not silently fall back to
+default prices.
+Configured scheduling is distinct from a deployed/running scheduler: after
+updating, check city-specific reports and persisted observations for evidence
+of actual scheduled ingestion.

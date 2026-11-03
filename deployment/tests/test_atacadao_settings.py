@@ -19,12 +19,12 @@ class AtacadaoUpgradeTests(unittest.TestCase):
         self.assertTrue(updated.startswith(original.rstrip()))
         entries = tomllib.loads(updated)["scrapers"]
         self.assertEqual(entries[:19], tomllib.loads(original)["scrapers"])
-        additions = entries[19:]
+        additions = [entry for entry in entries[19:] if entry["adapter"] == "atacadao"]
         self.assertEqual(len(additions), 22)
         self.assertEqual({entry["state"] for entry in additions}, READY_STATES)
         self.assertTrue(all(entry["enabled"] for entry in additions))
         self.assertEqual(len({entry["schedule_id"] for entry in additions}), 22)
-        self.assertEqual(len({entry["spool_path"] for entry in entries}), 41)
+        self.assertEqual(len({entry["spool_path"] for entry in entries}), 54)
         self.assertEqual(upgraded(updated), updated)
 
     def test_custom_disabled_city_is_preserved_while_others_are_appended(self):

@@ -637,3 +637,278 @@ state = "TO"
 spool_path = "data/atacadao-to/spool.sqlite3"
 core_url = "http://127.0.0.1:8080"
 ingestion_token_env = "INGESTION_TOKEN"
+
+# Carrefour verified delivery regions; isolated browser sessions and spools.
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-sp"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "São Paulo"
+state = "SP"
+postal_code = "01310100"
+region_id = "v2.4FC957AB8941A10397B85207B23C2F55"
+seller_id = "1"
+store_id = "region:v2.4FC957AB8941A10397B85207B23C2F55/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-sp/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-rj"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Rio de Janeiro"
+state = "RJ"
+postal_code = "22041001"
+region_id = "v2.7270B316E593B206E6E0275E7718FBF4"
+seller_id = "1"
+store_id = "region:v2.7270B316E593B206E6E0275E7718FBF4/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-rj/spool.sqlite3"
+
+# Additional verified Carrefour capital delivery regions.
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-am"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Manaus"
+state = "AM"
+postal_code = "69005040"
+region_id = "v2.BF533D0AEECE42C36BD9B8DA285BEF38"
+seller_id = "1"
+store_id = "region:v2.BF533D0AEECE42C36BD9B8DA285BEF38/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-am/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-df"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Brasília"
+state = "DF"
+postal_code = "70390025"
+region_id = "v2.3AAC323080B05FB702A3AB2ABAA90E3B"
+seller_id = "1"
+store_id = "region:v2.3AAC323080B05FB702A3AB2ABAA90E3B/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-df/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-es"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Vitória"
+state = "ES"
+postal_code = "29010001"
+region_id = "v2.7D0ED687024A66050E0FD3832B8BD6AA"
+seller_id = "1"
+store_id = "region:v2.7D0ED687024A66050E0FD3832B8BD6AA/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-es/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-go"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Goiânia"
+state = "GO"
+postal_code = "74810100"
+region_id = "v2.F05A3DA1C76D4CCCAFB4EBFB21F46381"
+seller_id = "1"
+store_id = "region:v2.F05A3DA1C76D4CCCAFB4EBFB21F46381/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-go/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-mg"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Belo Horizonte"
+state = "MG"
+postal_code = "30130010"
+region_id = "v2.0E68B2A9BF71F2194EF2890250AAAAF4"
+seller_id = "1"
+store_id = "region:v2.0E68B2A9BF71F2194EF2890250AAAAF4/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-mg/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-ms"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Campo Grande"
+state = "MS"
+postal_code = "79032040"
+region_id = "v2.11FA59941738A4965184405D490939EC"
+seller_id = "1"
+store_id = "region:v2.11FA59941738A4965184405D490939EC/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-ms/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-pb"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "João Pessoa"
+state = "PB"
+postal_code = "58039000"
+region_id = "v2.80E9F1AA89E1A658455D7B622AA088BF"
+seller_id = "1"
+store_id = "region:v2.80E9F1AA89E1A658455D7B622AA088BF/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-pb/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-pe"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Recife"
+state = "PE"
+postal_code = "51021000"
+region_id = "v2.B8D4DEE82CCFA7FBA645F5E26E2A24C2"
+seller_id = "1"
+store_id = "region:v2.B8D4DEE82CCFA7FBA645F5E26E2A24C2/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-pe/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-pr"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Curitiba"
+state = "PR"
+postal_code = "80730201"
+region_id = "v2.DBEC9A35D9DE71C4BB85CA48A5354448"
+seller_id = "1"
+store_id = "region:v2.DBEC9A35D9DE71C4BB85CA48A5354448/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-pr/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-rn"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Natal"
+state = "RN"
+postal_code = "59020100"
+region_id = "v2.D9CE56FB0EB73802601410FB432111F4"
+seller_id = "1"
+store_id = "region:v2.D9CE56FB0EB73802601410FB432111F4/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-rn/spool.sqlite3"
+
+[[scrapers]]
+adapter = "carrefour"
+schedule_id = "carrefour-sc"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "carrefour"
+shop_url = "https://mercado.carrefour.com.br"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+city = "Florianópolis"
+state = "SC"
+postal_code = "88015200"
+region_id = "v2.053EF8325AA06E6F886118F67CAFA4AB"
+seller_id = "1"
+store_id = "region:v2.053EF8325AA06E6F886118F67CAFA4AB/seller:1"
+timeout_seconds = 30.0
+request_interval_seconds = 1.5
+max_search_pages = 100
+max_catalog_pages = 1000
+spool_path = "data/carrefour-sc/spool.sqlite3"

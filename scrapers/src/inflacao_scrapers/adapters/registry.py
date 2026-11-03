@@ -2,6 +2,7 @@
 
 from ..angeloni.adapter import ADAPTER as ANGELONI_ADAPTER
 from ..atacadao.adapter import ADAPTER as ATACADAO_ADAPTER
+from ..carrefour.adapter import ADAPTER as CARREFOUR_ADAPTER
 from ..festval.adapter import ADAPTER as FESTVAL_ADAPTER
 from ..hirota.adapter import ADAPTER as HIROTA_ADAPTER
 from ..mambo.adapter import ADAPTER as MAMBO_ADAPTER
@@ -23,6 +24,7 @@ ADAPTERS: dict[str, Adapter] = {
         SONDA_ADAPTER,
         PAO_DE_ACUCAR_ADAPTER,
         ATACADAO_ADAPTER,
+        CARREFOUR_ADAPTER,
     )
 }
 

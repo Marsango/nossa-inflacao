@@ -160,7 +160,9 @@ def test_runner_example_loads():
 def test_capital_schedules_preserve_collector_and_isolate_spools():
     path = Path(__file__).parents[2] / "scrapers.example.toml"
     settings = load_configurations(path)
-    additions = [setting for setting in settings[8:] if setting.adapter != "atacadao"]
+    additions = [
+        setting for setting in settings[8:] if setting.adapter not in {"atacadao", "carrefour"}
+    ]
     assert len(additions) == 11
     assert all(setting.enabled for setting in additions)
     assert {setting.scraper_id for setting in settings} == {"muffato-curitiba-01"}

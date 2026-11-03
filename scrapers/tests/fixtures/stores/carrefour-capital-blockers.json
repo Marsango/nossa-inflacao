@@ -1,0 +1,210 @@
+[
+  {
+    "state": "CE",
+    "postal_code": "60150160",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "60150-160",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "AL",
+    "postal_code": "57035000",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "57035-000",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "AC",
+    "postal_code": "69900060",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "69900-060",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "AP",
+    "postal_code": "68900073",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "68900-073",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "BA",
+    "postal_code": "40020000",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "40020-000",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "MA",
+    "postal_code": "65010010",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "65010-010",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "MT",
+    "postal_code": "78005000",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "78005-000",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "PA",
+    "postal_code": "66010000",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "66010-000",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "PI",
+    "postal_code": "64049130",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "64049-130",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "RO",
+    "postal_code": "76801010",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "76801-010",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "RR",
+    "postal_code": "69301000",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "69301-000",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "SE",
+    "postal_code": "49026010",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "49026-010",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  },
+  {
+    "state": "TO",
+    "postal_code": "77001002",
+    "status": 200,
+    "response": {
+      "data": {
+        "error": {
+          "message": "Não encontramos nenhuma loja que atenda seu CEP no momento.",
+          "status": 404,
+          "cep": "77001-002",
+          "errorId": 2
+        }
+      }
+    },
+    "region": null
+  }
+]
