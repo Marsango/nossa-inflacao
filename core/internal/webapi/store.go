@@ -130,7 +130,9 @@ func resolveProduct(requestContext context.Context, transaction *sql.Tx, value s
 		return "", nil, ErrNotFound
 	}
 	var name string
-	row := transaction.QueryRowContext(requestContext, `SELECT name,id FROM products WHERE id=equivalent_product_id($1)`, productID)
+	row := transaction.QueryRowContext(requestContext, `SELECT coalesce(membership.comparison_name,product.name),product.id
+ FROM products product LEFT JOIN product_equivalence membership ON membership.product_id=product.id
+ WHERE product.id=equivalent_product_id($1)`, productID)
 	err = row.Scan(&name, &productID)
 	if errors.Is(err, sql.ErrNoRows) {
 		return "", nil, ErrNotFound

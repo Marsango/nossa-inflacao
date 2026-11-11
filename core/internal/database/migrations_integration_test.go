@@ -65,7 +65,7 @@ func TestMigrationsUpRepeatDownAndUp(test *testing.T) {
 	requireNoError(test, Migrate(requestContext, pool))
 	provider, err := migrationProvider(pool)
 	requireNoError(test, err)
-	assertMigrationVersion(test, requestContext, provider, 17)
+	assertMigrationVersion(test, requestContext, provider, 18)
 	_, err = provider.DownTo(requestContext, 0)
 	requireNoError(test, err)
 	assertApplicationTables(test, requestContext, pool, 0)
@@ -89,7 +89,7 @@ func TestScraperReportsUpgradeFromVersion16(test *testing.T) {
 	requireNoError(test, Migrate(requestContext, pool))
 	provider, err := migrationProvider(pool)
 	requireNoError(test, err)
-	assertMigrationVersion(test, requestContext, provider, 17)
+	assertMigrationVersion(test, requestContext, provider, 18)
 	assertApplicationTables(test, requestContext, pool, 21)
 	var preserved bool
 	err = pool.QueryRowContext(requestContext, `SELECT EXISTS(SELECT 1 FROM shops WHERE id='migration-test')`).Scan(&preserved)

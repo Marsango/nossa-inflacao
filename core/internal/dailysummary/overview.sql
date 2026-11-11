@@ -23,7 +23,7 @@
     SELECT asof_day AS day,denominator,sum(price)*10000 AS numerator,count(*) AS priced_streams
     FROM weighted_points GROUP BY asof_day,denominator
 ), daily_counts AS (
-    SELECT asof_day AS day,count(DISTINCT product_id) AS products,count(DISTINCT shop_id) AS shops,count(*) AS streams,
+    SELECT asof_day AS day,count(DISTINCT product_id) AS products,count(DISTINCT store_key) AS shops,count(*) AS streams,
         min(baseline_day) AS comparison_start,max(day) AS comparison_end,
         count(*) FILTER (WHERE day=asof_day) AS updated_streams
     FROM comparable GROUP BY asof_day
@@ -34,10 +34,10 @@
     LEFT JOIN daily_counts ON daily_counts.day=calendar.day::date
 ), metadata AS (
     SELECT jsonb_build_object('counts',jsonb_build_object(
-        'products',(SELECT count(*) FROM panel),'shops',(SELECT count(DISTINCT shop_id) FROM measurements),
+        'products',(SELECT count(*) FROM panel),'shops',(SELECT count(DISTINCT store_key) FROM measurements),
         'streams',(SELECT coalesce(sum(streams),0) FROM panel),
         'includedProducts',(SELECT count(DISTINCT product_id) FROM comparable),
-        'includedShops',(SELECT count(DISTINCT shop_id) FROM comparable),
+        'includedShops',(SELECT count(DISTINCT store_key) FROM comparable),
         'includedStreams',(SELECT count(DISTINCT (product_id,stream)) FROM comparable)),
         'dailyComparisons',(SELECT coalesce(jsonb_agg(jsonb_build_object('date',day::text,
             'products',products,'shops',shops,'streams',streams,'comparisonStart',comparison_start::text,

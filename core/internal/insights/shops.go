@@ -46,3 +46,11 @@ func lowerPrice(lowest, price *int64) *int64 {
 	}
 	return lowest
 }
+
+// StoreIdentity counts a retailer location once across products and channels.
+func (context ContextSeries) StoreIdentity() string {
+	if context.StoreKey != "" {
+		return context.StoreKey
+	}
+	return context.ShopID
+}

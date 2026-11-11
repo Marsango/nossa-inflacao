@@ -1069,6 +1069,124 @@ func TestUnknownShopLocationIsExplicit(test *testing.T) {
 	}
 }
 
+func TestRetailerLocationsCountSeparatelyAcrossHistoryPaths(test *testing.T) {
+	fixture := newFixture(test)
+	submitLocationPrices(fixture, 1, "sp-centro", "São Paulo", "SP", "01001000", "10.00", "11.00")
+	submitLocationPrices(fixture, 3, "rj-centro", "Rio de Janeiro", "RJ", "20040020", "20.00", "24.00")
+	assertLocationPrices(fixture)
+	assertLocationCoverage(fixture, 2, 2)
+	requireSuccess(test, dailysummary.Refresh(fixture.ctx, fixture.pool))
+	assertLocationCoverage(fixture, 2, 2)
+	assertDailyOverview(fixture, "2026-10-27", "2026-10-28", "")
+	fixture.submit(5, func(observation map[string]any) {
+		setPrice(observation, "2026-10-28T14:00:00Z", "12.00")
+	})
+	assertLocationCoverage(fixture, 2, 2)
+	assertDailyOverview(fixture, "2026-10-27", "2026-10-28", "")
+}
+
+func submitLocationPrices(fixture fixture, number int, branch, city, state, postalCode, first, last string) {
+	fixture.submit(number, func(observation map[string]any) {
+		setLocation(observation, branch, city, state, postalCode)
+		setPrice(observation, "2026-10-27T12:00:00Z", first)
+	})
+	fixture.submit(number+1, func(observation map[string]any) {
+		setLocation(observation, branch, city, state, postalCode)
+		setPrice(observation, "2026-10-28T12:00:00Z", last)
+	})
+}
+
+func setLocation(observation map[string]any, branch, city, state, postalCode string) {
+	context := observation["context"].(map[string]any)
+	context["store_id"], context["city"] = branch, city
+	context["state"], context["postal_code"] = state, postalCode
+}
+
+func assertLocationPrices(fixture fixture) {
+	fixture.test.Helper()
+	history := fixture.history("1", "2026-10-27", "2026-10-28")
+	if len(history.ShopPrices) != 2 {
+		fixture.test.Fatalf("locations were combined: %+v", history.ShopPrices)
+	}
+	expected := map[string][2]int64{"São Paulo/SP · CEP 01001000 · Entrega": {1000, 1100},
+		"Rio de Janeiro/RJ · CEP 20040020 · Entrega": {2000, 2400}}
+	for _, shop := range history.ShopPrices {
+		assertLocationOffer(fixture.test, shop, expected)
+	}
+	assertPrice(fixture.test, history.ChangeBasisPoints, 1500)
+}
+
+func assertLocationOffer(test *testing.T, shop insights.ShopHistory, expected map[string][2]int64) {
+	test.Helper()
+	prices, found := expected[shop.Context]
+	if !found || !shop.Included || shop.ShopID != "mercado-exemplo" {
+		test.Fatalf("lost location or retailer: %+v", shop)
+	}
+	assertPrice(test, shop.Points[0].Value, prices[0])
+	assertPrice(test, shop.Points[1].Value, prices[1])
+}
+
+func assertLocationCoverage(fixture fixture, observed, included int) {
+	fixture.test.Helper()
+	for _, product := range []string{"1", "global"} {
+		history := fixture.history(product, "2026-10-27", "2026-10-28")
+		assertStoreCounts(fixture.test, history, observed, included)
+	}
+}
+
+func assertStoreCounts(test *testing.T, history insights.History, observed, included int) {
+	test.Helper()
+	if history.Counts.Shops != observed || history.Counts.IncludedShops != included {
+		test.Fatalf("incorrect location coverage: %+v", history.Counts)
+	}
+	for _, comparison := range history.DailyComparisons {
+		assertDailyStoreCount(test, comparison, included)
+	}
+}
+
+func assertDailyStoreCount(test *testing.T, comparison insights.DailyComparison, included int) {
+	test.Helper()
+	if comparison.Shops != included {
+		test.Fatalf("incorrect daily location coverage: %+v", comparison)
+	}
+}
+
+func TestLocationsAreNotMultipliedByProductsOrChannels(test *testing.T) {
+	fixture := newFixture(test)
+	submitLocationPrices(fixture, 1, "sp-centro", "São Paulo", "SP", "01001000", "10.00", "11.00")
+	fixture.submit(3, pickupObservation)
+	fixture.submit(4, func(observation map[string]any) {
+		pickupObservation(observation)
+		setPrice(observation, "2026-10-28T12:00:00Z", "26.90")
+	})
+	submitWeightedStream(fixture, 5, weightedStream{"sp-centro", "20.00", "22.00", true})
+	assertLocationCoverage(fixture, 1, 1)
+	requireSuccess(test, dailysummary.Refresh(fixture.ctx, fixture.pool))
+	assertLocationCoverage(fixture, 1, 1)
+	assertDailyOverview(fixture, "2026-10-27", "2026-10-28", "")
+}
+
+func pickupObservation(observation map[string]any) {
+	observation["context"].(map[string]any)["channel"] = "pickup"
+}
+
+func TestSameCityBranchesStaySeparateWithoutInventingAComparison(test *testing.T) {
+	fixture := newFixture(test)
+	fixture.submit(1, nil)
+	fixture.submit(2, func(observation map[string]any) {
+		setPrice(observation, "2026-10-28T12:00:00Z", "49.80")
+		observation["context"].(map[string]any)["store_id"] = "sp-other-branch"
+	})
+	assertLocationCoverage(fixture, 2, 0)
+	history := fixture.history("1", "2026-10-27", "2026-10-28")
+	if history.ChangeBasisPoints != nil || len(history.ShopPrices) != 2 {
+		test.Fatalf("different branches created a temporal change: %+v", history)
+	}
+	requireSuccess(test, dailysummary.Refresh(fixture.ctx, fixture.pool))
+	assertLocationCoverage(fixture, 2, 0)
+	assertDailyOverview(fixture, "2026-10-27", "2026-10-28", "")
+}
+
 func TestOverviewObservedPairsIncludeLaterProductsAndSparseContexts(test *testing.T) {
 	fixture := newFixture(test)
 	submitOverviewObservations(fixture)

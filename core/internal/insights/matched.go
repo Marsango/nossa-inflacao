@@ -233,7 +233,7 @@ func registerObservedContext(context ContextSeries, identity string, participant
 	if !comparable(context) {
 		return
 	}
-	participants.streams[identity], participants.shops[context.ShopID], shops[context.ShopID] = true, true, true
+	participants.streams[identity], participants.shops[context.StoreIdentity()], shops[context.StoreIdentity()] = true, true, true
 	points := context.Points
 	includePairDates(comparison, points[0].Date, points[1].Date)
 	if points[1].Date == comparison.Date {

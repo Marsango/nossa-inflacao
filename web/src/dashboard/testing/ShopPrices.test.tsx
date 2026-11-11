@@ -43,6 +43,20 @@ it('keeps separate offers and missing endpoint prices without substituting nearb
   expect(screen.getAllByText(first.context)).toHaveLength(2);
 });
 
+it('displays different locations of one retailer with their own prices', () => {
+  const first = { ...productHistory.shopPrices[0], context: 'São Paulo/SP · Entrega',
+    points: [{ date: '2026-10-27', value: 1000 }, { date: '2026-10-29', value: 1100 }] };
+  const second = { ...first, context: 'Rio de Janeiro/RJ · Entrega',
+    points: [{ date: '2026-10-27', value: 2000 }, { date: '2026-10-29', value: 2400 }] };
+  render(<ShopPrices history={{ ...productHistory, shopPrices: [first, second] }} />);
+  const rows = screen.getAllByRole('row');
+  expect(rows).toHaveLength(3);
+  expect(within(rows[1]).getByText(first.context)).toBeVisible();
+  expect(within(rows[1]).getByText(/R\$\s*11,00/)).toBeVisible();
+  expect(within(rows[2]).getByText(second.context)).toBeVisible();
+  expect(within(rows[2]).getByText(/R\$\s*24,00/)).toBeVisible();
+});
+
 it('provides a separate offer link with an announced new tab and a focusable scroll region', () => {
   render(<ShopPrices history={productHistory} />);
   const link = screen.getByRole('link', { name: 'Ver oferta de Mercado Exemplo (abre em nova aba)' });

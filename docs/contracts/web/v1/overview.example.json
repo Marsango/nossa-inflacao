@@ -32,8 +32,8 @@
     "includedShops": 1,
     "includedStreams": 2
   },
-  "methodology": "A visão geral compara, em cada contexto, o primeiro preço elegível positivo no intervalo com o último preço elegível observado até cada data, em dois dias distintos, consecutivos ou não. Cada contexto conta uma vez. A média usa pesos iguais por contexto dentro de uma loja, por loja dentro de um produto e por produto. Não há encadeamento diário. Antes do segundo preço, o contexto não participa. Depois dele, a comparação histórica permanece incluída com suas datas reais até uma nova observação elegível atualizar o resultado; isso não prova que o preço ficou constante em dias sem coleta. A amostra e os períodos comparados podem variar. O recorte monitorado não representa a inflação nacional.",
-  "methodologyVersion": "observed-pairs-overview-v6",
+  "methodology": "A visão geral compara, em cada contexto, o primeiro preço elegível positivo no intervalo com o último preço elegível observado até cada data, em dois dias distintos, consecutivos ou não. Cada contexto conta uma vez. A média usa pesos iguais por contexto dentro de uma rede varejista, por rede dentro de um produto e por produto. Não há encadeamento diário. Antes do segundo preço, o contexto não participa. Depois dele, a comparação histórica permanece incluída com suas datas reais até uma nova observação elegível atualizar o resultado; isso não prova que o preço ficou constante em dias sem coleta. A amostra e os períodos comparados podem variar. O recorte monitorado não representa a inflação nacional.",
+  "methodologyVersion": "mass-equivalent-overview-v8",
   "period": {
     "start": "2026-10-27",
     "end": "2026-10-29"

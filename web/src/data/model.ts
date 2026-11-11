@@ -13,6 +13,7 @@ export type ShopHistory = {
   points: Observation[]; included: boolean;
 };
 export type History = {
+  processing?: boolean;
   dailyComparisons: DailyComparison[];
   shopPrices: ShopHistory[];
   unknownConditions: boolean;

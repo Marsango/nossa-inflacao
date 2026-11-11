@@ -8,6 +8,7 @@ type PricePoint struct {
 }
 
 type ContextSeries struct {
+	StoreKey   string       `json:"storeKey"`
 	ID         string       `json:"id"`
 	ShopID     string       `json:"shopId"`
 	ShopName   string       `json:"shopName"`
@@ -75,6 +76,7 @@ type DailyComparison struct {
 }
 
 type History struct {
+	Processing       bool              `json:"processing,omitempty"`
 	DailyComparisons []DailyComparison `json:"dailyComparisons"`
 	ShopPrices       []ShopHistory     `json:"shopPrices"`
 	AvailablePeriod  *Period           `json:"availablePeriod"`

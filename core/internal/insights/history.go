@@ -5,17 +5,18 @@ import (
 	"time"
 )
 
-const MethodologyVersion = "observed-pairs-overview-v6"
+const MethodologyVersion = "mass-equivalent-overview-v8"
 
 const eligibilityMethodology = "Cada contexto usa a última observação diária e o menor preço elegível em BRL, sem restrições explícitas de pagamento, clube, cupom ou compra múltipla. " +
 	"Prioriza condições comprovadamente livres no intervalo; na ausência delas, aceita condições não informadas, sinalizadas na interface. " +
-	"Exige embalagens equivalentes ou uma única base explícita (kg, L ou unidade). "
+	"Exige embalagens equivalentes ou uma única base explícita (kg, L ou unidade). Produtos genéricos equivalentes são comparados por kg, convertendo o peso declarado e a contagem dos pacotes. " +
+	"A cobertura conta separadamente as localidades de cada rede varejista, sem multiplicá-las por produto ou modalidade de compra. "
 
 const methodology = "O intervalo efetivo vai da primeira à última data com preço elegível dentro do período solicitado. " +
 	"Painel de contextos com preços comparáveis nas duas pontas desse intervalo, com base inicial positiva. " +
 	eligibilityMethodology +
-	"A variação é a média das variações dos contextos por loja e depois das lojas por produto. " +
-	"O gráfico de preços do produto usa médias dos mesmos contextos por loja, com pesos iguais por loja. " +
+	"A variação é a média das variações dos contextos por rede varejista e depois das redes por produto. " +
+	"O gráfico de preços do produto usa médias dos mesmos contextos por rede varejista, com pesos iguais por rede. " +
 	"Sem painel comparável, mostra o menor preço disponível por dia, sem calcular variação. " +
 	"Preços disponíveis por loja são exibidos separadamente, inclusive contextos excluídos da comparação. " +
 	"Contextos sem preço nas pontas são excluídos; lacunas intermediárias do painel fixo ficam vazias, sem interpolação. " +
@@ -116,7 +117,7 @@ func emptyHistory() History {
 
 func includeShop(shops map[string]bool, context ContextSeries) {
 	if comparable(context) {
-		shops[context.ShopID] = true
+		shops[context.StoreIdentity()] = true
 	}
 }
 

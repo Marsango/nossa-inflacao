@@ -15,6 +15,7 @@ import (
 	"github.com/joho/godotenv"
 
 	"inflacao-real/core/internal/database"
+	"inflacao-real/core/internal/equivalence"
 	"inflacao-real/core/internal/historyprecompute"
 	"inflacao-real/core/internal/ingestion"
 	"inflacao-real/core/internal/webapi"
@@ -68,11 +69,18 @@ func openDatabase(requestContext context.Context) (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := database.Migrate(requestContext, pool); err != nil {
+	if err := initializeDatabase(requestContext, pool); err != nil {
 		pool.Close()
 		return nil, err
 	}
 	return pool, nil
+}
+
+func initializeDatabase(requestContext context.Context, pool *sql.DB) error {
+	if err := database.Migrate(requestContext, pool); err != nil {
+		return err
+	}
+	return equivalence.Initialize(requestContext, pool)
 }
 
 type application struct {

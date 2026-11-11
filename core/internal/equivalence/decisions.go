@@ -17,6 +17,7 @@ type change struct {
 	decision       Decision
 	actor          string
 	rule           *string
+	catalog        []Product
 }
 
 func Apply(requestContext context.Context, database *sql.DB, actor string, decision Decision) error {
@@ -122,7 +123,7 @@ func (mutation change) activate(enabled bool) error {
 }
 
 func (mutation change) pair() (Product, Product, error) {
-	products, err := Load(mutation.requestContext, mutation.transaction)
+	products, err := mutation.loadProducts()
 	if err != nil {
 		return Product{}, Product{}, err
 	}
@@ -132,6 +133,13 @@ func (mutation change) pair() (Product, Product, error) {
 		return first, second, ErrInvalid
 	}
 	return first, second, nil
+}
+
+func (mutation change) loadProducts() ([]Product, error) {
+	if mutation.catalog != nil {
+		return mutation.catalog, nil
+	}
+	return Load(mutation.requestContext, mutation.transaction)
 }
 
 func (mutation change) approve() error {
@@ -145,8 +153,7 @@ func (mutation change) approve() error {
 	if !mergeComparable(first, second) && !manualLooseComparable(first, second, mutation.decision.SourceVerified) {
 		return ErrInvalid
 	}
-	candidate, _ := Suggest(first, second)
-	if candidate.VerificationRequired && !mutation.decision.SourceVerified {
+	if requiresVerification(first, second) && !mutation.decision.SourceVerified {
 		return ErrInvalid
 	}
 	if err := mutation.validateGroups(first, second); err != nil {
@@ -156,8 +163,7 @@ func (mutation change) approve() error {
 }
 
 func mergeComparable(first, second Product) bool {
-	key := CommodityKey(first)
-	if key != "" && key == CommodityKey(second) {
+	if sameCommodity(first, second) {
 		return true
 	}
 	return brandedComparable(first, second) && !conflictingVariants(first.Name, second.Name)
@@ -168,14 +174,62 @@ func (mutation change) merge(first, second Product) error {
 		return err
 	}
 	var representative int64
-	err := mutation.transaction.QueryRowContext(mutation.requestContext, `SELECT min(id) FROM products WHERE equivalent_product_id(id) IN ($1,$2)`, first.Representative, second.Representative).Scan(&representative)
+	err := mutation.transaction.QueryRowContext(mutation.requestContext, `SELECT min(id) FROM products
+ WHERE id IN ($1,$2) OR id IN (SELECT product_id FROM product_equivalence WHERE representative_id IN ($1,$2))`,
+		first.Representative, second.Representative).Scan(&representative)
 	if err != nil {
 		return err
 	}
-	_, err = mutation.transaction.ExecContext(mutation.requestContext, `INSERT INTO product_equivalence(product_id,representative_id)
- SELECT id,$3 FROM products WHERE equivalent_product_id(id) IN ($1,$2)
- ON CONFLICT(product_id) DO UPDATE SET representative_id=EXCLUDED.representative_id`, first.Representative, second.Representative, representative)
+	return mutation.mergeMembership(first, second, representative)
+}
+
+func (mutation change) mergeMembership(first, second Product, representative int64) error {
+	_, err := mutation.transaction.ExecContext(mutation.requestContext, `INSERT INTO product_equivalence(product_id,representative_id,comparison_basis,comparison_name)
+ SELECT id,$3,$4,$5 FROM products WHERE id IN ($1,$2)
+ OR id IN (SELECT product_id FROM product_equivalence WHERE representative_id IN ($1,$2))
+ ON CONFLICT(product_id) DO UPDATE SET representative_id=EXCLUDED.representative_id,
+ comparison_basis=EXCLUDED.comparison_basis,comparison_name=EXCLUDED.comparison_name`,
+		first.Representative, second.Representative, representative, comparisonBasis(first, second), comparisonName(first, second))
+	if err == nil {
+		mutation.updateMembers(first, second, representative)
+	}
 	return err
+}
+
+func (mutation change) updateMembers(first, second Product, representative int64) {
+	for position, product := range mutation.catalog {
+		mutation.catalog[position].Representative = mergedRepresentative(product, first, second, representative)
+	}
+}
+
+func mergedRepresentative(product, first, second Product, representative int64) int64 {
+	if product.Representative == first.Representative || product.Representative == second.Representative {
+		return representative
+	}
+	return product.Representative
+}
+
+func comparisonName(first, second Product) *string {
+	if sameCommodity(first, second) {
+		return commodityLabel(first)
+	}
+	return nil
+}
+
+func comparisonBasis(first, second Product) *string {
+	if sameCommodity(first, second) {
+		basis := "kg"
+		return &basis
+	}
+	return nil
+}
+
+func requiresVerification(first, second Product) bool {
+	if sameCommodity(first, second) {
+		return false
+	}
+	candidate, _ := Suggest(first, second)
+	return candidate.VerificationRequired
 }
 func (mutation change) requireNoExclusion(first, second Product) error {
 	var blocked bool
@@ -226,5 +280,5 @@ func productIndex(products []Product) map[int64]Product {
 }
 
 func genericReviewAttributes(name string) string {
-	return familyWords(catalog.NormalizeText(name), "maca prata terra nanica caturra patinho coxao mole duro bife bifes inteiro inteira moido moida tiras cubos organico organica congelado congelada fresco fresca temperado temperada empanado empanada cozido cozida assado assada defumado defumada")
+	return familyWords(catalog.NormalizeText(name), "maca prata terra nanica caturra patinho coxao mole duro acem picanha musculo miolo bovino bovina suino suina frango osso com sem angus resfriado resfriada pedaco pedacos peca bife bifes inteiro inteira moido moida tiras cubos organico organica congelado congelada fresco fresca temperado temperada empanado empanada cozido cozida assado assada defumado defumada")
 }

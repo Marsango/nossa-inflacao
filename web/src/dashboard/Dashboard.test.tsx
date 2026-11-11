@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Dashboard } from './Dashboard';
-import { monthsBefore, today } from '../shared/dates';
+import { formatDate, monthsBefore, today } from '../shared/dates';
 import { geometry, lineSegments } from './chartGeometry';
 import { catalog, groups, jsonResponse, mockCore, productHistory, globalHistory } from '../testing/apiFixture';
 
@@ -20,6 +20,19 @@ it('loads the overview from core and provides an accessible table', async () => 
   expect(screen.getByRole('table')).toBeVisible();
   expect(screen.getByRole('columnheader', { name: 'Produtos comparados' })).toBeVisible();
   expect(fetch).toHaveBeenCalledWith(expect.stringContaining('history?product=global&start='), expect.objectContaining({ signal: expect.any(AbortSignal) }));
+});
+
+it('displays retailer location coverage from core in the overview and daily table', async () => {
+  const coverage = '1 de 1 produto(s), 2 de 2 loja(s), 2 de 2 contexto(s) incluídos em ao menos uma comparação observada.';
+  const dailyComparisons = globalHistory.dailyComparisons.map((comparison) => ({ ...comparison, shops: 2 }));
+  vi.stubGlobal('fetch', mockCore({ ...globalHistory, coverage, dailyComparisons,
+    counts: { ...globalHistory.counts, shops: 2, includedShops: 2 } }));
+  render(<Dashboard />);
+  expect(await screen.findByText(coverage)).toBeVisible();
+  fireEvent.click(screen.getByText('Ver dados em tabela'));
+  const rows = screen.getAllByRole('row');
+  const cells = within(rows[rows.length - 1]).getAllByRole('cell');
+  expect(cells[3]).toHaveTextContent('2');
 });
 
 it('displays methodology and freshness supplied by core', async () => {
@@ -298,4 +311,14 @@ it('does not include a context before its second price or fill the gap with its 
   const before = within(screen.getByRole('table')).getByRole('row', { name: /^28\/10\/2026/ });
   expect(within(before).getByText('Sem comparação disponível')).toBeVisible();
   expect(screen.getByText('+8,03%', { selector: 'strong' })).toBeVisible();
+});
+
+it('keeps the saved overview visible while newer data is processing', async () => {
+  vi.stubGlobal('fetch', mockCore({ ...globalHistory, processing: true }));
+  render(<Dashboard />);
+  const notice = await screen.findByText(/Os dados mais recentes estão sendo processados/);
+  expect(notice).toBeVisible();
+  expect(notice).toHaveTextContent(`${formatDate(globalHistory.period.start)} a ${formatDate(globalHistory.period.end)}`);
+  expect(screen.getByText('+8,03%', { selector: 'strong' })).toBeVisible();
+  expect(screen.getByRole('img')).toBeVisible();
 });

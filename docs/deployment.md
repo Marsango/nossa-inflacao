@@ -248,6 +248,13 @@ the database remain unreachable externally. Do not start a collection for these 
 
 ## Product equivalence administration
 
+Migration 00018 enables automatic `commodities_v2` grouping on fresh installs and
+upgrades. Startup backfills eligible existing products before ingestion begins, preserving
+manual exclusions. Generic groups use prices per kg and neutral labels; source
+prices, quantities and history remain intact. Back up before upgrading and use
+`/admin` to inspect, reverse or explicitly deactivate grouping afterward. See the
+[rule criteria](contracts/web/v1/admin.md#regras-genéricas-commodities_v2).
+
 The optional Portuguese interface is at `/admin`; its API is documented in
 [admin v1](contracts/web/v1/admin.md). Only the explicitly listed admin methods
 and paths pass through Caddy, including `GET /api/v1/admin/scrapers` and

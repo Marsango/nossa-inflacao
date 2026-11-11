@@ -5,6 +5,23 @@ import (
 	"database/sql"
 )
 
+// Initialize backfills enabled rules before workers start, outside ingestion's
+// per-payload deadline. Existing manual deactivation and exclusions are respected.
+func Initialize(requestContext context.Context, database *sql.DB) error {
+	transaction, err := database.BeginTx(requestContext, nil)
+	if err != nil {
+		return err
+	}
+	defer transaction.Rollback()
+	if _, err := transaction.ExecContext(requestContext, CatalogLock); err != nil {
+		return err
+	}
+	if err := Reconcile(requestContext, transaction); err != nil {
+		return err
+	}
+	return transaction.Commit()
+}
+
 func (mutation change) group() (int64, error) {
 	var representative int64
 	err := mutation.transaction.QueryRowContext(mutation.requestContext, `SELECT equivalent_product_id(id) FROM products WHERE id=$1`, mutation.decision.First).Scan(&representative)
@@ -89,7 +106,7 @@ func Reconcile(requestContext context.Context, transaction *sql.Tx) error {
 }
 
 func reconcileEnabled(requestContext context.Context, transaction *sql.Tx) error {
-	products, err := Load(requestContext, transaction)
+	products, err := loadCommodities(requestContext, transaction)
 	if err != nil {
 		return err
 	}
@@ -99,15 +116,15 @@ func reconcileEnabled(requestContext context.Context, transaction *sql.Tx) error
 	}
 	candidates := genericCandidates(products, exclusions)
 	for position := 0; position < len(candidates) && err == nil; position++ {
-		err = automaticPair(requestContext, transaction, candidates[position])
+		err = automaticPair(requestContext, transaction, candidates[position], products)
 	}
 	return err
 }
 
-func automaticPair(requestContext context.Context, transaction *sql.Tx, candidate Candidate) error {
+func automaticPair(requestContext context.Context, transaction *sql.Tx, candidate Candidate, products []Product) error {
 	version := RuleVersion
 	mutation := change{requestContext: requestContext, transaction: transaction, actor: "automatic", rule: &version,
-		decision: Decision{Action: "approve", First: candidate.First, Second: candidate.Second, Reason: candidate.Reason}}
+		decision: Decision{Action: "approve", First: candidate.First, Second: candidate.Second, Reason: candidate.Reason}, catalog: products}
 	first, second, err := mutation.pair()
 	if err != nil {
 		return err
@@ -124,7 +141,7 @@ func automaticPair(requestContext context.Context, transaction *sql.Tx, candidat
 }
 
 func (mutation change) validateGroups(first, second Product) error {
-	products, err := Load(mutation.requestContext, mutation.transaction)
+	products, err := mutation.loadProducts()
 	if err != nil {
 		return err
 	}
@@ -153,6 +170,5 @@ func (mutation change) compatibleMember(first, second Product, representative in
 	if !mergeComparable(first, second) && !manualLooseComparable(first, second, mutation.decision.SourceVerified) {
 		return false
 	}
-	candidate, _ := Suggest(first, second)
-	return !candidate.VerificationRequired || mutation.decision.SourceVerified
+	return !requiresVerification(first, second) || mutation.decision.SourceVerified
 }

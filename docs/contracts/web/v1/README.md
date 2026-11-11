@@ -15,7 +15,8 @@ ingestion processing and equivalence edits invalidate earlier entries. Queued
 submissions do not invalidate history. Requests already in progress can complete
 against an earlier snapshot. `stale` is refreshed when serving a cached history;
 `collectedAt` always remains the source observation timestamp. This does not enable
-browser or proxy caching and does not change response fields or methodology.
+browser or proxy caching or change the calculation methodology. Persisted overview
+fallbacks explicitly report `processing` and their saved period (see below).
 
 History `coverage` text includes the observed city/state locations for the
 requested interval, including contexts excluded from the comparison. Unknown
@@ -51,8 +52,8 @@ Variants remain distinct; monitoring groups are not products.
 ```
 
 IDs and cursors are decimal **strings**, preserving PostgreSQL bigint precision.
-Results sort by numeric ID ascending. `limit` defaults to 100 and accepts 1–200.
-`after` is an exclusive positive canonical ID; omit it for the first page.
+Without `q`, results sort by numeric ID ascending. `limit` defaults to 100 and accepts 1–200.
+`after` is an exclusive positive canonical ID in the current result order; omit it for the first page.
 `nextCursor` is the last returned ID if another page exists, otherwise `null`.
 An empty catalog has `items: []`.
 
@@ -64,6 +65,14 @@ Quantities such as `500g` and `500 g` are tokenized alike. This is prefix search
 not typo correction or substring matching. An explicitly supplied `q` must contain
 at least two letters/digits and at most 100 Unicode characters after trimming.
 Search defaults to 20 results; the same limit and ID cursor bounds apply.
+Results rank normalized exact product names first, then names beginning with the
+whole search phrase, then names beginning with its prefix, then other name matches,
+then matches requiring the brand. Within each tier, names with fewer words come
+first; numeric ID breaks ties. Thus `Banana` and `Banana prata` precede `Bala de
+banana`, even when the candy was collected earlier. Equivalent products appear
+once, using their best matching member's rank. `nextCursor` remains the last
+returned canonical ID; pass it back with the same search and group to continue
+in relevance order, including when the next product has a smaller ID.
 Names and brands have a generated PostgreSQL search document and a GIN index.
 Variants and historical-assignment rules remain unchanged.
 
@@ -126,7 +135,7 @@ covers monitored fresh beef, pork, chicken and tilapia, excluding processed meat
 and prepared dishes. Descriptions enumerate the scope; these are curated subsets
 of the monitored catalog, not exhaustive categories for the retail market.
 
-Group overviews use `observed-pairs-overview-v6`: equal product weights in the
+Group overviews use `mass-equivalent-overview-v8`: equal product weights in the
 mean of observed first/latest price changes known by each plotted date. They return `unit: "percent"`, a
 category title, and selection details appended to `methodology`. Cesta básica
 is a curated selection, **not** an official basket cost or official basket index;
@@ -168,9 +177,9 @@ also used by frontend tests.
 | `collectedAt` | Latest source observation or unchanged-confirmation time (`last_seen_at`) among the selected product(s) **inside the requested period**, with explicit timezone; `null` if none. This is not ingestion receipt time or necessarily the date of the last selected price. |
 | `stale` | Latest source observation is more than 48 hours old at request time. Old historical intervals can be stale by this definition. |
 | `unknownConditions` | Some contexts use advertised prices with incompletely reported buying conditions. This does not mean the price is available unconditionally. The UI displays a notice. |
-| `counts` | Observed `products`, distinct `shops`, `streams`, inclusive effective `days`, and `pricedDays` with usable plotted values. Without eligible prices, `days` covers the request. `includedProducts`, `includedShops` (distinct across products), and `includedStreams` count the matched panel for a product, or distinct participants in at least one observed comparison for the overview. Overview counts are unions, not the number included every day; use `dailyComparisons` for the sample at each plotted date. Empty histories have zero counts. |
+| `counts` | Observed `products`, distinct retailer locations in `shops`, `streams`, inclusive effective `days`, and `pricedDays` with usable plotted values. Without eligible prices, `days` covers the request. `includedProducts`, `includedShops` (distinct across products), and `includedStreams` count the matched panel for a product, or distinct participants in at least one observed comparison for the overview. Overview counts are unions, not the number included every day; use `dailyComparisons` for the sample at each plotted date. Empty histories have zero counts. |
 | `coverage` | Portuguese explanation of those counts. |
-| `methodology`, `methodologyVersion` | Portuguese explanation and stable calculation identifier (`observed-pairs-overview-v6`). |
+| `methodology`, `methodologyVersion` | Portuguese explanation and stable calculation identifier (`mass-equivalent-overview-v8`). |
 
 Money and percentages cross the JSON boundary as safe integers. Intermediate
 averages and relative changes use exact rational arithmetic. Rounding occurs only
@@ -178,13 +187,13 @@ for displayed centavos/basis points, half away from zero. Extreme percentage
 results outside JavaScript's safe integer range are `null`.
 
 The UI displays available prices separately from matched variation. Product chart
-prices use the matched panel's context averages within each shop, then equal shop
+prices use the matched panel's context averages within each retailer, then equal retailer
 weights. Without that panel, the chart explicitly labels the lowest available
 price per day and warns that changing contexts do not establish a comparable
 price change. The summary's lowest available price can differ from that chart and can
 come from an excluded context. Percentage variation averages context relatives,
 not ratios of those average price levels; they need not agree when initial prices
-differ. Every eligible shop is counted once per product regardless of context count.
+differ. Coverage counts distinct retailer locations across products and channels. Location identity is `(retailer ID, seller ID, store ID, postal code, city, state)`; unknown fields stay null and are not inferred. Listing and channel are excluded from this identity. `shopPrices.shopId` continues to identify the retailer. Retailer weights are unchanged: each retailer contributes once per product regardless of location or context count.
 
 The chart renders a single available day as a point; no change or comparison dates
 are returned. A single overview point is a reference baseline, not a measured zero
@@ -195,7 +204,7 @@ only the reference point is available; users can select a product for its prices
 The overview table displays observed changes, product/shop/context counts, the
 number of updated contexts and the actual pair-date bounds for each snapshot; it never calculates or fills values in the browser.
 
-## Methodology: observed-pairs-overview-v6
+## Methodology: mass-equivalent-overview-v8
 
 1. Select historical product assignments and source observation times inside the
    requested inclusive São Paulo dates. Do not use current listing assignments.
@@ -203,7 +212,15 @@ number of updated contexts and the actual pair-date bounds for each snapshot; it
    and channel. Unknown context fields remain unknown.
 3. Keep the existing price eligibility rules: equivalent canonical packages
    (including exact g/kg and ml/L conversion), or a single explicit kg/L/unit
-   basis without a known package. Prefer explicitly unrestricted offers per
+   basis without a known package. Generic `commodities_v2` groups compare kg offers
+   and mass-based packages per kg: `package price × 1000 / (grams × count)`.
+   Structured observation weights take precedence; a missing weight can use a
+   single explicit trailing mass in the original product title (for example,
+   `1,1kg` or `1k`) only when that source product has no structured package.
+   Approximate portions, per-unit estimates and multiple title quantities never
+   supply package weight. Unknown weights stay unavailable. Group labels omit
+   retailer brands and sale weights; source records remain unchanged.
+   Prefer explicitly unrestricted offers per
    context for the interval; otherwise accept advertised prices with unknown
    conditions, flagged as such. Explicit payment, club, coupon, installment and
    multiple-purchase restrictions remain excluded.
@@ -218,7 +235,7 @@ number of updated contexts and the actual pair-date bounds for each snapshot; it
    single available day. Its overview point is a reference zero, not a measured change.
 6. For **individual products**, fix the panel to contexts with prices at both
    effective endpoints and a strictly positive starting price. Average context
-   relatives within each shop, then shops equally. Missing intermediate prices
+   relatives within each retailer, then retailers equally. Missing intermediate prices
    keep the product chart point null without invalidating the endpoint change.
    Without an endpoint panel, show daily minimum eligible prices as context only.
 7. For the **overview and curated group overviews**, use each context's first
@@ -237,7 +254,7 @@ number of updated contexts and the actual pair-date bounds for each snapshot; it
    comparisons received a new eligible ending price on that chart date.
 9. Each context counts **once**, using its first/latest pair; do not enumerate or
    average all possible observation pairs. Average context relatives equally
-   within each shop, then shops equally per product, then products equally for
+   within each retailer, then retailers equally per product, then products equally for
    each snapshot. Use exact rational arithmetic through final presentation:
    `change = (mean of product relatives - 1) * 10000`. No daily compounding is
    performed. Different contexts can have different baseline/ending dates.
@@ -260,7 +277,8 @@ terms. Free-text descriptions do not prove unrestricted access. Package prices
 without known equivalent quantities and mixed explicit unit bases remain gaps.
 
 Changing the interval can change the product panel, daily participants, basis and conditions policy.
-Version 6 replaces version 5’s consecutive-day chain with observed first/latest
+Version 7 corrects store coverage to count retailer locations separately, including daily and included counts; price eligibility, separate location histories and retailer weighting remain unchanged. Versioned caches reject earlier coverage results.
+Version 6 replaced version 5’s consecutive-day chain with observed first/latest
 pairs evaluated by each chart date. Individual product calculations retain their
 endpoint method. Versioned cache identities reject previously calculated results.
 Historical overview results may therefore differ after this update. This
@@ -302,3 +320,15 @@ Inclusion, equal weighting, missing-data treatment and final rounding remain the
 same as the raw-observation calculation. Late data and unchanged confirmations
 invalidate their local dates atomically; an incomplete refresh does not authorize
 serving stale daily data. The public response schema is unchanged.
+
+### Overview availability during ingestion
+
+An overview can return its last persisted result while a newer revision is being
+processed (`processing: true`, optional and false when absent). Calculations,
+coverage, collection timestamps and `period` describe that saved result; no
+current observations are mixed into it. Background refresh replaces it after
+ingestion settles. The default month window may fall back to the preceding
+day's default window, including month-end clamping, with the returned `period`
+identifying the actual window. Custom periods and product groups are never
+substituted with unrelated selections. This fallback requires a saved result
+with the current methodology; a cold installation still needs its first calculation.

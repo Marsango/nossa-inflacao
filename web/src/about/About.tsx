@@ -14,7 +14,7 @@ function OverviewMethodology() {
     <h3>Como calculamos a visão geral</h3>
     <p>Em cada data do gráfico, os pares usam preços observados até aquele dia, dentro do período selecionado e no horário de Brasília. Cada contexto de compra compara seu primeiro preço elegível positivo com o último preço elegível disponível até a data, em pelo menos dois dias distintos. As datas podem ser consecutivas ou não.</p>
     <p>Comparamos o mesmo produto, anúncio, vendedor, loja, localidade e modalidade de compra, com condições e embalagens comparáveis. Cada contexto conta uma vez: coletar mais vezes não dá peso adicional a uma oferta.</p>
-    <p>Calculamos a média das variações dos contextos de cada loja, depois das lojas de cada produto e, por fim, dos produtos. Os pesos são iguais em cada nível. Não arredondamos as etapas intermediárias. O primeiro ponto é uma referência de 0%, não uma variação medida.</p>
+    <p>Calculamos a média das variações dos contextos de cada rede varejista, depois das redes de cada produto e, por fim, dos produtos. Os pesos são iguais em cada nível. Não arredondamos as etapas intermediárias. O primeiro ponto é uma referência de 0%, não uma variação medida.</p>
     <h3>Um preço no dia 1 e outro no dia 30</h3>
     <p>Se uma oferta custa R$30 no dia 1 e R$50 no dia 30, ela entra com alta de 66,67% a partir do dia 30. No dia 29, ainda há só uma observação, então ela não participa. Não usamos o preço futuro para preencher os dias anteriores.</p>
     <p>Depois do segundo preço, a comparação histórica permanece incluída. Uma nova observação elegível atualiza o último preço comparado. Se não houver preço novo no dia 31, isso não prova que o preço continuou em R$50: a tabela mantém a data real da última observação usada.</p>
@@ -29,8 +29,9 @@ function OverviewMethodology() {
 function ProductMethodology() {
   return <>
     <h3>Como calculamos o histórico de um produto</h3>
-    <p>A variação de um produto compara ofertas com preços nas duas pontas do intervalo efetivo, no mesmo contexto de compra. Cada loja tem o mesmo peso. Esse painel fica fixo e mantém lacunas intermediárias quando faltam preços.</p>
+    <p>A variação de um produto compara ofertas com preços nas duas pontas do intervalo efetivo, no mesmo contexto de compra. Cada rede varejista tem o mesmo peso. Esse painel fica fixo e mantém lacunas intermediárias quando faltam preços.</p>
     <p>O resumo mostra o menor preço disponível na última data com preço. A tabela de lojas mostra as ofertas nas duas pontas, inclusive as excluídas da variação. Sem ofertas comparáveis, o gráfico mostra o menor preço disponível por dia, sem calcular uma variação.</p>
+    <p>Frutas e outros produtos genéricos reconhecidos podem reunir anúncios de marcas e pesos diferentes. Comparamos o preço por kg usando o peso declarado e a quantidade de pacotes. Produtos orgânicos, variedades diferentes e versões como Baby ou Turma da Mônica ficam separados. Sem peso conhecido, não calculamos um preço por kg.</p>
   </>;
 }
 
@@ -41,7 +42,7 @@ function Methodology() {
     <OverviewMethodology /><ProductMethodology />
     <p>Preços com condições não informadas podem exigir requisitos não verificados. Quando isso ocorre, o histórico apresenta um aviso.</p>
     <h3>Confira a cobertura de cada consulta</h3>
-    <p>A cobertura, a última coleta e a metodologia específica aparecem junto ao histórico selecionado. Consulte “Metodologia deste histórico” abaixo do gráfico para conhecer as regras e a versão usadas no cálculo.</p>
+    <p>A cobertura conta separadamente as localidades de cada rede varejista: Pão de Açúcar no Rio de Janeiro/RJ e em São Paulo/SP contam como duas lojas. Produtos e modalidades de compra do mesmo local não multiplicam essa contagem. A última coleta e a metodologia específica aparecem junto ao histórico selecionado. Consulte “Metodologia deste histórico” abaixo do gráfico para conhecer as regras e a versão usadas no cálculo.</p>
   </section>;
 }
 

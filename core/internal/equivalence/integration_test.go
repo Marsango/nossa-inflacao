@@ -166,3 +166,15 @@ func TestRemovingAnotherMemberPreservesOwnerRepresentative(test *testing.T) {
 	fixture.require(fixture.apply("remove", 1, 0))
 	assertRepresentative(test, fixture.snapshot().Products[1], 3)
 }
+
+func TestStartupBackfillsEnabledRulesAndRespectsDeactivation(test *testing.T) {
+	fixture := newFixture(test)
+	fixture.seedLooseEvidence()
+	fixture.require(Initialize(fixture.requestContext, fixture.database))
+	assertRepresentative(test, fixture.snapshot().Products[1], 2)
+	fixture.execute(`UPDATE catalog_decisions SET generic_enabled=true`)
+	fixture.require(Initialize(fixture.requestContext, fixture.database))
+	assertRepresentative(test, fixture.snapshot().Products[1], 1)
+	fixture.require(Initialize(fixture.requestContext, fixture.database))
+	assertAuditAndCodes(fixture)
+}

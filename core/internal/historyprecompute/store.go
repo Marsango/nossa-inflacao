@@ -42,7 +42,7 @@ func (store *Store) History(requestContext context.Context, request webapi.Histo
 	if err != nil {
 		return insights.History{}, err
 	}
-	history, err := store.lookup(requestContext, request, revision)
+	history, err := store.savedHistory(requestContext, request, revision)
 	if err == nil {
 		history.RefreshFreshness(time.Now())
 		return history, nil

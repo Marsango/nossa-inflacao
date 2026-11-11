@@ -91,34 +91,60 @@ A auditoria inclui ator, horário, ação, motivo, revisão, versão da regra au
 pedido e composição anterior/posterior. Os últimos 100 registros são apresentados;
 a tabela conserva todos. A exclusão manual prevalece sobre regras automáticas.
 
-## Regras genéricas `commodities_v1`
+## Regras genéricas `commodities_v2`
 
-Somente anúncios soltos, exclusivamente por kg, sem embalagem estruturada atual
-ou histórica. Códigos divergentes são preservados e não impedem equivalência.
-Marca ausente é aceita; `Hortifruti`/`Hortifrutigranjeiros` são departamentos de
-hortifruti, `Açougue` é departamento de carnes. Outras marcas e palavras
-inesperadas exigem revisão, inclusive marcas contidas no título.
+A migração 00018 ativa as regras em instalações novas e existentes. A inicialização
+aplica as regras ao catálogo existente antes de iniciar a ingestão; as ingestões
+seguintes continuam agrupando os elegíveis. A desativação explícita posterior continua disponível e
+exclusões manuais sempre prevalecem.
+
+São aceitas ofertas por kg e pacotes com peso em g/kg, incluindo a contagem de
+componentes. Marcas de hortifruti, como `GERAL`, `Direto do Produtor` e `Hortifruti`,
+não determinam identidade. No título, marcas informadas e os rótulos conhecidos
+Santome, Taeq, RDU e Qualyban são ignorados. A regra consome todas as palavras;
+termos desconhecidos continuam exigindo revisão. Nas carnes, marcas ausentes e
+rótulos genéricos (`Açougue`, `Bovino in Natura`,
+`GERAL`, `Bandeiras`, `Direto do Produtor`) não mudam a identidade. Marcas comerciais
+continuam separadas; pacotes de pesos diferentes da mesma marca podem ser unidos.
+Códigos divergentes são preservados.
 
 Variedades suportadas: banana maçã, prata, terra e nanica/caturra (incluindo
 “Caturra/Nanica”); batata sem variedade e inglesa separadamente; tomate sem
 variedade, italiano e cereja separadamente; cebola sem variedade e roxa
-separadamente; cenoura. Cortes: patinho, coxão mole/chã de dentro e coxão
- duro/chã de fora. Preparações de carne não informada, inteira, bife, tiras,
-cubos e moída são distintas. Orgânico, fresco e congelado são atributos
-distintos; fresco e congelado juntos invalidam o reconhecimento.
+separadamente; cenoura. Cortes: acém, miolo de acém, picanha bovina e suína
+(separadas), músculo, patinho,
+coxão mole/chã de dentro e coxão duro/chã de fora. Carne moída sem corte informado
+fica separada de acém ou patinho moídos; carne moída bovina explícita também fica
+separada de carne moída sem espécie declarada. Preparações não informada, inteira,
+pedaço/peça, bife, tiras, cubos e moída são distintas. Com osso, sem osso e osso
+não informado ficam separados. Orgânico, Angus, fresco, resfriado e congelado são
+atributos distintos; conservação incompatível ou “com osso” junto com “sem osso”
+invalidam o reconhecimento. Temperos, pratos prontos, linguiças e sabores de
+picanha não estabelecem identidade com o corte.
 
-Não se infere variedade, preparação ou estado de conservação. Preparações
-processadas, temperos, bandejas, maços, unidades, pesos declarados e termos não
-reconhecidos ficam fora da união automática. Alface ambígua e produtos Nescafé
-não são pré-aprovados. A lista inicial é deliberadamente explícita; ampliar
-regras exige nova versão, testes e revisão da prévia.
+Não se infere variedade, preparação ou estado de conservação. Orgânico (incluindo
+`Org`), Baby e Turma da Mônica permanecem em grupos próprios. Bandeja (`Bdj`), granel,
+“fruta”, pesos no título e estimativas de contagem entre parênteses não criam uma
+variante. Processados, temperos, maços, preços por unidade e termos desconhecidos
+ficam fora da união automática. Alface ambígua e produtos Nescafé não são
+pré-aprovados. Marcas não mudam a identidade de uma fruta reconhecida.
 
 Os históricos e a visão global resolvem a composição atual antes dos cálculos.
-Não reescrevem `products`, códigos, `shop_products` nem a atribuição histórica das
-observações. Uma união muda a unidade de agregação da visão global para o grupo;
-anúncios e condições conservam seus próprios fluxos. Nenhuma conversão de preço
-por pacote para kg é feita. A busca pública consulta nomes de todos os membros e
-retorna uma linha por representante, preservando a exigência de cobertura.
+Não reescrevem nomes originais de `products`, códigos, `shop_products`, preços,
+pesos observados nem a atribuição histórica das observações. A associação guarda
+um nome genérico (sem marca no hortifruti) e a base `kg`. Pacotes são convertidos
+por `preço × 1000 / (gramas × contagem)`, com aritmética decimal e arredondamento
+apenas na saída. Uma massa única, explícita e no fim do título original, como
+`1,1kg` ou `1k`, pode suprir um peso ausente quando o produto original não tem
+embalagem estruturada. Estimativas, pesos por unidade e títulos com múltiplas
+quantidades não suprem esse peso. Peso desconhecido não vira zero.
+
+Uma união muda a unidade de agregação da visão global para o grupo; anúncios,
+localidades e condições conservam seus próprios fluxos. A busca consulta todos os
+membros e retorna uma linha por representante, com nome neutro para grupos
+genéricos. O histórico usa preços por kg e mantém a exigência de condições
+comparáveis e cobertura. A mesma conversão é aplicada aos dados brutos e aos
+resumos diários; a versão de metodologia invalida resultados antigos em cache.
 
 ## Coletores
 

@@ -11,7 +11,7 @@ import (
 const overviewMethodology = "A visão geral mostra a média das variações já observadas até cada data, no horário de Brasília. " +
 	"Cada contexto compara seu primeiro preço elegível positivo no intervalo com o último preço elegível observado até a data, em pelo menos dois dias distintos, consecutivos ou não. " +
 	"Exige o mesmo produto, anúncio, vendedor, loja, localidade e modalidade de compra. Cada contexto conta uma vez. " +
-	"Calcula a média das variações dos contextos por loja, das lojas por produto e dos produtos, com pesos iguais em cada nível, sem arredondar etapas intermediárias. " +
+	"Calcula a média das variações dos contextos por rede varejista, das redes por produto e dos produtos, com pesos iguais em cada nível, sem arredondar etapas intermediárias. " +
 	"A primeira data é uma referência de 0%, não uma variação medida. Antes do segundo preço de um contexto, ele fica fora do cálculo; preços futuros não preenchem datas anteriores. " +
 	"Após o segundo preço, a comparação histórica continua incluída até uma nova observação elegível atualizar seu resultado. Isso não afirma que o preço permaneceu igual nos dias sem coleta. " +
 	"A cobertura por data informa os participantes, os limites das datas realmente comparadas e quantos contextos receberam um novo preço elegível naquele dia. " +

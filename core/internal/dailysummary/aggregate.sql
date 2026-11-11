@@ -21,7 +21,7 @@ daily_source AS (
         coalesce(array_agg(DISTINCT price_basis::text) FILTER (WHERE price_basis IS NOT NULL), ARRAY[]::text[]) AS price_bases,
         bool_or(strict_conditions) IS TRUE AS known_conditions,
         coalesce(jsonb_agg(DISTINCT package_shape) FILTER (WHERE relaxed_conditions AND amount IS NOT NULL
-            AND price_basis='package' AND package_quantity IS NOT NULL),'[]'::jsonb) AS eligible_packages,
+            AND price_basis='package'),'[]'::jsonb) AS eligible_packages,
         bool_or(relaxed_conditions AND amount IS NOT NULL AND price_basis='kg') IS TRUE AS eligible_kg,
         bool_or(relaxed_conditions AND amount IS NOT NULL AND price_basis='l') IS TRUE AS eligible_l,
         bool_or(relaxed_conditions AND amount IS NOT NULL AND price_basis='unit') IS TRUE AS eligible_unit

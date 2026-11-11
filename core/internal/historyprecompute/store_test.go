@@ -70,16 +70,18 @@ func requestForTest() webapi.HistoryRequest {
 
 func TestPersistedResultsSurviveRestartAndRejectOldRevision(test *testing.T) {
 	fixture := newFixture(test)
-	first, err := fixture.store.History(fixture.requestContext, requestForTest())
+	request := requestForTest()
+	request.Product = "123"
+	first, err := fixture.store.History(fixture.requestContext, request)
 	requireSuccess(test, err)
 	restarted := New(fixture.database, fixture.source)
-	second, err := restarted.History(fixture.requestContext, requestForTest())
+	second, err := restarted.History(fixture.requestContext, request)
 	requireSuccess(test, err)
 	if first.Title != second.Title || fixture.source.calls != 1 {
 		test.Fatal("restart recalculated saved history")
 	}
 	fixture.execute(`UPDATE catalog_decisions SET revision=revision+1`)
-	third, err := restarted.History(fixture.requestContext, requestForTest())
+	third, err := restarted.History(fixture.requestContext, request)
 	requireSuccess(test, err)
 	if third.Title == first.Title || fixture.source.calls != 2 {
 		test.Fatal("stale revision was served")

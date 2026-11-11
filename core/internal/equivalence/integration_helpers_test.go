@@ -18,6 +18,7 @@ type fixture struct {
 func newFixture(test *testing.T) fixture {
 	requestContext, pool := testdatabase.New(test, database.Open, database.Migrate)
 	fixture := fixture{test, requestContext, pool}
+	fixture.execute(`UPDATE catalog_decisions SET generic_enabled=false`)
 	fixture.execute(`INSERT INTO products(name,brand,gtin) VALUES('Banana Maçã Kg','Hortifruti','12345670'),('Banana Maca Kg',NULL,'12345671'),('Banana Maçã Kg',NULL,'12345672')`)
 	return fixture
 }

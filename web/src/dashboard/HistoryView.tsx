@@ -64,6 +64,7 @@ function Context({ history }: { history: History }) {
 function HistoryContent({ history, period }: { history: History; period: Period }) {
   const availability = availabilityExplanation(history, period);
   return <>
+    {history.processing && <p className="notice" role="status">Os dados mais recentes estão sendo processados. Exibindo a última visão geral disponível: {formatDate(history.period.start)} a {formatDate(history.period.end)}. O período e a amostra podem diferir da seleção atual.</p>}
     {history.stale && <p className="notice" role="status">Dados desatualizados. A última coleta disponível pode não refletir os preços atuais.</p>}
     {history.changeBasisPoints === null && <p className="notice" role="status" id="variation-explanation">{variationExplanation(history)}</p>}
     {history.counts.pricedDays > 0 && <Chart history={history} />}
@@ -80,6 +81,6 @@ export function HistoryView({ state, period, retry }: { state: LoadState; period
   return <section className="history" aria-labelledby="history-title">
     <div className="history-top"><div className="history-heading"><h2 id="history-title">{state.history.title}</h2>
       <p>{formatDate(period.start)} a {formatDate(period.end)}</p></div><Summary history={state.history} /></div>
-    <HistoryContent history={state.history} period={period} />
+    <HistoryContent history={state.history} period={state.history.processing ? state.history.period : period} />
   </section>;
 }

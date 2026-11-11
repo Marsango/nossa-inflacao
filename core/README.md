@@ -363,7 +363,7 @@ The core exposes public read-only `GET /api/v1/products` (cursor-paginated canon
 variants) and `GET /api/v1/history?product=global&start=YYYY-MM-DD&end=YYYY-MM-DD`
 (use a canonical product ID for individual history). See the [versioned web API
 contract](../docs/contracts/web/v1/README.md) for response fields, units, date
-boundaries, errors and `observed-pairs-overview-v6` methodology. The browser never needs a
+boundaries, errors and `mass-equivalent-overview-v8` methodology. The browser never needs a
 scraper token; ingestion and monitoring routes retain their authentication.
 
 `GET /api/v1/groups` lists the curated Cesta básica, Hortifruti, Doces and Carnes
@@ -458,11 +458,20 @@ remain immutable. The default representative is the lowest member ID; the owner
 can select another. Group changes serialize with ingestion and stale reviews fail.
 
 The [admin API and rule documentation](../docs/contracts/web/v1/admin.md) describes
-Portuguese review, exact/fuzzy branded suggestions, conservative `commodities_v1`
-automation, reversals and authentication. Generic grouping starts disabled: preview
-and explicitly activate it from `/admin` after backup and source review. The
-worker applies enabled rules within each ingestion transaction. No scraper contract
-or package-to-kg conversion changes are introduced.
+Portuguese review, exact/fuzzy branded suggestions, `commodities_v2`
+automation, reversals and authentication. Migration 00018 enables generic grouping
+on fresh installs and upgrades; subsequent explicit deactivation remains supported.
+Startup backfills existing eligible products before starting the worker, which applies
+the rules to future observations. Produce brands are ignored, while varieties,
+organic claims, Baby and Turma da Mônica remain distinct. Meat rules cover acém,
+miolo de acém, picanha, músculo, patinho, coxão and generic ground meat, preserving
+cut, species, preparation, bone status, refrigeration claims and commercial brand.
+Retailer department labels do not split meat groups. Recognized generic groups
+use a neutral label and prices per kg, including exact package mass and counts.
+A single unambiguous trailing title mass can supply a missing package weight;
+approximate portions and unknown unit weights cannot. Original catalog metadata,
+observed quantities, listing identities and source prices are preserved. Grouping
+loads relevant catalog evidence once per transaction and retains manual exclusions.
 
 ### Sparse history reads and persistent precomputation
 
@@ -478,8 +487,12 @@ deadlines remain ten seconds.
 
 A persisted layer beneath the memory cache saves complete calculated selections
 in `history_precomputations`. Keys include the complete request and methodology;
-results are usable only at their committed catalog revision. They survive process
-restarts and memory-cache expiry. Freshness is recomputed when serving a result.
+results are current only at their committed catalog revision. They survive process
+restarts and memory-cache expiry. Overviews can serve the last saved result with
+`processing: true` while background refresh catches up, preserving its original
+period, coverage and timestamps. A default month window can borrow the preceding
+day’s default window; custom windows and curated groups remain isolated. This
+requires an existing saved result under the current methodology. Freshness is recomputed when serving a result.
 Calculations that overlap a revision change cannot publish under the new revision.
 Failures are not saved. Results larger than 1 MiB are returned without persistence.
 Unused selections expire after seven days, and periodic pruning retains the 100

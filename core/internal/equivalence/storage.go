@@ -5,6 +5,9 @@ import (
 	"database/sql"
 	"encoding/json"
 	"sort"
+	"strings"
+
+	"inflacao-real/core/internal/catalog"
 )
 
 const productSQL = `SELECT jsonb_build_object('id',p.id,'name',p.name,'brand',p.brand,'barcode',p.gtin,
@@ -16,10 +19,34 @@ const productSQL = `SELECT jsonb_build_object('id',p.id,'name',p.name,'brand',p.
  'lastObserved',(SELECT to_char(max(observed_at) AT TIME ZONE 'UTC','YYYY-MM-DD"T"HH24:MI:SS"Z"') FROM price_observations WHERE product_id=p.id),
  'observations',(SELECT count(*) FROM price_observations WHERE product_id=p.id),
  'listings',COALESCE((SELECT jsonb_agg(jsonb_build_object('name',s.name,'brand',s.brand,'barcode',s.gtin,'url',s.product_url,'shop',s.shop_id) ORDER BY s.id) FROM shop_products s WHERE s.product_id=p.id),'[]'))
- FROM products p ORDER BY p.id`
+ FROM products p`
 
 func Load(requestContext context.Context, database queryer) ([]Product, error) {
-	rows, err := database.QueryContext(requestContext, productSQL)
+	return loadProducts(requestContext, database, "")
+}
+
+func loadCommodities(requestContext context.Context, database queryer) ([]Product, error) {
+	words := []string{}
+	for _, rule := range commodityRules {
+		words = append(words, commoditySearchTerms(rule)...)
+	}
+	filter := ` WHERE equivalent_product_id(p.id) IN (SELECT equivalent_product_id(id)
+ FROM products WHERE search_document @@ to_tsquery('simple',$1))`
+	return loadProducts(requestContext, database, filter, strings.Join(words, " | "))
+}
+
+func commoditySearchTerms(rule commodityRule) []string {
+	words := []string{}
+	for _, alias := range rule.aliases {
+		normalized := catalog.NormalizeText(alias)
+		terms := strings.Fields(normalized)
+		words = append(words, terms[0])
+	}
+	return words
+}
+
+func loadProducts(requestContext context.Context, database queryer, filter string, arguments ...any) ([]Product, error) {
+	rows, err := database.QueryContext(requestContext, productSQL+filter+` ORDER BY p.id`, arguments...)
 	if err != nil {
 		return nil, err
 	}
@@ -172,7 +199,17 @@ func bucketCandidates(buckets map[string][]Product, product Product, exclusions 
 	if key == "" {
 		return nil
 	}
-	_, automatic := discoverFor(product, buckets[key], exclusions)
+	automatic := []Candidate{}
+	for _, other := range buckets[key] {
+		automatic = appendCommodityCandidate(automatic, product, other, key, exclusions)
+	}
 	buckets[key] = append(buckets[key], product)
 	return automatic
+}
+
+func appendCommodityCandidate(candidates []Candidate, first, second Product, key string, exclusions map[[2]int64]bool) []Candidate {
+	if first.Representative == second.Representative || excludedGroups(first, second, exclusions) {
+		return candidates
+	}
+	return append(candidates, Candidate{First: first.ID, Second: second.ID, Kind: "generic", Reason: key, Differences: []string{}})
 }
