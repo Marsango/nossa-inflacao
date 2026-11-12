@@ -23,7 +23,7 @@ Choose the method per shop rather than requiring every collector to launch a bro
 ## Implementation patterns
 
 - Isolate each shop's selectors, pagination rules, and source-specific parsing in its own module or package.
-- Register each shop's `Adapter` in `src/inflacao_scrapers/adapters/registry.py`. Use a shop-specific subclass of shared settings and shared `ParsedPage` results. The runner executes enabled `[[scrapers]]` entries sequentially with isolated clients and queues; adapters must not implement their own batching or delivery.
+- Register each shop's `Adapter` in `src/inflacao_scrapers/adapters/registry.py`. Use a shop-specific subclass of shared settings and shared `ParsedPage` results. The runner executes collection and delivery with bounded concurrency and isolated clients and queues; adapters must not implement their own batching or delivery. Browser adapters must hold `execution.browser.browser_session` for the entire browser lifetime, including cleanup, to protect Botasaurus's process-wide state.
 - Separate fetching, parsing, and submission. Parsing should accept saved source data and return observations without network calls, making page changes easy to diagnose and test.
 - Use a common pipeline: collection → parsing → Pydantic validation → bounded batching → durable delivery to the core. Shop adapters should not implement their own submission clients.
 - Share HTTP configuration and the core API client where behavior is common. Introduce shared extraction abstractions only after multiple shops demonstrate the need.

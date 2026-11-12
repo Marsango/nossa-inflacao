@@ -81,6 +81,25 @@ spool_path="data/../data/shared.sqlite3"
         load_configurations(path)
 
 
+def test_observation_spool_cannot_collide_with_another_diagnostic_spool(tmp_path):
+    path = write_config(tmp_path, '''[[scrapers]]
+scraper_id="first"
+spool_path="shared.sqlite3"
+[[scrapers]]
+scraper_id="second"
+spool_path="shared.sqlite3.diagnostics"
+''')
+    with pytest.raises(ValueError, match="including diagnostics"):
+        load_configurations(path)
+
+
+@pytest.mark.parametrize("value", ["0", "9", "-1", '"2"', "true", "2.5"])
+def test_invalid_worker_limits_are_rejected_before_execution(tmp_path, value):
+    path = write_config(tmp_path, f'[runner]\nmax_workers={value}\n[[scrapers]]\nenabled=false\n')
+    with pytest.raises(ValueError, match="max_workers"):
+        load_configurations(path)
+
+
 def test_legacy_config_retains_original_queue_location(tmp_path):
     path = write_config(tmp_path, 'scraper_id="existing"\n')
     settings = load_configurations(path)
@@ -161,7 +180,7 @@ def test_capital_schedules_preserve_collector_and_isolate_spools():
     path = Path(__file__).parents[2] / "scrapers.example.toml"
     settings = load_configurations(path)
     additions = [
-        setting for setting in settings[8:] if setting.adapter not in {"atacadao", "carrefour"}
+        setting for setting in settings[8:] if setting.adapter in {"pao-de-acucar", "angeloni"}
     ]
     assert len(additions) == 11
     assert all(setting.enabled for setting in additions)

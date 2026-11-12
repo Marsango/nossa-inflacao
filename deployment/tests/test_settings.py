@@ -37,14 +37,14 @@ class ConfigurationUpgradeTests(unittest.TestCase):
             updated = synchronize(directory, EXISTING)
         self.assertTrue(updated.startswith(EXISTING.rstrip()))
         entries = tomllib.loads(updated)["scrapers"]
-        self.assertEqual(len(entries), 54)
+        self.assertEqual(len(entries), 57)
         self.assertEqual(entries[0]["spool_path"], "data/original.sqlite3")
         self.assertEqual(entries[0]["request_interval_seconds"], 2.0)
         self.assertFalse(entries[1]["enabled"])
         self.assertEqual(entries[1]["spool_path"], "data/custom-pao.sqlite3")
         self.assertEqual({entry["adapter"] for entry in entries}, {
             "super-muffato", "angeloni", "festval", "pao-de-acucar",
-            "mambo", "hirota", "sonda", "nagumo", "atacadao", "carrefour"})
+            "mambo", "hirota", "sonda", "nagumo", "atacadao", "carrefour", "gbarbosa"})
 
     def test_repeated_upgrade_does_not_duplicate_collectors(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -57,6 +57,16 @@ class ConfigurationUpgradeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             updated = synchronize(directory, template)
         self.assertEqual(updated, template)
+        self.assertEqual(tomllib.loads(updated)["runner"]["max_workers"], 2)
+
+    def test_upgrade_preserves_explicit_sequential_execution(self):
+        original = "[runner]\nmax_workers = 1\n\n" + EXISTING
+        with tempfile.TemporaryDirectory() as directory:
+            updated = synchronize(directory, original)
+            repeated = synchronize(directory, updated)
+        self.assertEqual(tomllib.loads(updated)["runner"]["max_workers"], 1)
+        self.assertTrue(updated.startswith(original.rstrip()))
+        self.assertEqual(updated, repeated)
 
     def test_invalid_existing_configuration_is_not_replaced(self):
         with tempfile.TemporaryDirectory() as directory:

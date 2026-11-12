@@ -120,8 +120,11 @@ def test_one_blocked_capital_does_not_prevent_the_other_ingesting(tmp_path, monk
 def test_two_capitals_keep_failed_submission_bytes_and_spools_separate(tmp_path, monkeypatch):
     status, submissions = execute(tmp_path, monkeypatch, fail_delivery=True)
     assert status == 1 and len(submissions) == 2
-    for context, attempted in zip(selected_contexts(), submissions, strict=True):
-        assert_saved_context(tmp_path, context, attempted)
+    contexts = {context["settings"]["state"]: context for context in selected_contexts()}
+    for attempted in submissions:
+        document = json.loads(attempted)
+        state = document["observations"][0]["context"]["state"]
+        assert_saved_context(tmp_path, contexts[state], attempted)
     assert len({json.loads(body)["submission_id"] for body in submissions}) == 2
 
 

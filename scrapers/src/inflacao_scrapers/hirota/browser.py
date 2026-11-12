@@ -2,12 +2,18 @@
 
 import time
 
+from ..execution.browser import browser_session
 from .config import API_BASE, CATALOG_PREFIX
 
 HEADER_NAMES = {"authorization", "sessao-id", "domainkey", "organizationid"}
 
 
 def bootstrap_session(settings) -> dict[str, str]:
+    with browser_session:
+        return isolated_session(settings)
+
+
+def isolated_session(settings) -> dict[str, str]:
     try:
         from botasaurus.browser import browser
     except ImportError as error:

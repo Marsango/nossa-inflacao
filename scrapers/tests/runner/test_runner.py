@@ -6,9 +6,10 @@ from inflacao_scrapers.delivery import Spool
 
 
 def submissions(execution):
-    return [
+    documents = [
         json.loads(request.content) for request in execution.requests if request.method == "POST"
     ]
+    return sorted(documents, key=lambda document: document["shop_id"], reverse=True)
 
 
 def test_registered_adapters_run_with_independent_settings_and_provenance(run_scrapers, tmp_path):
@@ -102,7 +103,10 @@ def test_delivery_failure_saves_only_failed_scraper_and_continues(run_scrapers, 
     path = tmp_path / "data/super-muffato/muffato-test/spool.sqlite3"
     assert execution.status == 1
     assert len(submissions(execution)) == 2
-    attempted = [request for request in execution.requests if request.method == "POST"]
+    attempted = [
+        request for request in execution.requests
+        if request.method == "POST" and json.loads(request.content)["shop_id"] == "super-muffato"
+    ]
     with Spool(path) as spool:
         assert spool.status()[0] == 1
         assert next(spool.pending())[1] == attempted[0].content

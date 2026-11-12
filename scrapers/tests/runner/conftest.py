@@ -97,32 +97,35 @@ class Execution:
     requests: list
     clients: list
     configuration_path: Path
+    reports: list
 
 
-@pytest.fixture
-def run_scrapers(tmp_path, monkeypatch, source_bytes, observation, additional_adapter):
+@pytest.fixture(params=[1, 2], ids=["sequential", "parallel"])
+def run_scrapers(request, tmp_path, monkeypatch, source_bytes, observation, additional_adapter):
     monkeypatch.setenv("INGESTION_TOKEN", "default-secret")
     monkeypatch.setenv("MUFFATO_TOKEN", "muffato-secret")
     monkeypatch.setenv("FIXTURE_TOKEN", "fixture-secret")
 
     def execute(configuration=None, command="collect", failures=None):
         path = tmp_path / "config.toml"
-        path.write_text(configuration or MUFFATO_CONFIGURATION + ADDITIONAL_CONFIGURATION)
-        requests, clients = [], []
-        handler = recording_handler(requests, source_bytes, observation, failures or {})
+        content = configuration or MUFFATO_CONFIGURATION + ADDITIONAL_CONFIGURATION
+        path.write_text(f"[runner]\nmax_workers={request.param}\n" + content)
+        requests, clients, reports = [], [], []
+        handler = recording_handler(requests, source_bytes, observation, failures or {}, reports)
         install_clients(monkeypatch, handler, clients)
         arguments = ["scraper", "--config", str(path), command]
         if command == "discover":
             arguments.extend(["--query", "arroz", "--limit", "10"])
         monkeypatch.setattr(sys, "argv", arguments)
-        return Execution(cli.main(), requests, clients, path)
+        return Execution(cli.main(), requests, clients, path, reports)
 
     return execute
 
 
-def recording_handler(requests, source_bytes, observation, failures):
+def recording_handler(requests, source_bytes, observation, failures, reports):
     def handler(request):
         if request.url.path == "/api/v1/ingestion/scraper-reports":
+            reports.append(json.loads(request.content))
             return httpx.Response(201)
         requests.append(request)
         return response_for(request, source_bytes, observation, failures)

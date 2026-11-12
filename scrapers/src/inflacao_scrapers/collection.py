@@ -11,6 +11,7 @@ from .delivery import batches
 from .delivery.client import DeliveryTarget
 from .delivery.immediate import DeliveryFailure, ImmediateDelivery
 from .diagnostics.report import record
+from .execution.output import write_line
 from .history_refresh import request_history_refresh
 from .scope import fetch_scope
 from .transport import RequestFailure
@@ -31,12 +32,12 @@ class CollectionRun:
     seen: set[str] = field(default_factory=set)
 
     def issue(self, message: str) -> None:
-        print(f"run_id={self.identity} {message}", file=sys.stderr)
+        write_line(f"run_id={self.identity} {message}", file=sys.stderr)
         self.failures += 1
         record(self, "error", message)
 
     def warning(self, message: str) -> None:
-        print(f"run_id={self.identity} warning: {message}", file=sys.stderr)
+        write_line(f"run_id={self.identity} warning: {message}", file=sys.stderr)
         self.warnings += 1
         record(self, "warning", message)
 
@@ -51,7 +52,7 @@ class CollectionRun:
         return True
 
     def finish(self) -> int:
-        print(
+        write_line(
             f"run_id={self.identity} observations={self.observations} failures={self.failures} "
             f"warnings={self.warnings} unknown_packages={self.unknown_packages} "
             f"available_price_observations={self.available_prices} "
@@ -97,7 +98,7 @@ def unknown_package(observation) -> bool:
 def collect_scope(requester, spool_factory, settings, token: str, adapter, run=None) -> int:
     run = run or CollectionRun(adapter.name)
     scope = fetch_scope(requester, settings, token)
-    print(f"run_id={run.identity} expected_targets={len(scope.targets)}", flush=True)
+    write_line(f"run_id={run.identity} expected_targets={len(scope.targets)}", flush=True)
     if not scope.targets:
         return run.finish()
     settings = adapter.prepare(requester, settings)
@@ -173,7 +174,7 @@ def source_identity(observation) -> str:
 
 
 def report_target(run, identity: str, count: int) -> None:
-    print(f"run_id={run.identity} target={identity} matched_listings={count}", flush=True)
+    write_line(f"run_id={run.identity} target={identity} matched_listings={count}", flush=True)
     if count == 0:
         run.issue(f"target={identity}: no matching listings; coverage missing")
 

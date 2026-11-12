@@ -3,6 +3,7 @@
 import time
 from contextlib import contextmanager
 
+from ..execution.browser import browser_session
 from ..scope import normalize
 from .decoding import ReferenceTable
 
@@ -28,6 +29,11 @@ CONTEXT_SCRIPT = """return {
 
 @contextmanager
 def open_session(settings):
+    with browser_session:
+        yield from isolated_session(settings)
+
+
+def isolated_session(settings):
     driver = create_driver(settings)
     try:
         initialize_context(driver, settings)

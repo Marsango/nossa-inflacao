@@ -7,6 +7,7 @@ from typing import NoReturn
 
 import httpx
 
+from ..execution.output import write_line
 from ..models import Submission
 from ..transport import Requester, RequestFailure
 from .client import DeliveryRejected, DeliveryTarget, send_payload
@@ -30,7 +31,7 @@ class ImmediateDelivery:
             status = send_payload(self.requester, self.target, identity, payload)
         except (httpx.HTTPError, RequestFailure, DeliveryRejected) as error:
             self.save_failed(identity, payload, error)
-        print(f"accepted submission_id={identity} status={status}", flush=True)
+        write_line(f"accepted submission_id={identity} status={status}", flush=True)
 
     def save_failed(self, identity: str, payload: bytes, error: Exception) -> NoReturn:
         with self.spool_factory() as spool:

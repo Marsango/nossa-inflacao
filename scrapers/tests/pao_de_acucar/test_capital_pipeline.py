@@ -62,8 +62,11 @@ def test_failed_deliveries_remain_separate_for_two_capitals(tmp_path, monkeypatc
     monkeypatch.setattr(sys, "argv", ["scraper", "--config", str(path), "collect"])
     assert cli.main() == 1
     assert len(submissions) == 2
-    for capital, attempted in zip(CAPITALS[:2], submissions, strict=True):
-        assert_separate_spool(tmp_path, capital, attempted)
+    capitals = {capital["settings"]["state"]: capital for capital in CAPITALS[:2]}
+    for attempted in submissions:
+        document = json.loads(attempted)
+        state = document["observations"][0]["context"]["state"]
+        assert_separate_spool(tmp_path, capitals[state], attempted)
     identities = [json.loads(raw)["submission_id"] for raw in submissions]
     assert len(set(identities)) == 2
 

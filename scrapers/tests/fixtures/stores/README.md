@@ -357,6 +357,36 @@ are not asserted to be GTINs; availability and unexpressed conditions stay unkno
 Fixture replay does not establish a current delivery slot or multiple dates of
 collected price history.
 
+## GBarbosa — 11 November 2026
+
+`gbarbosa-se.json`, `gbarbosa-ba.json` and `gbarbosa-al.json` contain 22 selected
+public product records per delivery context, their exact request URLs and capture
+times, and independently fetched CEP/region mappings. JSON monetary values retain
+exact decimal numeric tokens. Irrelevant images, cart links, price tokens and
+delivery metadata are omitted; public package, offer, promotion and payment
+fields remain. No account or customer session is saved. These small parser samples
+are not complete catalogs or pagination fixtures.
+
+`gbarbosa-storefront-verification.json` contains nine sanitized rendered checks:
+rice SKU `13504`, banana SKU `6294` and beef SKU `12973` in all three contexts.
+Each browser selected delivery and the public CEP through the normal storefront
+picker, without login or cart changes. The checks preserve the storefront's
+selected regional seller, CEP, timestamp, product URL and visible price excerpt.
+Banana's 170 g and beef's 1.5 kg portions are approximate; their separately
+advertised kg prices agree with the API. Portion totals are not kg offers or fixed
+package contents. The other captured beef record has a 1.7 kg multiplier, which
+is the initial accepted bound. Source-unavailable listings have zero placeholders
+and become empty offers. Unknown conditions remain unknown. Synthetic promotion,
+missing-price, unsupported-portion and pagination cases are labeled in tests and
+do not claim additional live evidence.
+
+`gbarbosa-submission.json` is shared-batcher output for those nine verified
+product/context combinations. The Go web-history integration test replays it on
+two synthetic local dates using a fresh migrated PostgreSQL Testcontainer. It
+checks product eligibility, separate regional contexts, exact money, null fixed
+package contents for kg offers, and unknown price conditions. This verifies
+persistence and presentation, not two dates of actual scheduled collection.
+
 `atacadao-stock.json` captures the storefront's anonymous, read-only stock
 simulation for Vila Maria rice SKU 13743 and banana SKU 41986. Both explicitly
 return `availability=available` for seller `atacadaobr60`. Only stock is used;

@@ -12,6 +12,7 @@ from .collection import CollectionRun, collect_scope
 from .config import Settings
 from .delivery import Spool, deliver
 from .diagnostics.delivery import complete, diagnostic_spool, try_replay
+from .execution.output import write_line
 from .history_refresh import request_history_refresh
 from .transport import Requester
 
@@ -42,7 +43,7 @@ def create_spool(settings: Settings, arguments) -> Spool:
 def status_command(settings: Settings, arguments, adapter) -> int:
     with create_spool(settings, arguments) as spool:
         count, size = spool.status()
-        print(f"pending_batches={count} payload_bytes={size}")
+        write_line(f"pending_batches={count} payload_bytes={size}")
     return 0
 
 
@@ -56,11 +57,11 @@ def discover_command(settings: Settings, arguments, adapter) -> int:
 
 def report_discovery(page) -> int:
     for observation in page.observations:
-        print(json.dumps(observation.summary(), ensure_ascii=False))
+        write_line(json.dumps(observation.summary(), ensure_ascii=False))
     for issue in page.issues:
-        print(issue, file=sys.stderr)
+        write_line(issue, file=sys.stderr)
     for warning in page.warnings:
-        print(f"warning: {warning}", file=sys.stderr)
+        write_line(f"warning: {warning}", file=sys.stderr)
     return int(bool(page.issues))
 
 
@@ -77,7 +78,7 @@ def deliver_command(settings: Settings, arguments, adapter) -> int:
         )
         token = os.environ.get(settings.ingestion_token_env, "")
         request_history_refresh(requester, settings, token)
-    print(f"accepted_batches={count}; background processing must be checked in core")
+    write_line(f"accepted_batches={count}; background processing must be checked in core")
     return 0
 
 
@@ -89,11 +90,18 @@ def collect_command(settings: Settings, arguments, adapter) -> int:
 
 def monitored_collection(requester, settings, arguments, adapter):
     run = CollectionRun(adapter.name)
+    write_line(
+        f"run_id={run.identity} scraper_id={settings.scraper_id} shop_id={settings.shop_id} "
+        f"schedule_id={settings.schedule_id or 'default'}", flush=True,
+    )
     token = os.environ.get(settings.ingestion_token_env, "")
     try:
         spool = diagnostic_spool(settings, arguments)
     except (OSError, sqlite3.Error, ValueError):
-        print("Diagnostic queue unavailable; collection cannot be monitored", file=sys.stderr)
+        write_line(
+            f"run_id={run.identity} Diagnostic queue unavailable; collection cannot be monitored",
+            file=sys.stderr, flush=True,
+        )
         execute_collection(requester, settings, arguments, adapter, token, run)
         return 1
     with spool:

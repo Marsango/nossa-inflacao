@@ -306,9 +306,26 @@ New adapters are enabled by default in the template; an existing `enabled = fals
 entry stays disabled until explicitly changed.
 
 The scheduler uses `COLLECTION_TIME` from `production.env` (default `09:00`) in
-`America/Sao_Paulo`. Collectors run sequentially, starting at that time; they do
-not all start simultaneously. Deploying after the scheduled time waits until the
-next day. `./deploy collect` remains the explicit immediate-collection command.
+`America/Sao_Paulo`. Collection starts at that time with at most two scraper
+workers by default. Deploying after the scheduled time waits until the next day.
+`./deploy collect` remains the explicit immediate-collection command.
+
+The worker limit applies to scheduled collection and manual `collect`/`deliver`.
+It takes effect on existing VPS configurations after `git pull` and `./deploy up`
+without rewriting their settings. To tune it, add `[runner]` with
+`max_workers = 2` before the first `[[scrapers]]` in the persisted
+`${NOSSA_CONFIG_DIR:-/etc/nossa-inflacao}/scrapers.toml`; integers `1` through `8`
+are accepted. `1` restores sequential execution. Explicit limits, disables,
+collector identities, tokens and spool paths survive synchronization.
+
+Browser sessions remain limited to one at a time, including profile cleanup;
+HTTP collectors can run alongside them. Each entry retains independent clients,
+cookies, pacing, retries, observation queues and diagnostic queues. Worker logs
+include schedule IDs and elapsed seconds, followed by an aggregate failure count.
+The scheduler waits for all workers before scheduling another run. Use
+`docker stats --no-stream` during a representative collection to assess container
+memory and CPU before raising the limit; offline smoke measurements do not predict
+live catalog or VPS resource needs. See the [runner documentation](../scrapers/README.md#shared-runner-and-adapter-registration).
 
 ### History precomputation upgrade
 
@@ -391,3 +408,25 @@ default prices.
 Configured scheduling is distinct from a deployed/running scheduler: after
 updating, check city-specific reports and persisted observations for evidence
 of actual scheduled ingestion.
+
+### GBarbosa delivery collection
+
+Three enabled `gbarbosa-<uf>` schedules collect the retailer's own regional grocery
+catalogs for Aracaju/SE, Salvador/BA and Maceió/AL. Each resolves its configured CEP
+and expected local seller before fetching prices, and has a separate durable
+spool. The existing collector identity and ingestion token are reused. The shared
+national/electronics seller alone does not qualify another city for grocery
+collection. See [verified contexts and price limitations](../scrapers/README.md#gbarbosa-delivery-collection).
+
+For an existing VPS, `git pull` followed by `./deploy up` appends missing GBarbosa
+entries to `${NOSSA_CONFIG_DIR:-/etc/nossa-inflacao}/scrapers.toml` before recreating
+the scheduler. Deployment registers `gbarbosa` and includes it in the core's
+ingestion allowlist. Synchronization preserves existing entries, custom settings,
+collector identity, private core URL, token variable, spool paths and explicit
+per-context disables. Fresh installation and repeated-upgrade checks cover the
+same template; no migration, service, browser or additional secret is needed.
+
+Workspace and VPS smoke checks establish source extraction, not deployed
+scheduling or persisted history. After rollout, inspect per-city collection and
+ingestion reports and persisted observations. Do not infer healthy collection
+from the presence of enabled configuration entries alone.

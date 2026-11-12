@@ -11,6 +11,7 @@ from ..adapters.catalog import (
     collect_categories,
     describe_page,
 )
+from ..execution.output import write_line
 from .offers import CONTEXT_NOTE
 from .pages import CatalogChanged, category_path, category_paths, parse_listing, product_identity
 from .parsing import parse_cards
@@ -95,5 +96,5 @@ def check_identities(cards, seen):
 
 
 def prepare(requester, settings):
-    print(f"shop=sonda: {CONTEXT_NOTE}", flush=True)
+    write_line(f"shop=sonda: {CONTEXT_NOTE}", flush=True)
     return settings

@@ -1,7 +1,26 @@
 """Read-only runtime smoke using disposable Testcontainers, never application databases."""
+import json
 import os
+from pathlib import Path
 
 import pytest
+
+
+def test_parallel_runner_resources_and_browser_isolation(scraper_browser):
+    script = Path(__file__).with_name("parallel_runtime.py").read_text()
+    results = [runner_measurement(scraper_browser, script, workers) for workers in (1, 2)]
+    print(json.dumps(results, indent=2))
+    assert [result["workers"] for result in results] == [1, 2]
+    assert all(result["peak_browsers"] == 1 for result in results)
+
+
+def runner_measurement(container, script, workers):
+    exit_code, output = container.exec(["python", "-c", script, str(workers)])
+    assert exit_code == 0, output.decode()
+    lines = output.decode().splitlines()
+    metrics = next(line.removeprefix("RUNTIME_METRICS ") for line in lines
+                   if line.startswith("RUNTIME_METRICS "))
+    return json.loads(metrics)
 
 
 def test_browser_starts_as_collector_without_cache_or_exports(scraper_browser):

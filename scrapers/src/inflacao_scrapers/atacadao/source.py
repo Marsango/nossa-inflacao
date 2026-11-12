@@ -5,6 +5,7 @@ import json
 import re
 from uuid import uuid4
 
+from ..execution.output import write_line
 from ..scope import normalize
 from ..vtex.json import decode_response
 
@@ -39,7 +40,7 @@ def branch_document(raw):
 
 
 def prepare_context(requester, settings):
-    print(
+    write_line(
         f"shop=atacadao schedule_id={settings.schedule_id} city={settings.city} "
         f"state={settings.state} store_id={settings.store_id} preparing",
         flush=True,

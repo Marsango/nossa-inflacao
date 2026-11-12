@@ -9,6 +9,8 @@ Atacadão has independently scheduled online branch catalogs in 22 capitals;
 see [Atacadão capital branches](#atacadão-capital-branches) for coverage and blockers.
 Carrefour has verified delivery-region catalogs in 13 capitals; see
 [Carrefour delivery collection](#carrefour-delivery-collection).
+GBarbosa uses its own regional VTEX catalog in Aracaju, Salvador and Maceió;
+see [GBarbosa delivery collection](#gbarbosa-delivery-collection).
 Hirota and Pão de Açúcar use their own public APIs. Sonda reads its public HTML catalog with fulfillment context explicitly unknown;
 see [São Paulo setup, evidence and limitations](../docs/plans/sao-paulo-retailers.md).
 The core supplies brand-independent
@@ -34,8 +36,9 @@ These groups are not a statistically representative inflation basket.
 | `nagumo` | Vila Curuçá pickup, São Paulo/SP, store `13`, branch CEP `08030040` | Public HTTP searches filtered by core targets; ordinary/member offers and advertised kg prices |
 | `atacadao` | Explicit branch and seller, independently verified every run; online catalogs in 22 capitals | Public FastStore target searches; regular, wholesale and advertised kg offers |
 | `carrefour` | Verified delivery CEP and region in 13 capitals | Isolated browser sessions; regular, bulk and advertised kg offers |
+| `gbarbosa` | Verified delivery CEP and local grocery seller in Aracaju, Salvador and Maceió | Public VTEX target searches; packaged and advertised kg prices |
 
-The three delivery adapters resolve their configured CEP through the public regions
+The regional VTEX delivery adapters resolve their configured CEP through the public regions
 endpoint at the start of every run. The response must contain the configured
 `regional_seller_id`; a missing/ambiguous mapping stops that scraper before price
 collection. The resolved region is sent explicitly in the request and public
@@ -118,6 +121,9 @@ are registered and enabled in the default schedule configuration in
 are enabled by default. See [Sonda setup and limits](../docs/plans/sonda-retailer.md). For example:
 
 ```toml
+[runner]
+max_workers = 2
+
 [[scrapers]]
 adapter = "super-muffato"
 enabled = true
@@ -135,14 +141,47 @@ enabled = false
 # After registering this adapter, add its required settings and enable it.
 ```
 
-Runs are sequential. Each enabled scraper gets a new HTTP client, run ID, and
-listing-deduplication state. A collection or delivery failure stops that scraper;
-the runner continues with the next entry. The final summary reports the number of
+Collection and delivery run with at most two worker threads by default. Set
+`[runner].max_workers` to an integer from `1` to `8`; `1` restores sequential
+execution. Existing runner configurations without this table use two workers.
+Single-scraper configurations keep their original format. Discovery and status
+remain sequential so their output stays ordered.
+
+Each enabled scraper gets a new HTTP client and cookie jar, request pacing state,
+run ID, listing-deduplication state, observation spool and diagnostic spool.
+Browser adapters share a separate one-session limit covering creation through
+cleanup, protecting Botasaurus's process-wide driver/profile state. Each browser
+session still uses a fresh profile; HTTP work can overlap it. A worker waiting for
+that browser limit counts toward `max_workers`. Browser-heavy schedules therefore
+benefit less than API schedules. Request pacing and retries stay local to each
+entry; several contexts of one retailer can make requests concurrently.
+
+A collection or delivery failure stops that scraper; the runner continues with
+other entries and waits for every result. The final summary reports the number of
 scrapers and failures, and the command exits nonzero if any scraper failed.
+Logs include schedule IDs, run IDs and per-entry elapsed time. Shared pipeline log
+lines are written atomically; messages from different entries can appear in any
+order. An interrupted run cancels queued entries and waits for active workers to
+release their clients, queues and browsers.
 Unknown enabled adapters, invalid settings, and conflicting spool paths fail
 configuration validation before any scraper starts. Disabled entries require
 only `adapter` and `enabled = false`; their adapters need not be installed.
 All-disabled configurations are a successful no-op.
+
+The deployment runtime smoke compares one and two workers with six paced HTTP
+fixtures and two fresh Chromium sessions, without contacting retailers or a core.
+It checks cookie/profile isolation and browser cleanup, and reports elapsed time,
+CPU seconds, summed process RSS and file descriptors. In an environment with
+pytest and Testcontainers installed, run from the repository root:
+
+```sh
+docker build -f deployment/scrapers.Dockerfile -t nossa-inflacao-scrapers:verify .
+python -m pytest deployment/tests/test_scraper_browser.py -k parallel_runner -q -s
+```
+
+Summed RSS includes shared pages more than once; it is not container memory usage.
+Use container metrics during representative collection before increasing workers
+on a VPS. This offline fixture does not estimate live retailer throughput.
 
 `ingestion_token_env` names the environment variable containing that scraper's
 core token; it defaults to `INGESTION_TOKEN`. Tokens stay out of TOML files and
@@ -265,8 +304,8 @@ to the configuration in the working directory.
 
 The scheduler prints its next start with a timezone offset and waits until that
 time; starting it after today's scheduled time means the first run is tomorrow.
-It reloads the configuration on every run and executes all enabled scrapers
-sequentially through the existing collection and automatic delivery pipeline.
+It reloads the configuration on every run and executes enabled scrapers with the
+configured worker limit through the collection and automatic delivery pipeline.
 Failures remain visible without ending the daily schedule. Saved failed batches
 still require the existing `deliver` command for recovery.
 
@@ -923,3 +962,58 @@ São Paulo/Rio checks also traversed their entire rice result sets. This verifie
 bounded live extraction; it does not establish daily reliability, complete
 96-target coverage or delivery-slot availability. Actual shop registration and
 ingestion authorization follow [deployment setup](../docs/deployment.md).
+
+## GBarbosa delivery collection
+
+The `gbarbosa` adapter collects the retailer's own public VTEX catalog over HTTP;
+it needs no browser, new dependency or marketplace. Three delivery contexts are
+enabled in the default schedule:
+
+| Schedule | City | Delivery CEP | Required regional grocery seller |
+| --- | --- | --- | --- |
+| `gbarbosa-se` | Aracaju/SE | `49026010` | `gbarbosab006` |
+| `gbarbosa-ba` | Salvador/BA | `41820020` | `gbarbosab035` |
+| `gbarbosa-al` | Maceió/AL | `57035000` | `gbarbosab084` |
+
+Every run resolves its CEP again and requires the expected local seller before
+fetching prices. Search requests include the resolved region and public VTEX
+segment cookie. Observations retain SKU, product URL, offer seller `1`, regional
+seller/region in the store identity, CEP, city/state and delivery channel. These
+are online delivery catalogs, not verified physical shelf prices or delivery to
+every address in a city. The sampled Fortaleza CEP `60150160` resolved only the
+shared `gbarbosab101` seller and returned unavailable grocery samples; Fortaleza
+is not enabled. This is a sampled-address blocker, not proof of citywide absence.
+
+Collection uses bounded, paced target searches from the core's monitoring scope,
+with explicit source pagination, repeated-page detection and incomplete-run
+reporting. New target names and brands do not require adapter changes. Missing
+coverage, unsupported formats, access failures and exhausted page limits remain
+visible. Shared batching, immutable retries and per-context spools own delivery.
+
+Packaged prices and advertised kilogram prices are supported. Source kg prices
+stay per kg; approximate portions up to the captured 1.7 kg limit do not multiply
+prices or become fixed package contents. Payment-option portion totals are
+omitted for kg offers with a warning. Unsupported larger portions and kits remain
+explicit issues. Fixed package contents use conservative name parsing. Zero
+unavailable placeholders produce no offers; unknown membership, coupon and
+quantity conditions remain null. Available promotion wording and separate payment
+offers are preserved, without inventing a qualifying threshold.
+
+From `scrapers/`, a diagnostic sample performs no ingestion or spool writes:
+
+```sh
+.venv/bin/inflacao-scraper --config gbarbosa.example.toml discover --query 'arroz branco' --limit 3
+.venv/bin/pytest tests/gbarbosa/test_live.py --live -q
+```
+
+The three enabled entries use the existing authorized collector identity and
+distinct `data/gbarbosa-<uf>/spool.sqlite3` queues. Existing VPS upgrades append
+missing entries and register/authorize the shop through `git pull` followed by
+`./deploy up`; custom settings and explicit disables survive. See
+[deployment guidance](../docs/deployment.md#gbarbosa-delivery-collection).
+
+Saved [API fixtures and independent storefront checks](tests/fixtures/stores/README.md)
+cover three capital contexts. Read-only smoke checks also verified extraction
+through the existing VPS runtime. This does not establish full 96-target coverage,
+ongoing scheduler health or price history on two separate dates. The development
+workspace's enabled configuration is distinct from a deployed production scheduler.

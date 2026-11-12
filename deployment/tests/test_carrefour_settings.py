@@ -23,10 +23,10 @@ class CarrefourUpgradeTests(unittest.TestCase):
         entries = tomllib.loads(updated)["scrapers"]
         self.assertTrue(updated.startswith(original.rstrip()))
         self.assertEqual(entries[:41], tomllib.loads(original)["scrapers"])
-        additions = entries[41:]
+        additions = [entry for entry in entries[41:] if entry["adapter"] == "carrefour"]
         self.assertEqual({entry["state"] for entry in additions}, READY_STATES)
         self.assertTrue(all(entry["enabled"] for entry in additions))
-        self.assertEqual(len({entry["spool_path"] for entry in entries}), 54)
+        self.assertEqual(len({entry["spool_path"] for entry in entries}), 57)
         self.assertEqual(upgraded(updated), updated)
 
     def test_upgrade_preserves_explicit_disable_custom_settings_and_collector(self):
@@ -54,10 +54,11 @@ class CarrefourCapitalUpgradeTests(unittest.TestCase):
         original = previous_two_capitals()
         entries = tomllib.loads(upgraded(original))["scrapers"]
         self.assertEqual(entries[:43], tomllib.loads(original)["scrapers"])
-        self.assertEqual({entry["state"] for entry in entries[43:]}, READY_STATES - {"SP", "RJ"})
+        additions = [entry for entry in entries[43:] if entry["adapter"] == "carrefour"]
+        self.assertEqual({entry["state"] for entry in additions}, READY_STATES - {"SP", "RJ"})
         self.assertTrue(all(entry["enabled"] for entry in entries[43:]))
         self.assertEqual({entry["scraper_id"] for entry in entries}, {"muffato-curitiba-01"})
-        self.assertEqual(len({entry["spool_path"] for entry in entries}), 54)
+        self.assertEqual(len({entry["spool_path"] for entry in entries}), 57)
 
     def test_new_capital_explicit_disable_is_not_reenabled_or_duplicated(self):
         original = previous_two_capitals() + '''

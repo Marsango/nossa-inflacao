@@ -3,6 +3,7 @@
 import sys
 
 from ..delivery.spool import Spool
+from ..execution.output import write_line
 from .report import encode_report
 
 
@@ -28,7 +29,7 @@ def try_replay(spool, requester, settings, token):
         replay(spool, requester, settings, token)
         return True
     except Exception:
-        print("Diagnostic delivery failed; reports retained for retry", file=sys.stderr)
+        report_failure(settings, "Diagnostic delivery failed; reports retained for retry")
         return False
 
 
@@ -37,6 +38,14 @@ def complete(spool, requester, settings, token, run):
         payload = encode_report(run, settings, token)
         spool.enqueue_payload(str(run.identity), payload)
     except Exception:
-        print("Diagnostic queue unavailable or full; report could not be saved", file=sys.stderr)
+        report_failure(settings, "Diagnostic queue unavailable or full; report could not be saved")
         return False
     return try_replay(spool, requester, settings, token)
+
+
+def report_failure(settings, message):
+    write_line(
+        f"scraper_id={settings.scraper_id} shop_id={settings.shop_id} "
+        f"schedule_id={settings.schedule_id or 'default'}: {message}",
+        file=sys.stderr, flush=True,
+    )

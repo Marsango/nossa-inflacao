@@ -1,6 +1,7 @@
 """Carrefour uses the existing collection, batching, diagnostics and delivery runner."""
 
 from ..adapters import Adapter
+from ..execution.output import write_line
 from .catalog import catalog_pages, validate_page
 from .config import CarrefourSettings
 from .parsing import parse_products
@@ -9,7 +10,7 @@ from .source import fetch_products
 
 
 def prepare_context(requester, settings: CarrefourSettings) -> CarrefourSettings:
-    print(
+    write_line(
         f"shop=carrefour schedule_id={settings.schedule_id} city={settings.city} "
         f"state={settings.state} postal_code={settings.postal_code} preparing",
         flush=True,

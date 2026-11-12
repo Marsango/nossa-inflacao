@@ -15,6 +15,7 @@ def configuration():
         scraper_id="collector",
         shop_id="mambo",
         adapter="mambo",
+        schedule_id=None,
         core_url="https://core.example",
         spool_path="prices.sqlite3",
         spool_capacity_bytes=1024 * 1024,

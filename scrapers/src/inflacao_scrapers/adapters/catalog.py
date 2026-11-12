@@ -2,6 +2,7 @@
 
 import httpx
 
+from ..execution.output import write_line
 from ..transport import RequestFailure
 from . import ParsedPage
 
@@ -14,13 +15,13 @@ def collect_categories(paths, fetch_pages, shop_id):
 
 
 def collect_category(path, fetch_pages, shop_id):
-    print(f"shop={shop_id} category={path} starting", flush=True)
+    write_line(f"shop={shop_id} category={path} starting", flush=True)
     try:
         yield from fetch_pages(path)
     except SOURCE_ERRORS as error:
         yield ParsedPage(issues=[f"shop={shop_id} category={path}: {error}"])
         return
-    print(f"shop={shop_id} category={path} traversal_finished", flush=True)
+    write_line(f"shop={shop_id} category={path} traversal_finished", flush=True)
 
 
 def check_page_identities(identities, seen, shop):

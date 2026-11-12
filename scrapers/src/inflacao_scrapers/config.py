@@ -53,8 +53,14 @@ class Settings(BaseModel):
         return self
 
 
+class RunnerSettings(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True)
+    max_workers: int = Field(default=2, ge=1, le=8)
+
+
 class RunnerConfiguration(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
+    runner: RunnerSettings = Field(default_factory=RunnerSettings)
     scrapers: list[dict] = Field(min_length=1)
 
 
@@ -64,12 +70,13 @@ class ScraperSelection(BaseModel):
     enabled: bool = True
 
 
-def configuration_values(path: Path) -> tuple[list[dict], bool]:
+def configuration_values(path: Path) -> tuple[RunnerSettings, list[dict], bool]:
     with path.open("rb") as file:
         document = tomllib.load(file)
     if "scrapers" in document:
-        return RunnerConfiguration.model_validate(document).scrapers, True
-    return [document], False
+        configuration = RunnerConfiguration.model_validate(document)
+        return configuration.runner, configuration.scrapers, True
+    return RunnerSettings(), [document], False
 
 
 def resolve_settings(values: dict, multiple: bool) -> Settings | None:
@@ -87,14 +94,21 @@ def resolve_settings(values: dict, multiple: bool) -> Settings | None:
 
 
 def load_configurations(path: Path) -> list[Settings]:
-    values, multiple = configuration_values(path)
+    _, settings = load_runner(path)
+    return settings
+
+
+def load_runner(path: Path) -> tuple[RunnerSettings, list[Settings]]:
+    runner, values, multiple = configuration_values(path)
     resolved = [resolve_settings(value, multiple) for value in values]
     settings = [setting for setting in resolved if setting is not None]
     validate_schedule_ids(settings)
     paths = [(path.parent / setting.spool_path).resolve() for setting in settings]
-    if len(paths) != len(set(paths)):
-        raise ValueError("Enabled scrapers must use distinct spool_path values")
-    return settings
+    queues = paths + [path.with_name(path.name + ".diagnostics") for path in paths]
+    if len(queues) != len(set(queues)):
+        message = "Enabled scrapers must use distinct spool_path values, including diagnostics"
+        raise ValueError(message)
+    return runner, settings
 
 
 def validate_schedule_ids(settings: list[Settings]) -> None:

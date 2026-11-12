@@ -2,28 +2,55 @@
 
 import sqlite3
 import sys
+from concurrent.futures import ThreadPoolExecutor
+from itertools import repeat
+from time import monotonic
 
 import httpx
 
 from .adapters.registry import registered_adapter
 from .commands import COMMANDS
-from .config import load_configurations
+from .config import load_runner
+from .execution.output import write_line
 
 
 def run(arguments) -> int:
-    configurations = load_configurations(arguments.config)
-    results = [run_scraper(settings, arguments) for settings in configurations]
+    runner, configurations = load_runner(arguments.config)
+    workers = min(runner.max_workers, len(configurations))
+    if arguments.command not in ("collect", "deliver"):
+        workers = min(1, workers)
+    write_line(f"command={arguments.command} workers={workers}", flush=True)
+    results = execute_scrapers(configurations, arguments, workers)
     failures = sum(result != 0 for result in results)
-    print(f"scrapers={len(results)} failed={failures} complete={failures == 0}", flush=True)
+    write_line(f"scrapers={len(results)} failed={failures} complete={failures == 0}", flush=True)
     return int(failures != 0)
 
 
+def execute_scrapers(configurations, arguments, workers) -> list[int]:
+    if workers <= 1:
+        return [run_scraper(settings, arguments) for settings in configurations]
+    executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="scraper")
+    try:
+        return list(executor.map(run_scraper, configurations, repeat(arguments)))
+    finally:
+        executor.shutdown(wait=True, cancel_futures=True)
+
+
 def run_scraper(settings, arguments) -> int:
-    print(
-        f"scraper_id={settings.scraper_id} shop_id={settings.shop_id} "
-        f"adapter={settings.adapter} command={arguments.command}",
+    started = monotonic()
+    write_line(
+        f"{scraper_context(settings)} command={arguments.command}",
         flush=True,
     )
+    result = execute_command(settings, arguments)
+    write_line(
+        f"{scraper_context(settings)} exit_status={result} "
+        f"elapsed_seconds={monotonic() - started:.3f}", flush=True,
+    )
+    return result
+
+
+def execute_command(settings, arguments) -> int:
     try:
         adapter = registered_adapter(settings.adapter)
         command = COMMANDS[arguments.command]
@@ -38,7 +65,14 @@ def run_scraper(settings, arguments) -> int:
 
 
 def report_failure(settings, message: str) -> int:
-    print(
-        f"scraper_id={settings.scraper_id} adapter={settings.adapter}: {message}", file=sys.stderr
+    write_line(
+        f"{scraper_context(settings)}: {message}", file=sys.stderr, flush=True,
     )
     return 1
+
+
+def scraper_context(settings) -> str:
+    return (
+        f"scraper_id={settings.scraper_id} shop_id={settings.shop_id} "
+        f"adapter={settings.adapter} schedule_id={settings.schedule_id or 'default'}"
+    )

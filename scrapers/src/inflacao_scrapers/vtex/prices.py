@@ -65,6 +65,8 @@ def maximum_multiplier(settings) -> Decimal:
         return Decimal(5)
     if settings.shop_id == "mambo" and settings.supports_kilogram_prices():
         return Decimal(3)
+    if settings.shop_id == "gbarbosa" and settings.supports_kilogram_prices():
+        return Decimal("1.7")
     return Decimal(1)
 
 

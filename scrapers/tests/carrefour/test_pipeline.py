@@ -1,12 +1,12 @@
 import json
 import sys
-from contextlib import contextmanager
+from types import SimpleNamespace
 
 import httpx
 from stores.test_pipeline import install_mock_runtime, monitoring_response
 
 from inflacao_scrapers import cli
-from inflacao_scrapers.carrefour import catalog
+from inflacao_scrapers.carrefour import catalog, session
 from inflacao_scrapers.delivery import Spool
 
 from .conftest import OBSERVED_AT, captured_search, configuration
@@ -30,16 +30,14 @@ def write_configuration(tmp_path):
 
 
 def install_browser(monkeypatch, events, blocked):
-    @contextmanager
-    def open_session(settings):
+    def create_driver(settings):
         events.append(("open", settings.state))
-        try:
-            require_unblocked(settings, blocked)
-            yield object()
-        finally:
-            events.append(("close", settings.state))
+        return SimpleNamespace(close=lambda: events.append(("close", settings.state)))
 
-    monkeypatch.setattr(catalog, "open_session", open_session)
+    monkeypatch.setattr(session, "create_driver", create_driver)
+    monkeypatch.setattr(
+        session, "initialize_context", lambda driver, settings: require_unblocked(settings, blocked)
+    )
     monkeypatch.setattr(catalog, "fetch_products", source_response)
 
 
@@ -86,7 +84,7 @@ def test_two_regions_submit_contract_observations_without_spools(tmp_path, monke
     contexts = [json.loads(body)["observations"][0]["context"] for body in submissions]
     assert {context["state"] for context in contexts} == {"SP", "RJ"}
     assert len({context["store_id"] for context in contexts}) == 2
-    assert events == [("open", "SP"), ("close", "SP"), ("open", "RJ"), ("close", "RJ")]
+    assert_closed_sessions(events)
     assert not list(tmp_path.glob("*.sqlite3"))
 
 
@@ -94,7 +92,7 @@ def test_blocked_first_city_still_allows_second_city_collection(tmp_path, monkey
     status, submissions, events = execute(tmp_path, monkeypatch, blocked="SP")
     assert status == 1 and len(submissions) == 1
     assert json.loads(submissions[0])["observations"][0]["context"]["state"] == "RJ"
-    assert events[-1] == ("close", "RJ")
+    assert_closed_sessions(events)
 
 
 def test_delivery_failure_closes_sessions_and_keeps_byte_exact_isolated_spools(
@@ -102,10 +100,19 @@ def test_delivery_failure_closes_sessions_and_keeps_byte_exact_isolated_spools(
 ):
     status, submissions, events = execute(tmp_path, monkeypatch, failed_delivery=True)
     assert status == 1 and len(submissions) == 2
-    assert events == [("open", "SP"), ("close", "SP"), ("open", "RJ"), ("close", "RJ")]
-    for state, attempted in zip(["SP", "RJ"], submissions, strict=True):
+    assert_closed_sessions(events)
+    for attempted in submissions:
+        document = json.loads(attempted)
+        state = document["observations"][0]["context"]["state"]
         with Spool(tmp_path / (state + ".sqlite3")) as spool:
             assert next(spool.pending())[1] == attempted
-        document = json.loads(attempted)
         assert document["scraper_id"] == "authorized-collector"
-        assert document["observations"][0]["context"]["state"] == state
+
+
+def assert_closed_sessions(events):
+    assert len(events) == 4
+    assert {state for action, state in events} == {"SP", "RJ"}
+    for index in (0, 2):
+        action, state = events[index]
+        assert action == "open"
+        assert events[index + 1] == ("close", state)

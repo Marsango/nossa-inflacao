@@ -24,7 +24,7 @@ class AtacadaoUpgradeTests(unittest.TestCase):
         self.assertEqual({entry["state"] for entry in additions}, READY_STATES)
         self.assertTrue(all(entry["enabled"] for entry in additions))
         self.assertEqual(len({entry["schedule_id"] for entry in additions}), 22)
-        self.assertEqual(len({entry["spool_path"] for entry in entries}), 54)
+        self.assertEqual(len({entry["spool_path"] for entry in entries}), 57)
         self.assertEqual(upgraded(updated), updated)
 
     def test_custom_disabled_city_is_preserved_while_others_are_appended(self):

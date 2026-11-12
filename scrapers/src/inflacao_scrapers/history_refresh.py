@@ -4,6 +4,7 @@ import sys
 
 import httpx
 
+from .execution.output import write_line
 from .transport import RequestFailure
 
 
@@ -18,7 +19,7 @@ def request_history_refresh(requester, settings, token: str) -> None:
         if response.status_code != 202:
             raise ValueError(f"History refresh HTTP {response.status_code}")
     except (httpx.HTTPError, RequestFailure, ValueError):
-        print(
+        write_line(
             f"shop_id={settings.shop_id}: history refresh notification failed; "
             "the core will retry precomputation after ingestion drains",
             file=sys.stderr,

@@ -10,7 +10,11 @@ from inflacao_scrapers.vtex.json import decode_response
 
 from .conftest import encode_source
 
+# These delivery tests assert request order; concurrency has dedicated runner tests.
 CONFIGURATION = """
+[runner]
+max_workers=1
+
 [[scrapers]]
 adapter="angeloni"
 scraper_id="shared"

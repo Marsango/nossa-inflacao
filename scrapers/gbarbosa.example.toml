@@ -1,0 +1,11 @@
+# Public GBarbosa delivery catalog; each run resolves this CEP again.
+adapter = "gbarbosa"
+scraper_id = "muffato-curitiba-01"
+shop_id = "gbarbosa"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+postal_code = "49026010"
+regional_seller_id = "gbarbosab006"
+city = "Aracaju"
+state = "SE"
+spool_path = "data/gbarbosa-se/spool.sqlite3"

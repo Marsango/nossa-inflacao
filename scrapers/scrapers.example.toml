@@ -1,5 +1,8 @@
-# Each enabled entry runs sequentially with the registered adapter and its own settings.
+# Collection/delivery use bounded workers; browser sessions run one at a time.
 # Register a new adapter before adding its enabled entry here.
+[runner]
+max_workers = 2 # 1 restores sequential execution; accepted range: 1..8.
+
 [[scrapers]]
 adapter = "super-muffato"
 enabled = true
@@ -912,3 +915,46 @@ request_interval_seconds = 1.5
 max_search_pages = 100
 max_catalog_pages = 1000
 spool_path = "data/carrefour-sc/spool.sqlite3"
+
+# GBarbosa verified grocery delivery contexts; national seller alone is insufficient.
+[[scrapers]]
+adapter = "gbarbosa"
+schedule_id = "gbarbosa-se"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "gbarbosa"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+postal_code = "49026010"
+regional_seller_id = "gbarbosab006"
+city = "Aracaju"
+state = "SE"
+spool_path = "data/gbarbosa-se/spool.sqlite3"
+
+[[scrapers]]
+adapter = "gbarbosa"
+schedule_id = "gbarbosa-ba"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "gbarbosa"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+postal_code = "41820020"
+regional_seller_id = "gbarbosab035"
+city = "Salvador"
+state = "BA"
+spool_path = "data/gbarbosa-ba/spool.sqlite3"
+
+[[scrapers]]
+adapter = "gbarbosa"
+schedule_id = "gbarbosa-al"
+enabled = true
+scraper_id = "muffato-curitiba-01"
+shop_id = "gbarbosa"
+core_url = "http://127.0.0.1:8080"
+ingestion_token_env = "INGESTION_TOKEN"
+postal_code = "57035000"
+regional_seller_id = "gbarbosab084"
+city = "Maceió"
+state = "AL"
+spool_path = "data/gbarbosa-al/spool.sqlite3"
